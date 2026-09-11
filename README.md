@@ -8,11 +8,13 @@ Veritas is a decentralized reputation protocol that aggregates prediction market
 [![Somnia × DreamDEX — Event Contracts](https://img.shields.io/badge/Somnia%20x%20DreamDEX-Event%20Contracts%202025-22d3ee?style=for-the-badge)](https://dorahacks.io/hackathon/event-contracts)
 [![Somnia Shannon Exclusive](https://img.shields.io/badge/Somnia%20Shannon-50312-22d3ee?style=for-the-badge)](https://shannon-explorer.somnia.network)
 [![License: Apache 2.0](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](./LICENSE)
-[![Live Demo](https://img.shields.io/badge/Live-Demo-blue?style=for-the-badge)](https://veritas-protocol-4r9b.vercel.app/)
+[![Live Demo](https://img.shields.io/badge/Live-Demo-blue?style=for-the-badge)](https://veritas-protocol-app.vercel.app/)
 [![Network](https://img.shields.io/badge/Network-STT%20Chain-yellow?style=for-the-badge)](https://www.sttchain.org/)
 [![License](https://img.shields.io/badge/License-MIT-green?style=for-the-badge)](LICENSE)
 
 ---
+
+[Live Demo](https://veritas-protocol-app.vercel.app/)
 
 ## The Problem
 
@@ -166,7 +168,7 @@ veritas/
 
 ```bash
 # Clone repository
-git clone https://github.com/Leihyn/Veritas.git
+git clone https://github.com/Darkvader-ship-it/Veritas-Protocol-.git
 cd Veritas
 
 # Install frontend dependencies
