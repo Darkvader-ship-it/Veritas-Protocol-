@@ -1,0 +1,159 @@
+import { Callout, Steps } from 'nextra/components'
+
+# Creating Your Account
+
+Registering on Veritas creates your on-chain identity and mints your unique Reputation NFT.
+
+<Callout type="info" emoji="💰">
+  **Cost:** 0.0005 STT (~$0.30) one-time registration fee
+</Callout>
+
+## What You Get When You Register
+
+| Item | Description |
+|------|-------------|
+| 🎨 **Reputation NFT** | A unique, soulbound token tied to your wallet |
+| 📊 **VeritasScore** | Your reputation score (starts at 0) |
+| 🏅 **Bronze Tier** | Your starting tier status |
+| 📈 **Dashboard Access** | Full access to your personal dashboard |
+
+## Registration Steps
+
+<Steps>
+
+### Make Sure You're Connected
+
+You should see your wallet address in the top right corner of Veritas. If not, [connect your wallet first](/getting-started/wallet-setup).
+
+### Navigate to Dashboard
+
+Click on **"Dashboard"** in the navigation menu.
+
+### Click Register
+
+You'll see a **"Register"** button if you haven't registered yet. Click it.
+
+### Confirm the Transaction
+
+Your wallet will pop up asking you to confirm:
+- **To:** Veritas Core Contract
+- **Amount:** 0.0005 STT
+- **Gas Fee:** ~0.0001 STT (varies)
+
+Click **"Confirm"** in your wallet.
+
+### Wait for Confirmation
+
+The transaction takes about 3-15 seconds to confirm. You'll see:
+- A loading spinner
+- Then a success message
+- Your new NFT displayed!
+
+### You're Registered! 🎉
+
+You now have your Veritas identity. Your dashboard will show:
+- Your unique Reputation NFT
+- VeritasScore: 0 (you'll build this by importing predictions)
+- Tier: Bronze
+- A prompt to import your first predictions
+
+</Steps>
+
+## Your Reputation NFT
+
+When you register, you receive a **soulbound NFT**. Here's what makes it special:
+
+### What is "Soulbound"?
+
+<div className="p-4 rounded-xl bg-blue-50 dark:bg-blue-900/20 border border-blue-200 dark:border-blue-800 mt-4">
+  <p className="m-0">
+    **Soulbound** means the NFT is permanently attached to your wallet. It cannot be:
+  </p>
+  <ul className="mt-2 mb-0">
+    <li>❌ Transferred to another wallet</li>
+    <li>❌ Sold on marketplaces</li>
+    <li>❌ Given away</li>
+  </ul>
+  <p className="mt-2 mb-0">
+    This ensures your reputation is truly **yours** and can't be bought or faked.
+  </p>
+</div>
+
+### Dynamic Metadata
+
+Your NFT automatically updates to show:
+- Your current VeritasScore
+- Your tier (Bronze → Diamond)
+- Visual changes as you level up
+
+The higher your score, the more impressive your NFT looks!
+
+## What Happens On-Chain
+
+When you register, the following happens on the blockchain:
+
+1. **Profile Created:** Your wallet address is registered in the Veritas smart contract
+2. **NFT Minted:** A unique ERC-721 token is minted to your wallet
+3. **Score Initialized:** Your VeritasScore starts at 0
+4. **Timestamp Recorded:** Your registration date is saved (affects some bonuses)
+
+## After Registration
+
+Now that you're registered, you should:
+
+<div className="grid grid-cols-1 md:grid-cols-2 gap-4 mt-4">
+  <a href="/getting-started/first-import" className="block p-4 rounded-xl border border-gray-200 dark:border-gray-700 hover:border-blue-500 transition-colors no-underline">
+    <div className="text-2xl mb-2">📥</div>
+    <h4 className="font-semibold m-0">Import Your Predictions</h4>
+    <p className="text-sm text-gray-600 dark:text-gray-400 mt-1 mb-0">
+      Connect platforms and build your VeritasScore
+    </p>
+  </a>
+  <a href="/getting-started/dashboard-tour" className="block p-4 rounded-xl border border-gray-200 dark:border-gray-700 hover:border-blue-500 transition-colors no-underline">
+    <div className="text-2xl mb-2">🗺️</div>
+    <h4 className="font-semibold m-0">Take a Dashboard Tour</h4>
+    <p className="text-sm text-gray-600 dark:text-gray-400 mt-1 mb-0">
+      Learn about all the features available to you
+    </p>
+  </a>
+</div>
+
+## Troubleshooting
+
+### "Transaction Failed"
+
+<Callout type="error">
+  **Common causes:**
+  - Not enough STT for gas fees
+  - Wrong network selected
+  - Network congestion (try again)
+</Callout>
+
+**Solutions:**
+1. Make sure you have at least 0.001 STT in your wallet
+2. Verify you're on STT Smart Chain (not Ethereum)
+3. Wait a minute and try again
+
+### "Already Registered"
+
+If you see this message, you already have an account! Go to your Dashboard to see your profile.
+
+### "Connection Lost"
+
+If your wallet disconnects during registration:
+1. Refresh the page
+2. Reconnect your wallet
+3. Check the Dashboard - your registration may have completed
+
+<Callout type="warning" emoji="💡">
+  **Need more help?** Check our [Troubleshooting Guide](/help/troubleshooting) or [FAQ](/help/faq).
+</Callout>
+
+## Next Step
+
+<a
+  href="/getting-started/first-import"
+  className="inline-flex items-center justify-center px-6 py-3 mt-4 bg-blue-600 text-white rounded-lg font-semibold hover:bg-blue-700 transition-colors no-underline"
+>
+  Import Your First Predictions →
+</a>

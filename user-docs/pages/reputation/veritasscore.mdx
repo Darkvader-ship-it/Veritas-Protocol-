@@ -1,0 +1,174 @@
+import { Callout } from 'nextra/components'
+
+# Your VeritasScore
+
+Your VeritasScore is the single most important number in Veritas. It represents your overall prediction ability and determines your tier, ranking, and access to features.
+
+## What is VeritasScore?
+
+VeritasScore is a number that combines:
+- **How accurate you are** (win rate)
+- **How much experience you have** (trading volume)
+
+The formula is designed to be fair - you can't game it by just making tiny bets or by betting huge amounts with poor accuracy.
+
+## How It's Calculated
+
+export const FormulaBox = () => (
+  <div className="p-6 rounded-xl bg-blue-50 dark:bg-blue-900/20 mt-4">
+    <h4 className="font-bold text-blue-800 dark:text-blue-200 m-0">The VeritasScore Formula</h4>
+    <div className="mt-4 p-4 bg-white dark:bg-gray-900 rounded-lg font-mono text-center text-lg">
+      VeritasScore = Win Rate × √(Volume)
+    </div>
+    <p className="text-sm text-blue-700 dark:text-blue-300 mt-4 mb-0">
+      Win Rate is your accuracy (0-100%), and Volume is your total trading amount.
+      The square root of volume means bigger trades help, but with diminishing returns.
+    </p>
+  </div>
+)
+
+<FormulaBox />
+
+### Breaking It Down
+
+**Win Rate Component:**
+- If you win 60% of your predictions, your win rate is 60%
+- This is the main driver of your score
+- Accuracy matters most!
+
+**Volume Component:**
+- Uses the square root of your total volume
+- This prevents whales from dominating purely by betting big
+- Rewards consistent trading over time
+
+### Example Calculations
+
+| Trader | Wins | Total Bets | Win Rate | Volume | VeritasScore |
+|--------|------|------------|----------|--------|------------|
+| Alice | 60 | 100 | 60% | 10 STT | ~190 |
+| Bob | 150 | 250 | 60% | 50 STT | ~424 |
+| Carol | 200 | 400 | 50% | 100 STT | ~500 |
+| Dave | 350 | 500 | 70% | 50 STT | ~495 |
+
+**Key insight:** Carol has more volume than Dave, but Dave's higher accuracy gives them a similar score!
+
+## Score Multipliers & Caps
+
+### Minimum Requirements
+
+<Callout type="warning">
+  You need at least **10 predictions** to appear on the leaderboard.
+</Callout>
+
+This prevents people from showing up with 3/3 wins (100% accuracy) from lucky bets.
+
+### Experience Scaling
+
+If you have fewer than 50 bets, your score is scaled down:
+- 10 bets = 20% of full score
+- 25 bets = 50% of full score
+- 50+ bets = 100% of full score
+
+This rewards experienced traders while still giving newcomers a path.
+
+### New Account Penalty
+
+Accounts less than 14 days old have a 50% cap on their score. This prevents fake account manipulation.
+
+## Anti-Gaming Measures
+
+Veritas uses several techniques to keep scores fair:
+
+### 1. Wilson Score Confidence
+
+Instead of raw win rate, we use a statistical method that accounts for sample size:
+
+| Scenario | Raw Win Rate | Actual Score Used |
+|----------|--------------|-------------------|
+| 3 wins / 3 bets | 100% | ~44% |
+| 30 wins / 50 bets | 60% | ~47% |
+| 600 wins / 1000 bets | 60% | ~57% |
+
+This means lucky small samples don't beat consistent large samples.
+
+### 2. Square Root Volume Scaling
+
+The square root function provides diminishing returns:
+
+| Volume | Score Multiplier |
+|--------|-----------------|
+| 1 STT | 1.0× |
+| 10 STT | 3.2× |
+| 100 STT | 10× |
+| 1000 STT | 31.6× |
+
+Betting 10× more only gives you 3.2× more score, not 10×!
+
+### 3. Duplicate Prevention
+
+Each set of predictions can only be imported once, preventing artificial inflation.
+
+## Improving Your VeritasScore
+
+### What Helps Most
+
+export const ImpactGrid = () => (
+  <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mt-4">
+    <div className="p-4 rounded-xl bg-green-50 dark:bg-green-900/20">
+      <h4 className="font-semibold text-green-800 dark:text-green-200 m-0">High Impact</h4>
+      <ul className="mt-2 mb-0 text-sm">
+        <li>Improving your win rate</li>
+        <li>Trading consistently over time</li>
+        <li>Importing from multiple platforms</li>
+        <li>Making 50+ predictions</li>
+      </ul>
+    </div>
+    <div className="p-4 rounded-xl bg-red-50 dark:bg-red-900/20">
+      <h4 className="font-semibold text-red-800 dark:text-red-200 m-0">Low Impact</h4>
+      <ul className="mt-2 mb-0 text-sm">
+        <li>Making huge single bets</li>
+        <li>Trading a lot with poor accuracy</li>
+        <li>Cherry-picking only winning trades</li>
+        <li>Creating new accounts</li>
+      </ul>
+    </div>
+  </div>
+)
+
+<ImpactGrid />
+
+### Practical Tips
+
+1. **Focus on accuracy first** - A 70% win rate beats high volume with 50% accuracy
+2. **Be consistent** - Regular trading builds score faster than sporadic big bets
+3. **Diversify platforms** - Import from all platforms you use
+4. **Give it time** - The 14-day cap lifts eventually, patience pays off
+
+## Checking Your Score
+
+Your VeritasScore is displayed:
+- On your Dashboard (prominently)
+- On your NFT (dynamically updated)
+- On your public profile
+- On the leaderboard
+
+It updates automatically when you:
+- Import new predictions
+- When pending predictions resolve
+- When you manually refresh
+
+## Score History
+
+Your score can go up or down over time:
+- **Increases:** When you import wins or have winning predictions resolve
+- **Decreases:** Currently, scores only increase (future updates may add decay for inactive accounts)
+
+<Callout type="info" emoji="📈">
+  **Your best strategy:** Focus on making good predictions consistently. The score will follow!
+</Callout>
+
+## Related Topics
+
+- [Tier System](/reputation/tiers) - What your score unlocks
+- [Improving Your Score](/reputation/improving-score) - Detailed strategies
+- [The Leaderboard](/reputation/leaderboard) - How rankings work

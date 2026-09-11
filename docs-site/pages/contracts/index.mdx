@@ -1,0 +1,186 @@
+import { Callout, Cards, Card, Tabs } from 'nextra/components'
+
+# Smart Contracts Overview
+
+Veritas's on-chain protocol consists of five core contracts deployed on STT Smart Chain.
+
+## Deployed Addresses
+
+<Callout type="warning">
+  These are **STT Testnet** addresses (Chain ID: 97). Mainnet deployment coming soon.
+</Callout>
+
+| Contract | Address | Verified |
+|----------|---------|----------|
+| VeritasCore | `0xd140eb173cbe6abf12a304095fa529d9b3f8ce6b` | ✅ |
+| ReputationNFT | `0xa216b13c0b27b00c23552c768088fe11004d4b37` | ✅ |
+| ScoreCalculator | `0x1c5aa7eff8174e8fd3a5643d75af77f3f5f422b9` | ✅ |
+| PlatformRegistry | `0xbf378b0e69cf131bcc0b103ae8b32b5db03ddaa5` | ✅ |
+| CopyTradingVault | `0xBf5341E79bc0507a16807C244b5267Ad8333a6ed` | ✅ |
+
+## Contract Architecture
+
+```
+┌─────────────────────────────────────────────────────────────────┐
+│                       VeritasCore                           │
+│                    (Main Coordinator)                           │
+│  - User Registration                                            │
+│  - Platform Connections                                         │
+│  - Prediction Imports                                           │
+│  - Score Updates                                                │
+└─────────────────────┬───────────────────────────────────────────┘
+                      │
+        ┌─────────────┼─────────────┬─────────────┐
+        ▼             ▼             ▼             ▼
+┌─────────────┐ ┌───────────┐ ┌───────────┐ ┌─────────────────┐
+│ Reputation  │ │   Score   │ │ Platform  │ │  CopyTrading    │
+│    NFT      │ │Calculator │ │ Registry  │ │     Vault       │
+│             │ │           │ │           │ │                 │
+│ - ERC721    │ │ - Formula │ │ - List    │ │ - Deposits      │
+│ - Soulbound │ │ - Tiers   │ │ - Status  │ │ - Follows       │
+│ - Metadata  │ │ - Caps    │ │ - Adapters│ │ - Execution     │
+└─────────────┘ └───────────┘ └───────────┘ └─────────────────┘
+```
+
+## Core Contracts
+
+<Cards>
+  <Card title="VeritasCore" href="/contracts/veritas-core">
+    Main protocol coordinator for registration and imports
+  </Card>
+  <Card title="ReputationNFT" href="/contracts/reputation-nft">
+    Soulbound ERC-721 identity tokens
+  </Card>
+  <Card title="ScoreCalculator" href="/contracts/score-calculator">
+    VeritasScore algorithm implementation
+  </Card>
+  <Card title="CopyTradingVault" href="/contracts/copy-trading-vault">
+    Copy trading infrastructure
+  </Card>
+</Cards>
+
+## Quick Reference
+
+### VeritasCore
+
+The main protocol coordinator that orchestrates all user interactions.
+
+**Key Functions:**
+```solidity
+function registerUser() external payable           // Register & mint NFT
+function connectPlatform(uint256 platformId)       // Connect to platform
+function importPredictions(...)                    // Import history
+function updateVeritasScore(address user)            // Recalculate score
+```
+
+**Configuration:**
+| Parameter | Value |
+|-----------|-------|
+| Minting Fee | 0.0005 STT |
+| Import Cooldown | 1 hour |
+| Min Bet Amount | 0.001 STT |
+
+### ReputationNFT
+
+Soulbound ERC-721 tokens representing user identity.
+
+**Key Features:**
+- Non-transferable (soulbound)
+- Dynamic on-chain SVG metadata
+- Tier-based visual evolution
+
+**Tier Thresholds:**
+| Tier | Score Range | Color |
+|------|-------------|-------|
+| Bronze | 0 - 499 | #CC8033 |
+| Silver | 500 - 999 | #9CA3AF |
+| Gold | 1000 - 1999 | #EAB308 |
+| Platinum | 2000 - 4999 | #7DD3E8 |
+| Diamond | 5000+ | #22D3EE |
+
+### ScoreCalculator
+
+Implements the VeritasScore algorithm.
+
+**Formula:**
+```
+VeritasScore = (winRate × 100) × sqrt(totalVolume / 1e16) / 100
+```
+
+### CopyTradingVault
+
+Copy trading infrastructure.
+
+**Fee Structure:**
+| Fee | Percentage | Recipient |
+|-----|------------|-----------|
+| Protocol Fee | 10% | Treasury |
+| Leader Fee | 10% | Copied trader |
+
+**Limits:**
+| Parameter | Value |
+|-----------|-------|
+| Min Deposit | 0.01 STT |
+| Max Vault Size | 100 STT |
+| Withdrawal Lock | 1 hour |
+
+## Development
+
+<Tabs items={['Build', 'Test', 'Deploy']}>
+  <Tabs.Tab>
+    ```bash copy
+    cd contracts
+    forge build
+    ```
+  </Tabs.Tab>
+  <Tabs.Tab>
+    ```bash copy
+    # All tests
+    forge test
+
+    # With gas report
+    forge test --gas-report
+
+    # Verbose
+    forge test -vvvv
+    ```
+  </Tabs.Tab>
+  <Tabs.Tab>
+    ```bash copy
+    # Testnet
+    forge script script/Deploy.s.sol:Deploy \
+      --rpc-url https://data-seed-presomnia-1-s1.somnia.org:8545 \
+      --broadcast \
+      --verify
+    ```
+  </Tabs.Tab>
+</Tabs>
+
+## Security Considerations
+
+<Callout type="error">
+  The contracts have **not been formally audited**. Use at your own risk on mainnet.
+</Callout>
+
+### Implemented Protections
+
+1. **Reentrancy Guards** - All functions with external calls
+2. **Access Control** - Owner and role-based permissions
+3. **Input Validation** - All user inputs validated
+4. **Pausable** - Emergency stop mechanism
+5. **Rate Limiting** - Cooldowns on imports
+
+## Gas Costs
+
+| Function | Approximate Gas |
+|----------|-----------------|
+| registerUser | ~150,000 |
+| connectPlatform | ~50,000 |
+| importPredictions | ~100,000 |
+| updateVeritasScore | ~80,000 |
+
+## Related Documentation
+
+- [VeritasScore Algorithm](/contracts/score-calculator)
+- [Copy Trading](/contracts/copy-trading-vault)
+- [Architecture Overview](/architecture)

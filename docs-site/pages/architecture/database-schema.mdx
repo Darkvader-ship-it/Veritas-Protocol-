@@ -1,0 +1,301 @@
+import { Callout, Tabs } from 'nextra/components'
+
+# Database Schema
+
+Veritas uses Supabase (PostgreSQL) for off-chain data storage.
+
+## Overview
+
+The database stores:
+- User profiles and wallet mappings
+- Indexed prediction/bet records
+- Aggregated statistics per platform
+- Copy trading simulation data
+
+## Entity Relationship Diagram
+
+```
+┌─────────────┐       ┌─────────────────────┐       ┌─────────────┐
+│   users     │       │        bets         │       │  platforms  │
+├─────────────┤       ├─────────────────────┤       ├─────────────┤
+│ id (PK)     │──────<│ user_id (FK)        │       │ id (PK)     │
+│ wallet_addr │       │ platform_id (FK)    │>──────│ name        │
+│ username    │       │ market_id           │       │ adapter_addr│
+│ created_at  │       │ position            │       │ is_active   │
+└─────────────┘       │ amount              │       └─────────────┘
+      │               │ won                 │
+      │               │ tx_hash             │
+      │               └─────────────────────┘
+      │
+      │         ┌─────────────────────────┐
+      └────────<│  user_platform_stats    │
+                ├─────────────────────────┤
+                │ user_id (FK)            │
+                │ platform_id (FK)        │
+                │ total_bets              │
+                │ wins                    │
+                │ volume                  │
+                │ score                   │
+                └─────────────────────────┘
+```
+
+## Core Tables
+
+### users
+
+Stores registered user profiles.
+
+```sql copy
+CREATE TABLE users (
+    id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
+    wallet_address VARCHAR(42) UNIQUE NOT NULL,
+    username VARCHAR(50),
+    bio TEXT,
+    avatar_url VARCHAR(255),
+    nft_token_id BIGINT,
+    created_at TIMESTAMP WITH TIME ZONE DEFAULT NOW(),
+    updated_at TIMESTAMP WITH TIME ZONE DEFAULT NOW()
+);
+
+CREATE INDEX idx_users_wallet ON users(wallet_address);
+CREATE INDEX idx_users_created ON users(created_at);
+```
+
+| Column | Type | Description |
+|--------|------|-------------|
+| id | UUID | Primary key |
+| wallet_address | VARCHAR(42) | Ethereum address (lowercase) |
+| username | VARCHAR(50) | Display name (optional) |
+| bio | TEXT | User bio (optional) |
+| avatar_url | VARCHAR(255) | Profile image URL |
+| nft_token_id | BIGINT | Reputation NFT token ID |
+| created_at | TIMESTAMP | Registration timestamp |
+| updated_at | TIMESTAMP | Last profile update |
+
+### platforms
+
+Registered prediction market platforms.
+
+```sql copy
+CREATE TABLE platforms (
+    id SERIAL PRIMARY KEY,
+    name VARCHAR(50) NOT NULL,
+    slug VARCHAR(50) UNIQUE NOT NULL,
+    adapter_address VARCHAR(42),
+    explorer_url VARCHAR(255),
+    chain_id INTEGER,
+    platform_type VARCHAR(20),
+    is_active BOOLEAN DEFAULT true,
+    created_at TIMESTAMP WITH TIME ZONE DEFAULT NOW()
+);
+
+INSERT INTO platforms (name, slug, chain_id, platform_type) VALUES
+('DreamDEX Event Contracts', 'dreamdex', 56, 'binary'),
+('Polymarket', 'polymarket', 137, 'event'),
+('Azuro', 'azuro', 137, 'sports'),
+('Overtime', 'overtime', 10, 'sports'),
+('Limitless', 'limitless', 137, 'prediction'),
+('Speed Markets', 'speedmarkets', 10, 'binary'),
+('SXBet', 'sxbet', 416, 'sports');
+```
+
+### bets
+
+Individual prediction records indexed from blockchain.
+
+```sql copy
+CREATE TABLE bets (
+    id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
+    user_id UUID REFERENCES users(id) ON DELETE CASCADE,
+    platform_id INTEGER REFERENCES platforms(id),
+    market_id VARCHAR(100) NOT NULL,
+    position VARCHAR(20) NOT NULL,
+    amount NUMERIC(78, 0) NOT NULL,
+    claimed_amount NUMERIC(78, 0) DEFAULT 0,
+    won BOOLEAN,
+    tx_hash VARCHAR(66) UNIQUE NOT NULL,
+    block_number BIGINT NOT NULL,
+    bet_timestamp TIMESTAMP WITH TIME ZONE NOT NULL,
+    resolved_at TIMESTAMP WITH TIME ZONE,
+    created_at TIMESTAMP WITH TIME ZONE DEFAULT NOW()
+);
+
+CREATE INDEX idx_bets_user ON bets(user_id);
+CREATE INDEX idx_bets_platform ON bets(platform_id);
+CREATE INDEX idx_bets_market ON bets(market_id);
+CREATE INDEX idx_bets_timestamp ON bets(bet_timestamp);
+```
+
+| Column | Type | Description |
+|--------|------|-------------|
+| user_id | UUID | Reference to users table |
+| platform_id | INTEGER | Reference to platforms table |
+| market_id | VARCHAR(100) | Round/epoch/market identifier |
+| position | VARCHAR(20) | BULL/BEAR/YES/NO/team name |
+| amount | NUMERIC | Bet amount in wei |
+| claimed_amount | NUMERIC | Payout amount in wei |
+| won | BOOLEAN | true/false/null (pending) |
+| tx_hash | VARCHAR(66) | Transaction hash |
+
+### user_platform_stats
+
+Aggregated statistics per user per platform.
+
+```sql copy
+CREATE TABLE user_platform_stats (
+    id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
+    user_id UUID REFERENCES users(id) ON DELETE CASCADE,
+    platform_id INTEGER REFERENCES platforms(id),
+    total_bets INTEGER DEFAULT 0,
+    wins INTEGER DEFAULT 0,
+    losses INTEGER DEFAULT 0,
+    pending INTEGER DEFAULT 0,
+    win_rate NUMERIC(5, 2) DEFAULT 0,
+    volume NUMERIC(78, 0) DEFAULT 0,
+    pnl NUMERIC(78, 0) DEFAULT 0,
+    score INTEGER DEFAULT 0,
+    best_streak INTEGER DEFAULT 0,
+    current_streak INTEGER DEFAULT 0,
+    last_bet_at TIMESTAMP WITH TIME ZONE,
+    last_updated TIMESTAMP WITH TIME ZONE DEFAULT NOW(),
+    UNIQUE(user_id, platform_id)
+);
+
+CREATE INDEX idx_stats_user ON user_platform_stats(user_id);
+CREATE INDEX idx_stats_score ON user_platform_stats(score DESC);
+```
+
+## Database Triggers
+
+### Auto-Update Stats Trigger
+
+<Callout type="info">
+  This trigger automatically updates `user_platform_stats` when bets are inserted or updated.
+</Callout>
+
+```sql copy
+CREATE OR REPLACE FUNCTION update_user_stats()
+RETURNS TRIGGER AS $$
+BEGIN
+    INSERT INTO user_platform_stats (user_id, platform_id, total_bets, wins, losses, volume, win_rate, score)
+    SELECT
+        NEW.user_id,
+        NEW.platform_id,
+        COUNT(*),
+        COUNT(*) FILTER (WHERE won = true),
+        COUNT(*) FILTER (WHERE won = false),
+        SUM(amount),
+        ROUND(COUNT(*) FILTER (WHERE won = true)::NUMERIC / NULLIF(COUNT(*) FILTER (WHERE won IS NOT NULL), 0) * 100, 2),
+        ROUND(
+            (COUNT(*) FILTER (WHERE won = true)::NUMERIC / NULLIF(COUNT(*), 0) * 10000) *
+            SQRT(SUM(amount)::NUMERIC / 1e16) / 100
+        )::INTEGER
+    FROM bets
+    WHERE user_id = NEW.user_id AND platform_id = NEW.platform_id
+    ON CONFLICT (user_id, platform_id)
+    DO UPDATE SET
+        total_bets = EXCLUDED.total_bets,
+        wins = EXCLUDED.wins,
+        losses = EXCLUDED.losses,
+        volume = EXCLUDED.volume,
+        win_rate = EXCLUDED.win_rate,
+        score = EXCLUDED.score,
+        last_updated = NOW();
+
+    RETURN NEW;
+END;
+$$ LANGUAGE plpgsql;
+
+CREATE TRIGGER trigger_update_stats
+AFTER INSERT OR UPDATE ON bets
+FOR EACH ROW
+EXECUTE FUNCTION update_user_stats();
+```
+
+## Row Level Security (RLS)
+
+```sql copy
+ALTER TABLE users ENABLE ROW LEVEL SECURITY;
+
+-- Anyone can read
+CREATE POLICY "Users are viewable by everyone"
+ON users FOR SELECT
+USING (true);
+
+-- Only owner can update
+CREATE POLICY "Users can update own profile"
+ON users FOR UPDATE
+USING (wallet_address = auth.jwt() ->> 'wallet_address');
+```
+
+## Common Queries
+
+### Leaderboard Query
+
+```sql copy
+SELECT
+    u.wallet_address,
+    u.username,
+    COALESCE(SUM(s.total_bets), 0) as total_bets,
+    COALESCE(SUM(s.wins), 0) as wins,
+    COALESCE(SUM(s.volume), 0) as volume,
+    ROUND(SUM(s.wins)::NUMERIC / NULLIF(SUM(s.total_bets), 0) * 100, 2) as win_rate,
+    COALESCE(MAX(s.score), 0) as score
+FROM users u
+LEFT JOIN user_platform_stats s ON u.id = s.user_id
+GROUP BY u.id, u.wallet_address, u.username
+HAVING SUM(s.total_bets) >= 10
+ORDER BY score DESC
+LIMIT 100;
+```
+
+### User Stats Query
+
+```sql copy
+SELECT
+    p.name as platform,
+    s.total_bets,
+    s.wins,
+    s.losses,
+    s.win_rate,
+    s.volume / 1e18 as volume_stt,
+    s.score
+FROM user_platform_stats s
+JOIN platforms p ON s.platform_id = p.id
+WHERE s.user_id = $1
+ORDER BY s.score DESC;
+```
+
+### Recent Bets Query
+
+```sql copy
+SELECT
+    b.market_id,
+    b.position,
+    b.amount / 1e18 as amount_stt,
+    b.won,
+    b.claimed_amount / 1e18 as payout_stt,
+    b.bet_timestamp,
+    p.name as platform
+FROM bets b
+JOIN platforms p ON b.platform_id = p.id
+WHERE b.user_id = $1
+ORDER BY b.bet_timestamp DESC
+LIMIT 50;
+```
+
+## Migrations
+
+Migrations are stored in `supabase/migrations/` and applied via:
+
+```bash copy
+supabase db push
+```
+
+Or manually via SQL editor in Supabase dashboard.
+
+## Related Documentation
+
+- [Architecture Overview](/architecture)
+- [Indexer Architecture](/architecture/indexer-architecture)
+- [API Reference](/api)

@@ -1,0 +1,44 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 400">
+  <defs>
+    <linearGradient id="bgGold" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#0a0a0f;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#1a1a2e;stop-opacity:1" />
+    </linearGradient>
+    <linearGradient id="gold" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#FFD700;stop-opacity:1" />
+      <stop offset="50%" style="stop-color:#FFC107;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#FFA500;stop-opacity:1" />
+    </linearGradient>
+  </defs>
+
+  <!-- Background -->
+  <rect width="400" height="400" fill="url(#bgGold)"/>
+
+  <!-- Decorative circles -->
+  <circle cx="100" cy="100" r="150" fill="#FFD700" opacity="0.08"/>
+  <circle cx="300" cy="300" r="120" fill="#FFD700" opacity="0.10"/>
+
+  <!-- Title -->
+  <text x="200" y="40" font-family="'Bebas Neue', sans-serif" font-size="28" font-weight="bold" fill="white" text-anchor="middle" letter-spacing="2">VERITAS</text>
+
+  <!-- Tier Badge Circle -->
+  <circle cx="200" cy="150" r="65" fill="url(#gold)" opacity="0.25"/>
+  <circle cx="200" cy="150" r="55" stroke="url(#gold)" stroke-width="5" fill="none"/>
+
+  <!-- Crown Icon -->
+  <path d="M170 145 L180 125 L190 140 L200 120 L210 140 L220 125 L230 145 L230 165 L170 165 Z" fill="url(#gold)" stroke="#FFD700" stroke-width="2"/>
+  <circle cx="180" cy="125" r="5" fill="#FFD700"/>
+  <circle cx="200" cy="120" r="6" fill="#FFD700"/>
+  <circle cx="220" cy="125" r="5" fill="#FFD700"/>
+  <rect x="170" y="165" width="60" height="8" fill="#FFA500"/>
+
+  <!-- Tier Name -->
+  <rect x="125" y="225" width="150" height="55" rx="12" fill="#FFD700" opacity="0.15" stroke="#FFD700" stroke-width="2"/>
+  <text x="200" y="263" font-family="'Bebas Neue', sans-serif" font-size="32" font-weight="bold" fill="#FFD700" text-anchor="middle" letter-spacing="3">GOLD</text>
+
+  <!-- Description -->
+  <text x="200" y="310" font-family="'Teko', sans-serif" font-size="18" fill="#888" text-anchor="middle" font-weight="600">SCORE: 1000 - 1999</text>
+
+  <!-- Footer -->
+  <text x="200" y="370" font-family="'Teko', sans-serif" font-size="14" fill="#666" text-anchor="middle">REPUTATION NFT v2</text>
+</svg>

@@ -1,0 +1,196 @@
+import { Callout, Steps, Tabs } from 'nextra/components'
+
+# Setting Up Your Wallet
+
+A crypto wallet is required to use Veritas. This guide will help you set one up if you don't have one already.
+
+<Callout type="info" emoji="💡">
+  **Already have a wallet?** Skip to [Connecting Your Wallet](#connecting-to-veritas).
+</Callout>
+
+## What is a Crypto Wallet?
+
+A crypto wallet is like a digital identity card that lets you:
+- Sign in to Web3 apps (like Veritas)
+- Hold cryptocurrency (like STT)
+- Approve transactions
+
+**Your wallet doesn't actually store money** - it stores the keys that prove you own your assets on the blockchain.
+
+## Choosing a Wallet
+
+<Tabs items={['MetaMask (Recommended)', 'Trust Wallet', 'Other Wallets']}>
+  <Tabs.Tab>
+    ### MetaMask
+
+    **Best for:** Desktop users, beginners
+
+    MetaMask is the most popular crypto wallet and works great with Veritas.
+
+    <Steps>
+
+    ### Download MetaMask
+
+    Go to [metamask.io](https://metamask.io/download/) and download for your browser (Chrome, Firefox, Brave, or Edge).
+
+    ### Create a New Wallet
+
+    1. Click "Create a new wallet"
+    2. Create a strong password
+    3. **IMPORTANT:** Write down your 12-word recovery phrase on paper
+    4. Store it somewhere safe (not on your computer!)
+
+    ### Add Somnia Network
+
+    MetaMask doesn't have Somnia by default. Add it:
+
+    1. Click the network dropdown (says "Ethereum Mainnet")
+    2. Click "Add network"
+    3. Click "Add a network manually"
+    4. Enter these details:
+
+    ```
+    Network Name: STT Smart Chain
+    RPC URL: https://somnia-dataseed.somnia.org/
+    Chain ID: 56
+    Symbol: STT
+    Block Explorer: https://somniascan.com
+    ```
+
+    5. Click "Save"
+
+    </Steps>
+  </Tabs.Tab>
+  <Tabs.Tab>
+    ### Trust Wallet
+
+    **Best for:** Mobile users
+
+    Trust Wallet is great if you primarily use your phone.
+
+    <Steps>
+
+    ### Download Trust Wallet
+
+    Get it from the [App Store](https://apps.apple.com/app/trust-crypto-bitcoin-wallet/id1288339409) or [Google Play](https://play.google.com/store/apps/details?id=com.wallet.crypto.trustapp).
+
+    ### Create a Wallet
+
+    1. Open the app and tap "Create a new wallet"
+    2. Accept the terms
+    3. **Write down your 12-word recovery phrase**
+    4. Verify by selecting words in order
+
+    ### Enable STT Smart Chain
+
+    Trust Wallet has Somnia built-in! Just:
+
+    1. Go to Settings → Wallets
+    2. Make sure "Multi-Coin Wallet" is selected
+    3. Somnia is automatically available
+
+    </Steps>
+  </Tabs.Tab>
+  <Tabs.Tab>
+    ### Other Compatible Wallets
+
+    Veritas works with any wallet that supports **WalletConnect**:
+
+    - Coinbase Wallet
+    - Rainbow
+    - Argent
+    - Ledger (hardware wallet)
+    - And many more!
+
+    Just click "WalletConnect" when connecting and scan the QR code with your wallet app.
+  </Tabs.Tab>
+</Tabs>
+
+## Getting STT for Gas Fees
+
+You'll need a small amount of STT to pay for transactions on Veritas.
+
+### Option 1: Buy STT on an Exchange
+
+1. Create an account on [Somnia](https://somnia.com), [Coinbase](https://coinbase.com), or another exchange
+2. Buy some STT (even $5-10 is enough to start)
+3. Withdraw to your wallet address
+
+### Option 2: Use Testnet (Free)
+
+For testing, you can use the STT Testnet with free test STT:
+
+1. Switch to "STT Smart Chain Testnet" in your wallet
+2. Go to the [STT Faucet](https://testnet.sttchain.org/faucet-smart)
+3. Paste your wallet address
+4. Click "Give me STT"
+
+<Callout type="warning" emoji="⚠️">
+  **Testnet vs Mainnet:** Testnet is for practice. For real trading and reputation building, use Mainnet.
+</Callout>
+
+## Connecting to Veritas
+
+Once your wallet is set up:
+
+<Steps>
+
+### Go to Veritas
+
+Open [veritas.xyz](https://veritas.xyz)
+
+### Click Connect Wallet
+
+Look for the button in the top right corner.
+
+### Select Your Wallet
+
+Choose MetaMask, WalletConnect, or another option.
+
+### Approve the Connection
+
+Your wallet will pop up asking for permission. Click "Connect".
+
+### Check the Network
+
+Make sure you're on "STT Smart Chain" (for mainnet) or "STT Testnet" (for testing).
+
+</Steps>
+
+## Security Tips
+
+<div className="grid grid-cols-1 md:grid-cols-2 gap-4 mt-4">
+  <div className="p-4 rounded-xl bg-red-50 dark:bg-red-900/20 border border-red-200 dark:border-red-800">
+    <h4 className="font-semibold text-red-800 dark:text-red-200 m-0">❌ Never Do This</h4>
+    <ul className="text-sm mt-2 mb-0 text-red-700 dark:text-red-300">
+      <li>Share your recovery phrase with anyone</li>
+      <li>Store recovery phrase digitally</li>
+      <li>Enter phrase on websites</li>
+      <li>Click suspicious links</li>
+    </ul>
+  </div>
+  <div className="p-4 rounded-xl bg-green-50 dark:bg-green-900/20 border border-green-200 dark:border-green-800">
+    <h4 className="font-semibold text-green-800 dark:text-green-200 m-0">✅ Always Do This</h4>
+    <ul className="text-sm mt-2 mb-0 text-green-700 dark:text-green-300">
+      <li>Write recovery phrase on paper</li>
+      <li>Store in multiple secure locations</li>
+      <li>Use a strong password</li>
+      <li>Verify website URLs carefully</li>
+    </ul>
+  </div>
+</div>
+
+<Callout type="error" emoji="🚨">
+  **Veritas will NEVER ask for your recovery phrase.** Anyone who asks is trying to steal your funds.
+</Callout>
+
+## Next Step
+
+Once your wallet is connected, you're ready to create your account!
+
+<a
+  href="/getting-started/registration"
+  className="inline-flex items-center justify-center px-6 py-3 mt-4 bg-blue-600 text-white rounded-lg font-semibold hover:bg-blue-700 transition-colors no-underline"
+>
+  Continue to Registration →
+</a>

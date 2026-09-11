@@ -1,0 +1,214 @@
+import { Callout, Steps, Tabs, Tab } from 'nextra/components'
+
+# DreamDEX Event Contracts
+
+DreamDEX Event Contracts is one of the most popular crypto prediction markets. Every 5 minutes, you predict whether STT price will go UP or DOWN.
+
+## Overview
+
+<div className="grid grid-cols-2 md:grid-cols-4 gap-4 mt-6">
+  <div className="p-4 rounded-xl bg-yellow-50 dark:bg-yellow-900/20 text-center">
+    <div className="text-2xl mb-2">🥞</div>
+    <div className="text-xs text-gray-500">Platform</div>
+    <div className="font-bold">DreamDEX</div>
+  </div>
+  <div className="p-4 rounded-xl bg-yellow-50 dark:bg-yellow-900/20 text-center">
+    <div className="text-2xl mb-2">⛓️</div>
+    <div className="text-xs text-gray-500">Chain</div>
+    <div className="font-bold">Somnia</div>
+  </div>
+  <div className="p-4 rounded-xl bg-yellow-50 dark:bg-yellow-900/20 text-center">
+    <div className="text-2xl mb-2">⏱️</div>
+    <div className="text-xs text-gray-500">Round Time</div>
+    <div className="font-bold">5 Minutes</div>
+  </div>
+  <div className="p-4 rounded-xl bg-yellow-50 dark:bg-yellow-900/20 text-center">
+    <div className="text-2xl mb-2">💰</div>
+    <div className="text-xs text-gray-500">Currency</div>
+    <div className="font-bold">STT</div>
+  </div>
+</div>
+
+## How DreamDEX Event Contracts Works
+
+<Steps>
+
+### A round starts
+
+Every 5 minutes, a new prediction round begins. You see the current STT price as the "lock price."
+
+### You place your bet
+
+Before the round locks, you choose:
+- **UP (Bull)** - You think STT will go higher
+- **DOWN (Bear)** - You think STT will go lower
+
+### Round locks
+
+No more bets accepted. The price at this moment becomes the "lock price."
+
+### Round ends
+
+After 5 minutes, the final price is compared to the lock price:
+- Price went UP → Bulls win
+- Price went DOWN → Bears win
+
+### Payouts
+
+Winners split the losing pool (minus a small fee). Better odds = bigger payout!
+
+</Steps>
+
+## Importing to Veritas
+
+<Callout type="info">
+  Veritas reads your prediction history directly from the blockchain. We see all your bets, both wins and losses.
+</Callout>
+
+### What Gets Imported
+
+| Data | Description |
+|------|-------------|
+| **Round ID** | Unique identifier for each round |
+| **Your Position** | Bull (UP) or Bear (DOWN) |
+| **Bet Amount** | How much STT you wagered |
+| **Result** | Win or Loss |
+| **Lock Price** | Price when round started |
+| **Close Price** | Price when round ended |
+| **Payout** | Amount received if you won |
+
+### Import Process
+
+<Steps>
+
+### Go to your Dashboard
+
+Click "Import Predictions" or the "+" button next to DreamDEX.
+
+### Connect same wallet
+
+Make sure you're connected with the same wallet you use on DreamDEX!
+
+### Click "Import"
+
+We'll scan the blockchain for your prediction history.
+
+### Wait for processing
+
+This takes 10-30 seconds depending on how many predictions you have.
+
+### Review results
+
+You'll see a summary of predictions imported, wins, losses, and impact on your VeritasScore.
+
+</Steps>
+
+## Tips for Better Results
+
+### Do's
+
+<div className="p-4 rounded-xl bg-green-50 dark:bg-green-900/20 mt-4">
+  <ul className="space-y-2 mb-0">
+    <li>**Watch the trend** - Look at the last few rounds before betting</li>
+    <li>**Check the odds** - Sometimes one side has much better payout</li>
+    <li>**Manage your bankroll** - Don't bet more than you can afford to lose</li>
+    <li>**Be patient** - Wait for high-conviction opportunities</li>
+    <li>**Track your patterns** - Note which conditions you perform best in</li>
+  </ul>
+</div>
+
+### Don'ts
+
+<div className="p-4 rounded-xl bg-red-50 dark:bg-red-900/20 mt-4">
+  <ul className="space-y-2 mb-0">
+    <li>**Don't chase losses** - Taking bigger bets after losses rarely works</li>
+    <li>**Don't bet every round** - Selective betting wins long-term</li>
+    <li>**Avoid high volatility** - Big news or announcements make prediction harder</li>
+    <li>**Don't ignore gas** - Factor in transaction costs</li>
+    <li>**Don't follow blindly** - Even top traders have losing streaks</li>
+  </ul>
+</div>
+
+## Understanding Your Stats
+
+### Win Rate
+
+Your DreamDEX win rate is calculated as:
+
+```
+Win Rate = (Winning Rounds / Total Rounds) × 100
+```
+
+<Callout>
+  A 55%+ win rate is considered good on DreamDEX. The best traders hover around 60-70%.
+</Callout>
+
+### Volume
+
+Your total STT wagered across all rounds. This contributes to your VeritasScore.
+
+### ROI (Return on Investment)
+
+```
+ROI = ((Total Winnings - Total Wagered) / Total Wagered) × 100
+```
+
+Positive ROI means you're profitable!
+
+## Troubleshooting
+
+### "No predictions found"
+
+<div className="p-4 rounded-xl bg-amber-50 dark:bg-amber-900/20 mt-2">
+  **Possible causes:**
+  - Wrong wallet connected
+  - You haven't made any predictions on DreamDEX yet
+  - Predictions were made on a different chain (we only support Somnia)
+
+  **Solution:** Double-check you're using the correct wallet address
+</div>
+
+### "Import on cooldown"
+
+<div className="p-4 rounded-xl bg-amber-50 dark:bg-amber-900/20 mt-2">
+  **Cause:** You imported within the last 24 hours
+
+  **Solution:** Wait for the cooldown to expire. You can see the remaining time on your dashboard.
+</div>
+
+### "Some predictions already imported"
+
+<div className="p-4 rounded-xl bg-amber-50 dark:bg-amber-900/20 mt-2">
+  **Cause:** We prevent duplicate imports
+
+  **Solution:** This is normal! Only new predictions since your last import will be added.
+</div>
+
+## Maximizing Your VeritasScore
+
+To get the most VeritasScore impact from DreamDEX:
+
+1. **Accuracy > Volume** - A 65% win rate with 10 STT beats 50% with 50 STT
+2. **Consistency** - Regular trading shows reliability
+3. **Import regularly** - Keep your stats up to date
+4. **Combine platforms** - DreamDEX + other platforms = higher score
+
+## FAQ
+
+**How far back can Veritas import?**
+We can import your entire history from the beginning of DreamDEX Event Contracts.
+
+**Do cancelled rounds count?**
+No. Only completed rounds with a clear winner are counted.
+
+**What about the house edge?**
+We calculate your win rate based on correct predictions, not profitability. The house edge affects payouts but not your prediction accuracy.
+
+**Can I import from the CAKE prediction pool?**
+Currently, we only support STT predictions. CAKE may be added in the future.
+
+## Related
+
+- [First Import Guide](/getting-started/first-import) - Step-by-step import walkthrough
+- [Improving Your Score](/reputation/improving-score) - Maximize your VeritasScore
+- [Copy Trading](/copy-trading) - Follow or lead other traders

@@ -1,0 +1,56 @@
+# Compiler files
+contracts/cache/
+contracts/out/
+
+# Ignores development broadcast logs
+!/contracts/broadcast
+/contracts/broadcast/*/31337/
+/contracts/broadcast/**/dry-run/
+
+# Docs
+docs/
+
+# Dotenv file
+.env
+.env.local
+.claude
+
+# Deployment files (keep examples only)
+deployments/*.json
+!deployments/*.json.example
+
+# Node modules
+node_modules/
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Foundry
+lcov.info
+
+# Logs
+*.log
+
+# Next.js build output
+.next/
+out/
+build/
+
+# Frontend specific
+frontend/.next/
+frontend/out/
+frontend/build/
+frontend/node_modules/
+frontend/.env.local
+frontend/.claude/
+.claude/
+
+.vercel

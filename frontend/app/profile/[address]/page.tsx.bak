@@ -1,0 +1,32 @@
+'use client';
+
+import { useParams } from 'next/navigation';
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
+
+export default function ProfilePage() {
+  const params = useParams();
+  const address = params.address as string;
+
+  return (
+    <div className="container py-12">
+      <h1 className="text-3xl font-bold mb-8">User Profile</h1>
+
+      <Card>
+        <CardHeader>
+          <CardTitle>
+            {address?.slice(0, 6)}...{address?.slice(-4)}
+          </CardTitle>
+          <CardDescription>Public profile view</CardDescription>
+        </CardHeader>
+        <CardContent>
+          <p className="text-muted-foreground">
+            This page will display the public profile for {address}
+          </p>
+          <p className="text-sm text-muted-foreground mt-4">
+            📝 To be implemented: Fetch user profile data from contracts and display stats
+          </p>
+        </CardContent>
+      </Card>
+    </div>
+  );
+}

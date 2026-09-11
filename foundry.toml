@@ -1,0 +1,26 @@
+[profile.default]
+src = "contracts/src"
+out = "out"
+test = "contracts/test"
+script = "contracts/script"
+libs = ["contracts/lib", "lib"]
+remappings = [
+  "forge-std/=contracts/lib/forge-std/src/",
+  "@forge-std/=contracts/lib/forge-std/src/",
+  "@openzeppelin/contracts/=contracts/lib/openzeppelin-contracts/contracts/",
+  "openzeppelin-contracts/=contracts/lib/openzeppelin-contracts/",
+  "@openzeppelin/contracts-upgradeable/=contracts/lib/openzeppelin-contracts-upgradeable/contracts/"
+]
+solc_version = "0.8.28"
+optimizer = true
+optimizer_runs = 200
+via_ir = true
+ignored_error_codes = ["license", "code-size"]
+
+# Compile all Veritas contracts (VeritasCore + DreamDEX + Azuro/SX)
+
+[rpc_endpoints]
+somniaTestnet = "https://api.infra.testnet.somnia.network"
+
+[etherscan]
+somniaTestnet = { key = "${SomniaSCAN_API_KEY}", url = "https://api-testnet.somniascan.com/api" }

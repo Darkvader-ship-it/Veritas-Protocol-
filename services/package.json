@@ -1,0 +1,34 @@
+{
+  "name": "veritas-indexers",
+  "version": "1.0.0",
+  "description": "Blockchain indexers for Veritas prediction platforms",
+  "main": "index.ts",
+  "scripts": {
+    "index:dreamdex": "tsx indexer/dreamdex-indexer.ts",
+    "index:dreamdex:testnet": "cross-env NETWORK=testnet tsx indexer/dreamdex-indexer.ts",
+    "index:dreamdex:mainnet": "cross-env NETWORK=mainnet tsx indexer/dreamdex-indexer.ts",
+    "index:polymarket": "tsx indexer/polymarket-indexer.ts",
+    "index:dreamdex": "tsx indexer/dreamdex-indexer.ts",
+    "index:dreamdex:shannon": "tsx indexer/dreamdex-indexer.ts",
+    "index:all": "concurrently \"npm:index:dreamdex:mainnet\" \"npm:index:polymarket\"",
+    "dev": "npm run index:dreamdex:testnet",
+    "populate-sample-data": "tsx scripts/populate-sample-data.ts",
+    "populate-multiplatform": "tsx scripts/populate-multiplatform-data.ts",
+    "watch:bets": "tsx bet-watcher.ts",
+    "watch:bets:polling": "tsx bet-watcher-polling.ts",
+    "start:all": "concurrently \"npm:index:dreamdex:mainnet\" \"npm:index:polymarket\" \"npm:watch:bets:polling\""
+  },
+  "dependencies": {
+    "@supabase/supabase-js": "^2.39.0",
+    "axios": "^1.13.2",
+    "dotenv": "^16.3.1",
+    "viem": "^2.7.0"
+  },
+  "devDependencies": {
+    "@types/node": "^20.10.6",
+    "concurrently": "^8.2.2",
+    "cross-env": "^7.0.3",
+    "tsx": "^4.7.0",
+    "typescript": "^5.3.3"
+  }
+}

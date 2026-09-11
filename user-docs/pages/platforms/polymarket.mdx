@@ -1,0 +1,303 @@
+import { Callout, Steps, Tabs, Tab } from 'nextra/components'
+
+# Polymarket
+
+Polymarket is the world's largest prediction market for real-world events. From politics to sports to pop culture, you can bet on almost anything happening in the world.
+
+## Overview
+
+<div className="grid grid-cols-2 md:grid-cols-4 gap-4 mt-6">
+  <div className="p-4 rounded-xl bg-indigo-50 dark:bg-indigo-900/20 text-center">
+    <div className="text-2xl mb-2">🔮</div>
+    <div className="text-xs text-gray-500">Platform</div>
+    <div className="font-bold">Polymarket</div>
+  </div>
+  <div className="p-4 rounded-xl bg-indigo-50 dark:bg-indigo-900/20 text-center">
+    <div className="text-2xl mb-2">⛓️</div>
+    <div className="text-xs text-gray-500">Chain</div>
+    <div className="font-bold">Polygon</div>
+  </div>
+  <div className="p-4 rounded-xl bg-indigo-50 dark:bg-indigo-900/20 text-center">
+    <div className="text-2xl mb-2">⏱️</div>
+    <div className="text-xs text-gray-500">Duration</div>
+    <div className="font-bold">Days - Months</div>
+  </div>
+  <div className="p-4 rounded-xl bg-indigo-50 dark:bg-indigo-900/20 text-center">
+    <div className="text-2xl mb-2">💰</div>
+    <div className="text-xs text-gray-500">Currency</div>
+    <div className="font-bold">USDC</div>
+  </div>
+</div>
+
+## How Polymarket Works
+
+Unlike fast-paced crypto predictions, Polymarket is about real-world events that take time to resolve.
+
+<Steps>
+
+### Browse markets
+
+Find a question you have an opinion on:
+- "Will X win the election?"
+- "Will Bitcoin hit $100K by year end?"
+- "Will SpaceX launch before July?"
+
+### Check the odds
+
+Each outcome has a price between $0.01 and $0.99. This represents the market's estimated probability.
+
+**Example:** "Yes" trading at $0.65 means the market thinks there's a 65% chance.
+
+### Buy shares
+
+If you think the probability is wrong, buy shares:
+- Think it's more likely? Buy "Yes" shares
+- Think it's less likely? Buy "No" shares
+
+### Wait for resolution
+
+When the event happens (or doesn't), the market resolves:
+- Winning shares pay out $1.00 each
+- Losing shares are worth $0.00
+
+### Profit or loss
+
+Your profit depends on:
+- The price you bought at
+- Whether you were correct
+
+</Steps>
+
+## Understanding Polymarket Odds
+
+<div className="p-4 rounded-xl bg-blue-50 dark:bg-blue-900/20 mt-4">
+  **Price = Implied Probability**
+
+  | Share Price | Implied Chance | If Correct, You Earn |
+  |-------------|----------------|----------------------|
+  | $0.10 | 10% | $0.90 per share (9x) |
+  | $0.30 | 30% | $0.70 per share (2.3x) |
+  | $0.50 | 50% | $0.50 per share (2x) |
+  | $0.70 | 70% | $0.30 per share (1.4x) |
+  | $0.90 | 90% | $0.10 per share (1.1x) |
+</div>
+
+The lower the price, the higher the potential reward (but also higher risk).
+
+## Importing to Veritas
+
+<Callout type="info">
+  Veritas imports your Polymarket trades from the Polygon blockchain. All your positions are recorded on-chain.
+</Callout>
+
+### What Gets Imported
+
+| Data | Description |
+|------|-------------|
+| **Market ID** | Unique identifier for each market |
+| **Position** | Which outcome you bet on |
+| **Amount** | USDC wagered |
+| **Entry Price** | Price you bought at |
+| **Resolution** | Win or Loss |
+| **Payout** | Amount received if you won |
+
+### Import Requirements
+
+<Callout type="warning">
+  Only **resolved** markets count toward your VeritasScore. Open positions aren't included until they settle.
+</Callout>
+
+### Import Process
+
+<Steps>
+
+### Navigate to Platforms
+
+Go to your Dashboard → Platforms → Polymarket
+
+### Verify wallet
+
+Ensure you're connected with the same wallet you use on Polymarket
+
+### Click "Import"
+
+We'll scan Polygon for your Polymarket activity
+
+### Wait for scan
+
+Larger histories take longer (up to a minute for very active traders)
+
+### See results
+
+Review imported markets, their resolutions, and VeritasScore impact
+
+</Steps>
+
+## Tips for Better Results
+
+### Finding Value
+
+<div className="p-4 rounded-xl bg-green-50 dark:bg-green-900/20 mt-4">
+  <h4 className="font-semibold m-0 text-green-800 dark:text-green-200">Where markets are often mispriced:</h4>
+  <ul className="mt-2 mb-0 space-y-1">
+    <li>**New markets** - Early odds are often wrong</li>
+    <li>**Complex events** - Markets misunderstand nuance</li>
+    <li>**Niche topics** - Areas where you have expertise</li>
+    <li>**After big news** - Overreaction creates opportunity</li>
+    <li>**Low-volume markets** - Less efficient pricing</li>
+  </ul>
+</div>
+
+### Research Strategies
+
+<div className="grid grid-cols-1 md:grid-cols-2 gap-4 mt-4">
+  <div className="p-4 rounded-xl border border-gray-200 dark:border-gray-700">
+    <h4 className="font-semibold m-0">📊 Data-Driven</h4>
+    <p className="text-sm text-gray-600 dark:text-gray-400 mt-2 mb-0">
+      Use historical data, polls, statistics to form your view. Works best for elections, sports, economic data.
+    </p>
+  </div>
+  <div className="p-4 rounded-xl border border-gray-200 dark:border-gray-700">
+    <h4 className="font-semibold m-0">📰 News Analysis</h4>
+    <p className="text-sm text-gray-600 dark:text-gray-400 mt-2 mb-0">
+      Follow developments closely. Act quickly when news changes probabilities before the market catches up.
+    </p>
+  </div>
+  <div className="p-4 rounded-xl border border-gray-200 dark:border-gray-700">
+    <h4 className="font-semibold m-0">🧠 Domain Expertise</h4>
+    <p className="text-sm text-gray-600 dark:text-gray-400 mt-2 mb-0">
+      Trade in areas you know well. Your edge comes from understanding that others lack.
+    </p>
+  </div>
+  <div className="p-4 rounded-xl border border-gray-200 dark:border-gray-700">
+    <h4 className="font-semibold m-0">🔍 Contrarian</h4>
+    <p className="text-sm text-gray-600 dark:text-gray-400 mt-2 mb-0">
+      Go against popular opinion when you have strong reasons. High risk, high reward.
+    </p>
+  </div>
+</div>
+
+### Common Mistakes
+
+<div className="p-4 rounded-xl bg-red-50 dark:bg-red-900/20 mt-4">
+  <ul className="space-y-2 mb-0">
+    <li>**Confirmation bias** - Only seeing evidence that supports your position</li>
+    <li>**Overconfidence** - Betting too much on uncertain outcomes</li>
+    <li>**Ignoring resolution rules** - Not reading how the market will be resolved</li>
+    <li>**Emotional trading** - Betting on what you hope happens, not what's likely</li>
+    <li>**Neglecting fees** - Transaction costs eat into small edges</li>
+  </ul>
+</div>
+
+## Market Categories
+
+### Politics & Elections
+
+The most liquid markets. Elections, policy decisions, political events.
+
+**Tips:**
+- Polls have limitations - look at multiple sources
+- "October surprises" can shift races dramatically
+- State-level races often have more value than national
+
+### Crypto & Finance
+
+Bitcoin prices, ETF approvals, company announcements.
+
+**Tips:**
+- Regulatory decisions are hard to predict
+- Crypto markets can be highly volatile
+- Corporate actions often have insider leakage
+
+### Sports
+
+Game outcomes, championships, player performance.
+
+**Tips:**
+- Lines often similar to traditional sportsbooks
+- Late news (injuries, weather) creates opportunity
+- Unique markets (awards, milestones) may be mispriced
+
+### Pop Culture & Entertainment
+
+Awards shows, TV ratings, celebrity events.
+
+**Tips:**
+- Dedicated fans often have edges
+- Industry insiders may have early info
+- Unpredictable but fun!
+
+## Understanding Your Polymarket Stats
+
+### Win Rate Calculation
+
+On Polymarket, win rate is based on market resolution:
+
+```
+Win Rate = (Markets You Won / Total Resolved Markets) × 100
+```
+
+<Callout>
+  A position counts as a "win" if the outcome you bet on was correct, regardless of the entry price.
+</Callout>
+
+### Volume
+
+Total USDC wagered across all markets. Multiple trades in the same market are summed.
+
+### Profitability vs. Accuracy
+
+For Veritas, we care about accuracy (were you right?), not profitability (did you make money?). This is because:
+
+- A $0.95 position that wins is still a correct prediction
+- A $0.05 position that loses is still incorrect
+- The scoring system rewards being right, not just being profitable
+
+## Troubleshooting
+
+### "No markets found"
+
+<div className="p-4 rounded-xl bg-amber-50 dark:bg-amber-900/20 mt-2">
+  **Possible causes:**
+  - Wrong wallet (Polymarket uses your Polygon address)
+  - Only have open positions (no resolved markets yet)
+  - Very new account with no activity
+
+  **Solution:** Wait for some markets to resolve, or verify wallet address
+</div>
+
+### "Markets still pending"
+
+<div className="p-4 rounded-xl bg-amber-50 dark:bg-amber-900/20 mt-2">
+  **Cause:** Your positions are in markets that haven't resolved yet
+
+  **Solution:** Only resolved markets count. Check back after your markets settle.
+</div>
+
+### "Different win rate than Polymarket shows"
+
+<div className="p-4 rounded-xl bg-amber-50 dark:bg-amber-900/20 mt-2">
+  **Cause:** We may count things slightly differently (partial positions, canceled markets)
+
+  **Solution:** This is usually a minor difference and doesn't significantly impact your score
+</div>
+
+## FAQ
+
+**Does trading (buying and selling) count as multiple bets?**
+We count your net position at resolution. If you buy and sell in the same market, only your final position matters.
+
+**What about markets that get cancelled?**
+Cancelled or voided markets don't count toward your statistics.
+
+**How long until new markets are imported?**
+We scan for resolved markets. Open positions won't appear until they resolve.
+
+**What about my Magic Link account?**
+As long as you know the Polygon address, you can import. The wallet type doesn't matter.
+
+## Related
+
+- [Strategies for Researchers](/strategies) - Deep-dive research approaches
+- [Improving Your Score](/reputation/improving-score) - VeritasScore optimization
+- [Leaderboard](/reputation/leaderboard) - See top Polymarket predictors

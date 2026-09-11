@@ -1,0 +1,288 @@
+import { Callout } from 'nextra/components'
+
+# Frequently Asked Questions
+
+Find answers to common questions about Veritas, organized by topic.
+
+## General
+
+### What is Veritas?
+
+Veritas is a decentralized reputation protocol for prediction markets. We aggregate your trading history across multiple platforms, calculate a unified reputation score (VeritasScore), and enable copy trading based on verified track records.
+
+### Is Veritas free to use?
+
+**Registration:** Free (you only pay gas for the transaction)
+**Importing predictions:** Free (gas only)
+**Copy trading:** 20% fee on profits (10% protocol, 10% leader)
+**Everything else:** Free
+
+### Which blockchains does Veritas support?
+
+Currently, Veritas operates on:
+- **Somnia** - Main platform, registration, NFT
+- We import data from multiple chains: Polygon, Optimism, Base, etc.
+
+### Is Veritas available in my country?
+
+Veritas is a decentralized protocol accessible globally. However, users are responsible for complying with local regulations regarding prediction markets and cryptocurrency.
+
+## Account & Registration
+
+### How do I create an account?
+
+1. Visit Veritas
+2. Connect your Web3 wallet (MetaMask, Trust Wallet, etc.)
+3. Click "Register"
+4. Confirm the transaction
+5. Receive your Reputation NFT
+
+### Do I need to verify my identity (KYC)?
+
+No. Veritas is fully pseudonymous. Your wallet address is your identity.
+
+### Can I change my wallet address?
+
+No. Your reputation is tied to your wallet permanently (soulbound). If you switch wallets, you'd need to start building a new reputation.
+
+### What if I lose access to my wallet?
+
+Unfortunately, losing wallet access means losing your reputation. This is why it's crucial to:
+- Backup your seed phrase
+- Use hardware wallets if possible
+- Never share your private keys
+
+## VeritasScore & Reputation
+
+### How is VeritasScore calculated?
+
+export const FormulaBox = () => (
+  <div className="p-4 rounded-xl bg-blue-50 dark:bg-blue-900/20 mt-2">
+    <p className="m-0"><strong>Formula:</strong> VeritasScore = Win Rate × √(Volume)</p>
+    <ul className="mt-2 mb-0">
+      <li>Win Rate: Your prediction accuracy (0-100%)</li>
+      <li>Volume: Total trading amount (with diminishing returns)</li>
+    </ul>
+  </div>
+)
+
+<FormulaBox />
+
+### Why is my score lower than expected?
+
+Common reasons:
+- **Account age:** 50% cap for first 14 days
+- **Prediction count:** Score scales up to 50 predictions
+- **Wilson score:** Statistical adjustment for small samples
+
+### Can my score go down?
+
+Currently, no. VeritasScore only increases (or stays the same). Future versions may include decay for inactive accounts.
+
+### How often does my score update?
+
+Your score updates when:
+- You import new predictions
+- Pending predictions resolve
+- You manually refresh
+
+### What are the tier thresholds?
+
+| Tier | Score Range |
+|------|-------------|
+| Bronze | 0 - 499 |
+| Silver | 500 - 999 |
+| Gold | 1,000 - 1,999 |
+| Platinum | 2,000 - 4,999 |
+| Diamond | 5,000+ |
+
+## Importing Predictions
+
+### Which platforms can I import from?
+
+Currently supported:
+- DreamDEX Event Contracts
+- Polymarket
+- Azuro
+- Overtime Markets
+- Limitless
+- SpeedMarkets
+
+More coming soon!
+
+### Why can't I see my trades?
+
+Possible reasons:
+1. Wrong wallet connected
+2. Trades are on a different chain
+3. Trades haven't resolved yet
+4. Very old trades may not be indexed
+
+### Is there an import cooldown?
+
+Yes. Each platform has a 24-hour cooldown between imports to prevent spam.
+
+### Can I choose which trades to import?
+
+No. All trades are imported automatically. You cannot selectively import only winning trades.
+
+### Do pending bets count?
+
+No. Only resolved predictions contribute to your score.
+
+## Reputation NFT
+
+### What is a soulbound NFT?
+
+A soulbound NFT is permanently attached to your wallet. It cannot be:
+- Transferred
+- Sold
+- Given away
+- Burned
+
+### Does my NFT image change?
+
+Yes! Your NFT is dynamic:
+- Visual updates based on your tier
+- VeritasScore is always current
+- Changes happen automatically
+
+### Can I see my NFT in my wallet?
+
+Yes. Look in the NFTs/Collectibles section of:
+- MetaMask
+- Trust Wallet
+- Other NFT-compatible wallets
+
+### What if my wallet doesn't show the NFT?
+
+Some wallets need manual token import. Use:
+- Contract: `0xa216b13c0b27b00c23552c768088fe11004d4b37`
+- Token ID: Your specific ID
+
+## Copy Trading
+
+### How does copy trading work?
+
+1. You deposit into a leader's vault
+2. When they trade, your funds copy proportionally
+3. Profits (minus fees) go to your balance
+4. You can withdraw anytime
+
+### Who can be a leader?
+
+Only Gold tier and above (VeritasScore ≥ 1,000) can create copy trading vaults.
+
+### What are the fees?
+
+On profits only:
+- 10% to Veritas (protocol fee)
+- 10% to the leader
+- 80% to you
+
+### Are there fees on losses?
+
+No! You only pay fees when you profit.
+
+### Can I follow multiple leaders?
+
+Yes! Diversifying across multiple leaders is recommended.
+
+### Can I stop following someone?
+
+Yes. You can withdraw from any vault at any time (subject to pending trades settling).
+
+## Technical
+
+### What wallet should I use?
+
+We recommend:
+- **MetaMask** - Most popular, well-supported
+- **Trust Wallet** - Mobile-friendly
+- **WalletConnect** - Works with many wallets
+
+### Why is my transaction failing?
+
+Common causes:
+1. Insufficient STT for gas
+2. Wrong network selected
+3. Wallet not connected properly
+4. Network congestion
+
+### How do I add Somnia to my wallet?
+
+**Network details:**
+- Name: STT Smart Chain
+- RPC: https://somnia-dataseed.somnia.org
+- Chain ID: 56
+- Symbol: STT
+- Explorer: https://somniascan.com
+
+### Is Veritas audited?
+
+Smart contracts undergo security reviews. Check our documentation for audit reports.
+
+## Privacy & Security
+
+### What data do you collect?
+
+We read publicly available on-chain data:
+- Wallet addresses
+- Transaction history on supported platforms
+- Prediction outcomes
+
+We do NOT collect:
+- Personal information
+- Email addresses
+- Off-chain data
+
+### Can others see my trading history?
+
+Your VeritasScore, tier, and general stats are public. Individual trade details are not prominently displayed but are on-chain (blockchain is public).
+
+### Is my wallet safe?
+
+Veritas:
+- Never asks for your private key
+- Never asks for your seed phrase
+- Only requests signature permissions
+- Uses read-only access for imports
+
+## Troubleshooting
+
+### "Connection failed"
+
+Try:
+1. Refresh the page
+2. Disconnect and reconnect wallet
+3. Clear browser cache
+4. Try a different browser
+
+### "Transaction pending forever"
+
+The transaction may be stuck. Options:
+1. Wait (network might be congested)
+2. Speed up with higher gas
+3. Cancel and retry
+
+### "Score not updating"
+
+1. Wait a few minutes
+2. Try manual refresh
+3. Check if predictions have resolved
+4. Contact support if persists
+
+## Still Have Questions?
+
+export const ContactBox = () => (
+  <div className="p-6 rounded-xl bg-blue-50 dark:bg-blue-900/20 mt-6">
+    <p className="m-0">Can't find your answer? Reach out to us:</p>
+    <ul className="mt-2 mb-0">
+      <li><strong>Discord:</strong> Join our community for real-time help</li>
+      <li><strong>Twitter:</strong> DM us or tag @Veritas</li>
+      <li><strong>Email:</strong> support@veritas.io</li>
+    </ul>
+  </div>
+)
+
+<ContactBox />

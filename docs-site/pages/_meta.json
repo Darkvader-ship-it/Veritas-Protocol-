@@ -1,0 +1,63 @@
+{
+  "index": {
+    "title": "Introduction",
+    "type": "page",
+    "display": "hidden"
+  },
+  "-- Getting Started": {
+    "type": "separator",
+    "title": "Getting Started"
+  },
+  "guides": {
+    "title": "Guides",
+    "type": "menu",
+    "items": {
+      "getting-started": {
+        "title": "Quick Start"
+      },
+      "user-guide": {
+        "title": "User Guide"
+      },
+      "developer-guide": {
+        "title": "Developer Guide"
+      }
+    }
+  },
+  "-- Architecture": {
+    "type": "separator",
+    "title": "Architecture"
+  },
+  "architecture": {
+    "title": "System Design"
+  },
+  "-- Smart Contracts": {
+    "type": "separator",
+    "title": "Smart Contracts"
+  },
+  "contracts": {
+    "title": "Contracts"
+  },
+  "-- Reference": {
+    "type": "separator",
+    "title": "Reference"
+  },
+  "api": {
+    "title": "API Reference"
+  },
+  "-- Links": {
+    "type": "separator",
+    "title": "Links"
+  },
+  "live-demo": {
+    "title": "Live Demo ↗",
+    "type": "page",
+    "href": "https://veritas.xyz",
+    "newWindow": true
+  },
+  "github": {
+    "title": "GitHub ↗",
+    "type": "page",
+    "href": "https://github.com/Leihyn/Veritas",
+    "newWindow": true
+  }
+}

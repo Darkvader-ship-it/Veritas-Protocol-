@@ -1,0 +1,169 @@
+@import "tailwindcss";
+
+/* ===========================================
+   VeritasBOT Dashboard - Design System
+   Based on Veritas design tokens
+=========================================== */
+
+/* CSS Custom Properties (Design Tokens) */
+@theme {
+  /* Background Colors */
+  --color-background: #0f1419;
+  --color-surface: #1a1f26;
+  --color-surface-raised: #242b33;
+
+  /* Border */
+  --color-border: #2f3336;
+
+  /* Brand Colors */
+  --color-primary: #1d9bf0;
+  --color-primary-hover: #1a8cd8;
+  --color-secondary: #ffd700;  /* Achievement Gold - for scores */
+
+  /* Semantic Colors */
+  --color-success: #00ba7c;
+  --color-destructive: #f4212e;
+  --color-warning: #ffd400;
+
+  /* Text Colors */
+  --color-text-primary: #e7e9ea;
+  --color-text-secondary: #71767b;
+  --color-text-muted: #536471;
+
+  /* Tier Base Colors (for backgrounds) */
+  --color-tier-diamond: #00d4ff;
+  --color-tier-platinum: #a0a0a0;
+  --color-tier-gold: #ffd700;
+  --color-tier-silver: #c0c0c0;
+  --color-tier-bronze: #cd7f32;
+}
+
+/* Base Styles */
+:root {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  line-height: 1.5;
+  font-weight: 400;
+  color-scheme: dark;
+  color: var(--color-text-primary);
+  background-color: var(--color-background);
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  min-width: 320px;
+  min-height: 100vh;
+  background: var(--color-background);
+}
+
+/* ===========================================
+   Tier Badge Gradients
+=========================================== */
+.tier-diamond {
+  background: linear-gradient(135deg, #b9f2ff, #00d4ff);
+  color: #0a3d4d;
+}
+
+.tier-platinum {
+  background: linear-gradient(135deg, #e5e4e2, #a0a0a0);
+  color: #333;
+}
+
+.tier-gold {
+  background: linear-gradient(135deg, #ffd700, #ffaa00);
+  color: #5c4000;
+}
+
+.tier-silver {
+  background: linear-gradient(135deg, #c0c0c0, #808080);
+  color: #333;
+}
+
+.tier-bronze {
+  background: linear-gradient(135deg, #cd7f32, #8b4513);
+  color: white;
+}
+
+/* ===========================================
+   Consensus Badge Colors
+=========================================== */
+.consensus-strong-yes {
+  background: rgba(0, 186, 124, 0.15);
+  color: var(--color-success);
+  border: 1px solid var(--color-success);
+}
+
+.consensus-lean-yes {
+  background: rgba(0, 186, 124, 0.1);
+  color: var(--color-success);
+}
+
+.consensus-strong-no {
+  background: rgba(244, 33, 46, 0.15);
+  color: var(--color-destructive);
+  border: 1px solid var(--color-destructive);
+}
+
+.consensus-lean-no {
+  background: rgba(244, 33, 46, 0.1);
+  color: var(--color-destructive);
+}
+
+.consensus-mixed {
+  background: rgba(255, 212, 0, 0.1);
+  color: var(--color-warning);
+}
+
+/* ===========================================
+   Utility Classes
+=========================================== */
+.font-mono {
+  font-family: ui-monospace, SFMono-Regular, 'SF Mono', Consolas, 'Liberation Mono', Menlo, monospace;
+}
+
+/* Scrollbar Styling */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--color-surface);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--color-border);
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--color-text-muted);
+}
+
+/* ===========================================
+   Animation Keyframes
+=========================================== */
+@keyframes pulse-soft {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.7; }
+}
+
+@keyframes slide-in {
+  from { transform: translateY(-10px); opacity: 0; }
+  to { transform: translateY(0); opacity: 1; }
+}
+
+.animate-pulse-soft {
+  animation: pulse-soft 2s ease-in-out infinite;
+}
+
+.animate-slide-in {
+  animation: slide-in 0.3s ease-out;
+}

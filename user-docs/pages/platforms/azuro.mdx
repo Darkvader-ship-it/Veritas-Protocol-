@@ -1,0 +1,302 @@
+import { Callout, Steps } from 'nextra/components'
+
+# Azuro Protocol
+
+Azuro is a decentralized sports betting protocol. Unlike traditional sportsbooks, Azuro uses smart contracts and liquidity pools to enable trustless betting.
+
+## Overview
+
+<div className="grid grid-cols-2 md:grid-cols-4 gap-4 mt-6">
+  <div className="p-4 rounded-xl bg-violet-50 dark:bg-violet-900/20 text-center">
+    <div className="text-2xl mb-2">⚽</div>
+    <div className="text-xs text-gray-500">Platform</div>
+    <div className="font-bold">Azuro</div>
+  </div>
+  <div className="p-4 rounded-xl bg-violet-50 dark:bg-violet-900/20 text-center">
+    <div className="text-2xl mb-2">⛓️</div>
+    <div className="text-xs text-gray-500">Chains</div>
+    <div className="font-bold">Polygon, Gnosis</div>
+  </div>
+  <div className="p-4 rounded-xl bg-violet-50 dark:bg-violet-900/20 text-center">
+    <div className="text-2xl mb-2">⏱️</div>
+    <div className="text-xs text-gray-500">Duration</div>
+    <div className="font-bold">Event-Based</div>
+  </div>
+  <div className="p-4 rounded-xl bg-violet-50 dark:bg-violet-900/20 text-center">
+    <div className="text-2xl mb-2">💰</div>
+    <div className="text-xs text-gray-500">Currency</div>
+    <div className="font-bold">USDC / xDAI</div>
+  </div>
+</div>
+
+## Supported Sports
+
+Azuro covers a wide range of sports:
+
+<div className="grid grid-cols-2 md:grid-cols-4 gap-3 mt-4">
+  <div className="p-3 rounded-lg bg-gray-50 dark:bg-gray-800 text-center">
+    <span className="text-2xl">⚽</span>
+    <div className="text-sm font-medium mt-1">Football</div>
+  </div>
+  <div className="p-3 rounded-lg bg-gray-50 dark:bg-gray-800 text-center">
+    <span className="text-2xl">🏀</span>
+    <div className="text-sm font-medium mt-1">Basketball</div>
+  </div>
+  <div className="p-3 rounded-lg bg-gray-50 dark:bg-gray-800 text-center">
+    <span className="text-2xl">🎾</span>
+    <div className="text-sm font-medium mt-1">Tennis</div>
+  </div>
+  <div className="p-3 rounded-lg bg-gray-50 dark:bg-gray-800 text-center">
+    <span className="text-2xl">🏈</span>
+    <div className="text-sm font-medium mt-1">American Football</div>
+  </div>
+  <div className="p-3 rounded-lg bg-gray-50 dark:bg-gray-800 text-center">
+    <span className="text-2xl">⚾</span>
+    <div className="text-sm font-medium mt-1">Baseball</div>
+  </div>
+  <div className="p-3 rounded-lg bg-gray-50 dark:bg-gray-800 text-center">
+    <span className="text-2xl">🏒</span>
+    <div className="text-sm font-medium mt-1">Ice Hockey</div>
+  </div>
+  <div className="p-3 rounded-lg bg-gray-50 dark:bg-gray-800 text-center">
+    <span className="text-2xl">🥊</span>
+    <div className="text-sm font-medium mt-1">MMA / Boxing</div>
+  </div>
+  <div className="p-3 rounded-lg bg-gray-50 dark:bg-gray-800 text-center">
+    <span className="text-2xl">🎮</span>
+    <div className="text-sm font-medium mt-1">Esports</div>
+  </div>
+</div>
+
+## How Azuro Works
+
+<Steps>
+
+### Find an event
+
+Browse upcoming sports events on any Azuro-powered frontend (like bookmaker.xyz or others).
+
+### Choose your bet
+
+Select from various bet types:
+- **Moneyline** - Who will win?
+- **Spread/Handicap** - Win by how much?
+- **Over/Under** - Total points/goals
+
+### Place bet on-chain
+
+Your bet is recorded on the blockchain. You receive an NFT representing your position.
+
+### Wait for event
+
+When the game ends, Azuro's oracles report the result.
+
+### Automatic settlement
+
+Winners receive payouts automatically. No need to claim manually.
+
+</Steps>
+
+## Bet Types Explained
+
+<div className="space-y-4 mt-4">
+  <div className="p-4 rounded-xl border border-gray-200 dark:border-gray-700">
+    <h4 className="font-semibold m-0">🏆 Moneyline (Match Winner)</h4>
+    <p className="text-sm text-gray-600 dark:text-gray-400 mt-2 mb-0">
+      Simply pick the winner. In some sports (football), you can also bet on a draw.
+    </p>
+    <div className="mt-2 text-xs bg-gray-100 dark:bg-gray-800 p-2 rounded">
+      Example: Team A to beat Team B @ 2.50 odds
+    </div>
+  </div>
+
+  <div className="p-4 rounded-xl border border-gray-200 dark:border-gray-700">
+    <h4 className="font-semibold m-0">📊 Spread / Handicap</h4>
+    <p className="text-sm text-gray-600 dark:text-gray-400 mt-2 mb-0">
+      The favorite gives points to the underdog. Evens out lopsided matchups.
+    </p>
+    <div className="mt-2 text-xs bg-gray-100 dark:bg-gray-800 p-2 rounded">
+      Example: Team A -3.5 means they must win by 4+ points for your bet to win
+    </div>
+  </div>
+
+  <div className="p-4 rounded-xl border border-gray-200 dark:border-gray-700">
+    <h4 className="font-semibold m-0">🔢 Over/Under (Totals)</h4>
+    <p className="text-sm text-gray-600 dark:text-gray-400 mt-2 mb-0">
+      Bet on whether the combined score exceeds or falls short of a number.
+    </p>
+    <div className="mt-2 text-xs bg-gray-100 dark:bg-gray-800 p-2 rounded">
+      Example: Over 2.5 goals means you win if there are 3+ goals total
+    </div>
+  </div>
+</div>
+
+## Importing to Veritas
+
+<Callout type="info">
+  Azuro bets are on-chain (Polygon or Gnosis). Veritas reads your betting history directly from these blockchains.
+</Callout>
+
+### What Gets Imported
+
+| Data | Description |
+|------|-------------|
+| **Event** | Sport, teams, date |
+| **Bet Type** | Moneyline, spread, total |
+| **Selection** | What you bet on |
+| **Amount** | Stake in USDC or xDAI |
+| **Odds** | The odds at time of bet |
+| **Result** | Win or Loss |
+| **Payout** | Amount received if won |
+
+### Multi-Chain Import
+
+<Callout type="warning">
+  If you've bet on multiple chains, you'll need to import from each separately. Connect the appropriate network in your wallet.
+</Callout>
+
+<div className="grid grid-cols-2 gap-4 mt-4">
+  <div className="p-4 rounded-xl bg-purple-50 dark:bg-purple-900/20">
+    <h4 className="font-semibold m-0">Polygon</h4>
+    <p className="text-sm text-gray-600 dark:text-gray-400 mt-2 mb-0">
+      Currency: USDC<br />
+      Most popular for Azuro
+    </p>
+  </div>
+  <div className="p-4 rounded-xl bg-green-50 dark:bg-green-900/20">
+    <h4 className="font-semibold m-0">Gnosis Chain</h4>
+    <p className="text-sm text-gray-600 dark:text-gray-400 mt-2 mb-0">
+      Currency: xDAI<br />
+      Lower fees, smaller liquidity
+    </p>
+  </div>
+</div>
+
+## Tips for Sports Betting
+
+### General Strategy
+
+<div className="p-4 rounded-xl bg-green-50 dark:bg-green-900/20 mt-4">
+  <ul className="space-y-2 mb-0">
+    <li>**Specialize** - Focus on 1-2 sports/leagues you know well</li>
+    <li>**Line shopping** - Compare odds across platforms</li>
+    <li>**Injury news** - Check team news before betting</li>
+    <li>**Weather** - Affects outdoor sports significantly</li>
+    <li>**Rest days** - Teams on back-to-backs often underperform</li>
+    <li>**Historical data** - Head-to-head records matter</li>
+  </ul>
+</div>
+
+### Common Mistakes
+
+<div className="p-4 rounded-xl bg-red-50 dark:bg-red-900/20 mt-4">
+  <ul className="space-y-2 mb-0">
+    <li>**Fan bias** - Betting on your favorite team regardless of odds</li>
+    <li>**Chasing favorites** - Heavy favorites often don't cover</li>
+    <li>**Parlays** - Multiple-leg bets are hard to win</li>
+    <li>**Recency bias** - Overweighting last game's performance</li>
+    <li>**Ignoring value** - Chasing popular picks, not good odds</li>
+  </ul>
+</div>
+
+### Sport-Specific Tips
+
+<div className="grid grid-cols-1 md:grid-cols-2 gap-4 mt-4">
+  <div className="p-4 rounded-xl border border-gray-200 dark:border-gray-700">
+    <h4 className="font-semibold m-0">⚽ Football (Soccer)</h4>
+    <ul className="text-sm mt-2 mb-0 space-y-1">
+      <li>Low-scoring means upsets happen</li>
+      <li>Home advantage is real</li>
+      <li>Cup games = more surprises</li>
+    </ul>
+  </div>
+  <div className="p-4 rounded-xl border border-gray-200 dark:border-gray-700">
+    <h4 className="font-semibold m-0">🏀 Basketball</h4>
+    <ul className="text-sm mt-2 mb-0 space-y-1">
+      <li>High-scoring = more predictable</li>
+      <li>Rest matters a lot (NBA schedule)</li>
+      <li>Playoff games differ from regular season</li>
+    </ul>
+  </div>
+  <div className="p-4 rounded-xl border border-gray-200 dark:border-gray-700">
+    <h4 className="font-semibold m-0">🎾 Tennis</h4>
+    <ul className="text-sm mt-2 mb-0 space-y-1">
+      <li>Surface specialists exist</li>
+      <li>Motivation varies (small vs big tournaments)</li>
+      <li>Physical condition is crucial</li>
+    </ul>
+  </div>
+  <div className="p-4 rounded-xl border border-gray-200 dark:border-gray-700">
+    <h4 className="font-semibold m-0">🥊 MMA</h4>
+    <ul className="text-sm mt-2 mb-0 space-y-1">
+      <li>Style matchups matter more than records</li>
+      <li>Upsets are common</li>
+      <li>Weight cuts affect performance</li>
+    </ul>
+  </div>
+</div>
+
+## Understanding Odds
+
+Azuro uses decimal odds:
+
+| Decimal Odds | Implied Probability | $10 Bet Wins |
+|--------------|---------------------|--------------|
+| 1.50 | 66.7% | $15 ($5 profit) |
+| 2.00 | 50% | $20 ($10 profit) |
+| 3.00 | 33.3% | $30 ($20 profit) |
+| 5.00 | 20% | $50 ($40 profit) |
+| 10.00 | 10% | $100 ($90 profit) |
+
+<Callout>
+  Lower odds = Higher probability (according to the market) = Lower payout
+</Callout>
+
+## Troubleshooting
+
+### "No bets found"
+
+<div className="p-4 rounded-xl bg-amber-50 dark:bg-amber-900/20 mt-2">
+  **Possible causes:**
+  - Wrong chain selected (did you bet on Polygon or Gnosis?)
+  - All your bets are still pending (events haven't finished)
+  - New account with no activity
+
+  **Solution:** Switch networks and try again, or wait for events to settle
+</div>
+
+### "Bets still pending"
+
+<div className="p-4 rounded-xl bg-amber-50 dark:bg-amber-900/20 mt-2">
+  **Cause:** Your events haven't finished yet
+
+  **Solution:** Only settled bets are imported. Check back after your games end.
+</div>
+
+### "Chain not supported"
+
+<div className="p-4 rounded-xl bg-amber-50 dark:bg-amber-900/20 mt-2">
+  **Cause:** You might be on a network we don't yet support
+
+  **Solution:** We currently support Polygon and Gnosis. Make sure you're on one of these.
+</div>
+
+## FAQ
+
+**Does Azuro have parlays?**
+Yes! Azuro supports combo bets. Each leg of a parlay counts as a separate prediction for Veritas purposes.
+
+**What about live betting?**
+Live (in-play) bets are supported. They count the same as pre-match bets.
+
+**How are pushed bets handled?**
+If a bet is voided (cancelled), it doesn't count toward your stats.
+
+**Which frontend do you track?**
+It doesn't matter which Azuro frontend you use (bookmaker.xyz, etc.) - all bets go to the same contracts.
+
+## Related
+
+- [Overtime Markets](/platforms/overtime) - Another sports platform
+- [Improving Your Score](/reputation/improving-score) - VeritasScore tips
+- [Copy Trading](/copy-trading) - Follow sports experts

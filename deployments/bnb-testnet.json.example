@@ -1,0 +1,53 @@
+{
+  "network": "Somnia Testnet",
+  "chainId": 97,
+  "timestamp": 1234567890,
+  "deployer": "0x0000000000000000000000000000000000000000",
+  "contracts": {
+    "ReputationNFT": "0x0000000000000000000000000000000000000000",
+    "ScoreCalculator": "0x0000000000000000000000000000000000000000",
+    "PlatformRegistry": "0x0000000000000000000000000000000000000000",
+    "VeritasCore": "0x0000000000000000000000000000000000000000",
+    "DreamDEXPredictionAdapter": "0x0000000000000000000000000000000000000000"
+  },
+  "external": {
+    "DreamDEXPredictionV2": "0xB52c5934113Af5c0Bb20eb3C72290C8215f755b9"
+  },
+  "verification": {
+    "explorerUrl": "https://testnet.somniascan.com",
+    "verified": true
+  },
+  "configuration": {
+    "platformRegistry": {
+      "registeredPlatforms": [
+        {
+          "id": 1,
+          "name": "DreamDEXPrediction V2",
+          "adapter": "0x0000000000000000000000000000000000000000",
+          "type": "BINARY_PREDICTION",
+          "isActive": true
+        }
+      ]
+    },
+    "reputationNFT": {
+      "coreContract": "0x0000000000000000000000000000000000000000",
+      "name": "Veritas Reputation",
+      "symbol": "VERITAS"
+    }
+  },
+  "gasUsed": {
+    "ReputationNFT": "~2,500,000",
+    "ScoreCalculator": "~500,000",
+    "PlatformRegistry": "~1,000,000",
+    "VeritasCore": "~1,500,000",
+    "DreamDEXPredictionAdapter": "~800,000",
+    "total": "~6,300,000"
+  },
+  "notes": [
+    "All contracts deployed and verified on SomniaScan",
+    "VeritasCore set as minter for ReputationNFT",
+    "DreamDEXPrediction platform registered with ID 1",
+    "Platform type: BINARY_PREDICTION",
+    "Ready for production use"
+  ]
+}

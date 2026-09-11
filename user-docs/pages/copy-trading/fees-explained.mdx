@@ -1,0 +1,312 @@
+import { Callout } from 'nextra/components'
+
+# Fees Explained
+
+Understanding how fees work is essential for both followers and leaders. This page breaks down every aspect of Veritas's fee structure.
+
+## Fee Overview
+
+<div className="p-6 rounded-xl bg-gradient-to-br from-blue-50 to-purple-50 dark:from-blue-900/20 dark:to-purple-900/20 mt-6">
+  <h3 className="font-bold m-0">The Golden Rule</h3>
+  <p className="text-lg mt-2 mb-0">
+    **Fees are only charged on profits. No profit = No fees.**
+  </p>
+</div>
+
+## Fee Structure
+
+When copy trading generates a profit, fees are collected:
+
+<div className="overflow-x-auto mt-6">
+  <table className="w-full">
+    <thead>
+      <tr>
+        <th className="text-left">Fee Type</th>
+        <th className="text-center">Amount</th>
+        <th className="text-left">Recipient</th>
+        <th className="text-left">Purpose</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>Protocol Fee</td>
+        <td className="text-center">10%</td>
+        <td>Veritas</td>
+        <td>Platform development & maintenance</td>
+      </tr>
+      <tr>
+        <td>Leader Fee</td>
+        <td className="text-center">10%</td>
+        <td>Vault Leader</td>
+        <td>Compensation for trading expertise</td>
+      </tr>
+      <tr className="bg-green-50 dark:bg-green-900/20">
+        <td><strong>Follower Keeps</strong></td>
+        <td className="text-center"><strong>80%</strong></td>
+        <td><strong>You</strong></td>
+        <td><strong>Your share of profits</strong></td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+## Detailed Examples
+
+### Example 1: Simple Profit
+
+<div className="p-4 rounded-xl bg-gray-50 dark:bg-gray-800 mt-4">
+  **Scenario:**
+  - You deposit: **1 STT**
+  - Leader generates: **20% profit**
+  - Your gross profit: **0.2 STT**
+
+  **Fee Calculation:**
+  | Item | Amount |
+  |------|--------|
+  | Gross Profit | 0.2 STT |
+  | Protocol Fee (10%) | -0.02 STT |
+  | Leader Fee (10%) | -0.02 STT |
+  | **Your Net Profit** | **0.16 STT** |
+  | **Final Balance** | **1.16 STT** |
+</div>
+
+### Example 2: Larger Position
+
+<div className="p-4 rounded-xl bg-gray-50 dark:bg-gray-800 mt-4">
+  **Scenario:**
+  - You deposit: **10 STT**
+  - Leader generates: **15% profit**
+  - Your gross profit: **1.5 STT**
+
+  **Fee Calculation:**
+  | Item | Amount |
+  |------|--------|
+  | Gross Profit | 1.5 STT |
+  | Protocol Fee (10%) | -0.15 STT |
+  | Leader Fee (10%) | -0.15 STT |
+  | **Your Net Profit** | **1.2 STT** |
+  | **Final Balance** | **11.2 STT** |
+</div>
+
+### Example 3: Breaking Even
+
+<div className="p-4 rounded-xl bg-amber-50 dark:bg-amber-900/20 mt-4">
+  **Scenario:**
+  - You deposit: **5 STT**
+  - Leader breaks even: **0% profit**
+  - Your gross profit: **0 STT**
+
+  **Fee Calculation:**
+  | Item | Amount |
+  |------|--------|
+  | Gross Profit | 0 STT |
+  | Protocol Fee (10% of 0) | 0 STT |
+  | Leader Fee (10% of 0) | 0 STT |
+  | **Your Net Profit** | **0 STT** |
+  | **Final Balance** | **5 STT** |
+
+  **No fees charged!**
+</div>
+
+### Example 4: Loss
+
+<div className="p-4 rounded-xl bg-red-50 dark:bg-red-900/20 mt-4">
+  **Scenario:**
+  - You deposit: **2 STT**
+  - Leader loses: **-10%**
+  - Your loss: **0.2 STT**
+
+  **Fee Calculation:**
+  | Item | Amount |
+  |------|--------|
+  | Loss | -0.2 STT |
+  | Protocol Fee | 0 STT (no profit) |
+  | Leader Fee | 0 STT (no profit) |
+  | **Your Net Loss** | **-0.2 STT** |
+  | **Final Balance** | **1.8 STT** |
+
+  **No fees on losses!**
+</div>
+
+## When Are Fees Calculated?
+
+<div className="grid grid-cols-1 md:grid-cols-3 gap-4 mt-6">
+  <div className="p-4 rounded-xl border border-gray-200 dark:border-gray-700">
+    <h4 className="font-semibold m-0">Per Trade</h4>
+    <p className="text-sm text-gray-600 dark:text-gray-400 mt-2 mb-0">
+      Fees are calculated when each trade settles, not at withdrawal.
+    </p>
+  </div>
+  <div className="p-4 rounded-xl border border-gray-200 dark:border-gray-700">
+    <h4 className="font-semibold m-0">Automatically</h4>
+    <p className="text-sm text-gray-600 dark:text-gray-400 mt-2 mb-0">
+      Smart contracts handle fee collection. No manual action needed.
+    </p>
+  </div>
+  <div className="p-4 rounded-xl border border-gray-200 dark:border-gray-700">
+    <h4 className="font-semibold m-0">Transparently</h4>
+    <p className="text-sm text-gray-600 dark:text-gray-400 mt-2 mb-0">
+      All fees are visible on-chain and in your transaction history.
+    </p>
+  </div>
+</div>
+
+## Fee Comparison: Veritas vs Others
+
+<div className="overflow-x-auto mt-4">
+  <table className="w-full">
+    <thead>
+      <tr>
+        <th className="text-left">Platform</th>
+        <th className="text-center">Total Fees</th>
+        <th className="text-center">Fees on Losses?</th>
+        <th className="text-center">Transparency</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr className="bg-blue-50 dark:bg-blue-900/20">
+        <td><strong>Veritas</strong></td>
+        <td className="text-center"><strong>20%</strong></td>
+        <td className="text-center"><strong>No</strong></td>
+        <td className="text-center"><strong>Full (on-chain)</strong></td>
+      </tr>
+      <tr>
+        <td>Traditional Copy Trade</td>
+        <td className="text-center">20-30%</td>
+        <td className="text-center">Sometimes</td>
+        <td className="text-center">Limited</td>
+      </tr>
+      <tr>
+        <td>Hedge Funds</td>
+        <td className="text-center">2% + 20%</td>
+        <td className="text-center">Yes (mgmt fee)</td>
+        <td className="text-center">Minimal</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+## For Leaders: Earning Fees
+
+### How Leader Fees Accumulate
+
+Every time a copy trade profits:
+1. Trade settles with profit
+2. 10% of profit allocated to leader fee pool
+3. Leader can claim anytime
+
+### Claiming Your Fees
+
+<div className="p-4 rounded-xl bg-amber-50 dark:bg-amber-900/20 mt-4">
+  **Steps:**
+  1. Go to your Vault Dashboard
+  2. View "Pending Fees"
+  3. Click "Claim"
+  4. Confirm transaction
+  5. Fees sent to wallet
+</div>
+
+### Fee Earnings Potential
+
+<div className="overflow-x-auto mt-4">
+  <table className="w-full">
+    <thead>
+      <tr>
+        <th className="text-left">Vault TVL</th>
+        <th className="text-center">Monthly Return</th>
+        <th className="text-center">Profit</th>
+        <th className="text-center">Your Fee (10%)</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>10 STT</td>
+        <td className="text-center">15%</td>
+        <td className="text-center">1.5 STT</td>
+        <td className="text-center">0.15 STT</td>
+      </tr>
+      <tr>
+        <td>100 STT</td>
+        <td className="text-center">15%</td>
+        <td className="text-center">15 STT</td>
+        <td className="text-center">1.5 STT</td>
+      </tr>
+      <tr>
+        <td>1,000 STT</td>
+        <td className="text-center">15%</td>
+        <td className="text-center">150 STT</td>
+        <td className="text-center">15 STT</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+<Callout type="info">
+  These are hypothetical examples. Actual earnings depend on trading performance.
+</Callout>
+
+## Gas Fees
+
+<div className="p-4 rounded-xl bg-gray-50 dark:bg-gray-800 mt-4">
+  **Important:** Gas fees are separate from Veritas fees.
+
+  You pay gas for:
+  - Depositing into a vault
+  - Withdrawing from a vault
+  - Leaders: Claiming accumulated fees
+
+  Gas costs depend on network conditions, not Veritas.
+</div>
+
+## Frequently Asked Questions
+
+### General
+
+**Why 20% total fees?**
+It's an industry-standard split that fairly compensates both the platform (for development and maintenance) and leaders (for their expertise).
+
+**Can fees change?**
+Fee structure is set in smart contracts. Any changes would require significant protocol updates.
+
+**Are fees negotiable?**
+No. Fees are the same for everyone to ensure fairness.
+
+### For Followers
+
+**Do I pay fees if the leader loses?**
+No! Fees are only on profits.
+
+**What if I withdraw before trade settles?**
+You can't withdraw funds locked in pending trades. Wait for settlement.
+
+**Do I pay fees when withdrawing?**
+No Veritas withdrawal fee. Just network gas.
+
+### For Leaders
+
+**How often can I claim fees?**
+Anytime! Daily, weekly, monthly - your choice.
+
+**What if I have no profit trades?**
+No profits = no fees to claim.
+
+**Are fees cumulative?**
+Yes. Unclaimed fees accumulate until you claim them.
+
+## Fee Transparency
+
+All fees are:
+- ✅ Calculated on-chain
+- ✅ Visible in transaction data
+- ✅ Auditable by anyone
+- ✅ Consistent across all users
+
+<Callout>
+  You can verify any fee calculation by checking the smart contract on SomniaScan.
+</Callout>
+
+## Related
+
+- [Becoming a Follower](/copy-trading/becoming-follower) - Follower guide
+- [Becoming a Leader](/copy-trading/becoming-leader) - Leader guide
+- [Managing Vault](/copy-trading/managing-vault) - Vault operations

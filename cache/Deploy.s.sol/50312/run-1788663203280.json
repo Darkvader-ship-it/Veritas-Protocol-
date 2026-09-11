@@ -1,0 +1,25 @@
+{
+  "transactions": [
+    {
+      "rpc": "https://api.infra.testnet.somnia.network"
+    },
+    {
+      "rpc": "https://api.infra.testnet.somnia.network"
+    },
+    {
+      "rpc": "https://api.infra.testnet.somnia.network"
+    },
+    {
+      "rpc": "https://api.infra.testnet.somnia.network"
+    },
+    {
+      "rpc": "https://api.infra.testnet.somnia.network"
+    },
+    {
+      "rpc": "https://api.infra.testnet.somnia.network"
+    },
+    {
+      "rpc": "https://api.infra.testnet.somnia.network"
+    }
+  ]
+}

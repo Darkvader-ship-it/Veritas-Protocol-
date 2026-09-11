@@ -1,0 +1,489 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ============================================
+   Veritas Design System v1.0
+   See DESIGN_SYSTEM.md for full documentation
+   ============================================ */
+
+@layer base {
+  :root {
+    /* Background Colors */
+    --background: 225 25% 4%;
+    --background-subtle: 225 20% 7%;
+    --surface: 225 18% 10%;
+    --surface-raised: 225 16% 14%;
+    --surface-overlay: 225 14% 18%;
+
+    /* Border Colors */
+    --border: 225 15% 18%;
+    --border-muted: 225 12% 14%;
+    --border-emphasis: 225 15% 25%;
+
+    /* Primary (Trust Blue) */
+    --primary: 217 91% 60%;
+    --primary-hover: 217 91% 55%;
+    --primary-foreground: 0 0% 100%;
+
+    /* Secondary (Achievement Gold) */
+    --secondary: 38 92% 50%;
+    --secondary-hover: 38 92% 45%;
+    --secondary-foreground: 0 0% 0%;
+
+    /* Text Colors */
+    --foreground: 210 40% 96%;
+    --muted: 225 18% 10%;
+    --muted-foreground: 215 20% 65%;
+
+    /* Semantic Colors */
+    --success: 160 84% 39%;
+    --destructive: 0 84% 60%;
+    --destructive-foreground: 0 0% 100%;
+    --warning: 38 92% 50%;
+    --info: 217 91% 60%;
+
+    /* Component Colors */
+    --card: 225 18% 10%;
+    --card-foreground: 210 40% 96%;
+    --popover: 225 16% 14%;
+    --popover-foreground: 210 40% 96%;
+    --accent: 225 16% 14%;
+    --accent-foreground: 210 40% 96%;
+    --input: 225 15% 18%;
+    --ring: 217 91% 60%;
+
+    /* Tier Colors */
+    --tier-bronze: 30 60% 50%;
+    --tier-silver: 210 10% 65%;
+    --tier-gold: 45 93% 47%;
+    --tier-platinum: 200 50% 70%;
+    --tier-diamond: 190 90% 60%;
+
+    /* Chart Colors */
+    --chart-1: 217 91% 60%;
+    --chart-2: 160 84% 39%;
+    --chart-3: 38 92% 50%;
+    --chart-4: 280 65% 60%;
+    --chart-5: 340 75% 55%;
+
+    /* Radius */
+    --radius: 0.75rem;
+  }
+
+  /* Light mode - keeping for reference but app uses dark only */
+  .light {
+    --background: 0 0% 100%;
+    --foreground: 222 47% 11%;
+    --card: 0 0% 100%;
+    --card-foreground: 222 47% 11%;
+    --popover: 0 0% 100%;
+    --popover-foreground: 222 47% 11%;
+    --primary: 217 91% 60%;
+    --primary-foreground: 0 0% 100%;
+    --secondary: 38 92% 50%;
+    --secondary-foreground: 0 0% 0%;
+    --muted: 210 40% 96%;
+    --muted-foreground: 215 16% 47%;
+    --accent: 210 40% 96%;
+    --accent-foreground: 222 47% 11%;
+    --destructive: 0 84% 60%;
+    --destructive-foreground: 0 0% 100%;
+    --border: 214 32% 91%;
+    --input: 214 32% 91%;
+    --ring: 217 91% 60%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  html {
+    @apply scroll-smooth;
+  }
+
+  body {
+    @apply bg-background text-foreground antialiased;
+    font-feature-settings: "rlig" 1, "calt" 1;
+  }
+
+  /* Clean typography defaults - NO forced uppercase/italic */
+  h1, h2, h3, h4, h5, h6 {
+    @apply tracking-tight font-semibold;
+  }
+
+  h1 {
+    @apply text-4xl font-bold;
+  }
+
+  h2 {
+    @apply text-2xl;
+  }
+
+  h3 {
+    @apply text-lg;
+  }
+
+  /* Focus styles for accessibility */
+  :focus-visible {
+    @apply outline-2 outline-offset-2 outline-primary;
+  }
+
+  /* Scrollbar styling */
+  ::-webkit-scrollbar {
+    @apply w-2 h-2;
+  }
+
+  ::-webkit-scrollbar-track {
+    @apply bg-transparent;
+  }
+
+  ::-webkit-scrollbar-thumb {
+    @apply bg-border rounded-full;
+  }
+
+}
+
+/* Hover states only for devices that support hover */
+@media (hover: hover) {
+  ::-webkit-scrollbar-thumb:hover {
+    @apply bg-muted-foreground/30;
+  }
+}
+
+@layer utilities {
+  /* Hide scrollbar for horizontal scroll areas */
+  .scrollbar-hide {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+  .scrollbar-hide::-webkit-scrollbar {
+    display: none;
+  }
+
+  /* Text utilities */
+  .text-balance {
+    text-wrap: balance;
+  }
+
+  /* Gradient text for scores/achievements (use sparingly) */
+  .text-score {
+    @apply text-secondary font-bold;
+  }
+
+  /* Monospace for addresses and numbers */
+  .text-mono {
+    @apply font-mono text-sm;
+  }
+
+  /* Tier color utilities */
+  .tier-bronze {
+    color: hsl(var(--tier-bronze));
+  }
+  .tier-silver {
+    color: hsl(var(--tier-silver));
+  }
+  .tier-gold {
+    color: hsl(var(--tier-gold));
+  }
+  .tier-platinum {
+    color: hsl(var(--tier-platinum));
+  }
+  .tier-diamond {
+    color: hsl(var(--tier-diamond));
+  }
+
+  .bg-tier-bronze {
+    background-color: hsl(var(--tier-bronze) / 0.15);
+  }
+  .bg-tier-silver {
+    background-color: hsl(var(--tier-silver) / 0.15);
+  }
+  .bg-tier-gold {
+    background-color: hsl(var(--tier-gold) / 0.15);
+  }
+  .bg-tier-platinum {
+    background-color: hsl(var(--tier-platinum) / 0.15);
+  }
+  .bg-tier-diamond {
+    background-color: hsl(var(--tier-diamond) / 0.15);
+  }
+
+  /* Surface utilities */
+  .bg-surface {
+    background-color: hsl(var(--surface));
+  }
+  .bg-surface-raised {
+    background-color: hsl(var(--surface-raised));
+  }
+  .bg-surface-overlay {
+    background-color: hsl(var(--surface-overlay));
+  }
+
+  /* Animation utilities */
+  .animate-in {
+    animation: animate-in 0.2s ease-out;
+  }
+
+  .animate-fade-in {
+    animation: fade-in 0.15s ease-out;
+  }
+
+  @keyframes animate-in {
+    from {
+      opacity: 0;
+      transform: translateY(4px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  @keyframes fade-in {
+    from {
+      opacity: 0;
+    }
+    to {
+      opacity: 1;
+    }
+  }
+
+  /* Marquee animation for infinite scroll (2x duplication - desktop) */
+  .animate-marquee {
+    animation: marquee-2x 30s linear infinite;
+  }
+
+  .animate-marquee-reverse {
+    animation: marquee-2x-reverse 30s linear infinite;
+  }
+
+  /* Marquee for 3x duplication (mobile) */
+  .animate-marquee-3x {
+    animation: marquee-3x 20s linear infinite;
+  }
+
+  .animate-marquee-3x-reverse {
+    animation: marquee-3x-reverse 20s linear infinite;
+  }
+
+  @keyframes marquee-2x {
+    0% {
+      transform: translateX(0);
+    }
+    100% {
+      transform: translateX(-50%);
+    }
+  }
+
+  @keyframes marquee-2x-reverse {
+    0% {
+      transform: translateX(-50%);
+    }
+    100% {
+      transform: translateX(0);
+    }
+  }
+
+  @keyframes marquee-3x {
+    0% {
+      transform: translateX(0);
+    }
+    100% {
+      transform: translateX(-33.333%);
+    }
+  }
+
+  @keyframes marquee-3x-reverse {
+    0% {
+      transform: translateX(-33.333%);
+    }
+    100% {
+      transform: translateX(0);
+    }
+  }
+
+  /* Pause on hover for accessibility */
+  .animate-marquee:hover,
+  .animate-marquee-reverse:hover,
+  .animate-marquee-3x:hover,
+  .animate-marquee-3x-reverse:hover {
+    animation-play-state: paused;
+  }
+
+  /* Subtle glow for important elements (use very sparingly) */
+  .glow-primary {
+    box-shadow: 0 0 20px hsl(var(--primary) / 0.15);
+  }
+
+  .glow-secondary {
+    box-shadow: 0 0 20px hsl(var(--secondary) / 0.15);
+  }
+
+  /* ═══════════════════════════════════════════════════════════
+     BRAND IDENTITY PATTERNS
+     Veritas = Data + Verification + Achievement
+     ═══════════════════════════════════════════════════════════ */
+
+  /* Dot grid pattern - represents data points (more visible) */
+  .bg-dot-grid {
+    background-image: radial-gradient(
+      circle at center,
+      hsl(var(--primary) / 0.25) 1.5px,
+      transparent 1.5px
+    );
+    background-size: 32px 32px;
+  }
+
+  /* ═══════════════════════════════════════════════════════════
+     REMOVED: Animated dot grid, holographic shimmer, aurora animation
+     Reason: Decorative motion without semantic meaning.
+     Veritas is a data platform - animation should serve data, not decorate it.
+     ═══════════════════════════════════════════════════════════ */
+
+  /* Subtle noise texture for premium depth - KEPT */
+  .noise-overlay {
+    position: relative;
+  }
+  .noise-overlay::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
+    opacity: 0.025;
+    pointer-events: none;
+    mix-blend-mode: overlay;
+  }
+
+  /* Static gradient - replaces aurora animation */
+  .hero-gradient {
+    background: linear-gradient(
+      135deg,
+      hsl(var(--primary) / 0.06) 0%,
+      transparent 50%,
+      hsl(var(--secondary) / 0.04) 100%
+    );
+  }
+
+  /* Subtle verification glow - for hero/featured cards */
+  .verification-glow {
+    position: relative;
+  }
+  .verification-glow::before {
+    content: '';
+    position: absolute;
+    inset: -1px;
+    border-radius: inherit;
+    padding: 1px;
+    background: linear-gradient(
+      135deg,
+      hsl(var(--primary) / 0.3),
+      hsl(var(--secondary) / 0.2),
+      hsl(var(--primary) / 0.1)
+    );
+    -webkit-mask:
+      linear-gradient(#fff 0 0) content-box,
+      linear-gradient(#fff 0 0);
+    mask:
+      linear-gradient(#fff 0 0) content-box,
+      linear-gradient(#fff 0 0);
+    -webkit-mask-composite: xor;
+    mask-composite: exclude;
+    pointer-events: none;
+  }
+
+  /* Score ring visualization */
+  .score-ring {
+    background: conic-gradient(
+      from 180deg,
+      hsl(var(--secondary)) var(--score-percent, 0%),
+      hsl(var(--border)) var(--score-percent, 0%)
+    );
+  }
+
+  /* Data stream accent line */
+  .data-stream {
+    background: linear-gradient(
+      90deg,
+      transparent,
+      hsl(var(--primary) / 0.5),
+      hsl(var(--secondary) / 0.5),
+      transparent
+    );
+    height: 1px;
+  }
+
+  /* Verified badge pulse - plays 3 times then stops */
+  .verified-pulse {
+    animation: verified-pulse 1.5s ease-in-out 3;
+  }
+  @keyframes verified-pulse {
+    0%, 100% { box-shadow: 0 0 0 0 hsl(var(--success) / 0.3); }
+    50% { box-shadow: 0 0 0 6px hsl(var(--success) / 0); }
+  }
+
+  /* ═══════════════════════════════════════════════════════════
+     STORY PAGE ANIMATION ELEMENTS
+     Hide elements before GSAP initializes to prevent flash
+     ═══════════════════════════════════════════════════════════ */
+  .text-phase-1,
+  .text-phase-2,
+  .text-phase-3,
+  .text-phase-4,
+  .text-phase-5,
+  .unified-card {
+    opacity: 0;
+  }
+
+  .platform-card {
+    opacity: 0;
+  }
+}
+
+/* Custom component styles */
+@layer components {
+  /* Card hover effect */
+  .card-interactive {
+    @apply transition-all duration-200;
+  }
+
+  @media (hover: hover) {
+    .card-interactive:hover {
+      @apply border-primary/30 bg-surface-raised/50;
+    }
+  }
+
+  /* Table row hover */
+  .table-row-interactive {
+    @apply transition-colors duration-150;
+  }
+
+  @media (hover: hover) {
+    .table-row-interactive:hover {
+      @apply bg-surface-raised/50;
+    }
+  }
+
+  /* Badge variants for tiers */
+  .badge-tier-bronze {
+    @apply bg-tier-bronze tier-bronze border-transparent;
+  }
+
+  .badge-tier-silver {
+    @apply bg-tier-silver tier-silver border-transparent;
+  }
+
+  .badge-tier-gold {
+    @apply bg-tier-gold tier-gold border-transparent;
+  }
+
+  .badge-tier-platinum {
+    @apply bg-tier-platinum tier-platinum border-transparent;
+  }
+
+  .badge-tier-diamond {
+    @apply bg-tier-diamond tier-diamond border-transparent;
+  }
+}

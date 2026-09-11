@@ -1,0 +1,66 @@
+{
+  "name": "veritasbot",
+  "version": "1.0.0",
+  "description": "Trading bot system for Veritas - Smart money signals, backtesting, and portfolio optimization",
+  "main": "dist/index.js",
+  "type": "module",
+  "scripts": {
+    "dev": "tsx watch src/index.ts",
+    "build": "tsc",
+    "start": "node dist/index.js",
+    "bot:smart-money": "tsx src/bots/smart-money-aggregator.ts",
+    "bot:backtest": "tsx src/bots/backtesting-engine.ts",
+    "bot:anti-gaming": "tsx src/bots/anti-gaming-detector.ts",
+    "bot:portfolio": "tsx src/bots/portfolio-optimizer.ts",
+    "bot:copy": "tsx src/bots/copy-trading-enhanced.ts",
+    "api": "tsx src/api/server.ts",
+    "db:setup": "tsx scripts/setup-db.ts",
+    "backfill": "tsx scripts/backfill.ts",
+    "test": "vitest",
+    "test:coverage": "vitest --coverage",
+    "lint": "eslint src --ext .ts",
+    "typecheck": "tsc --noEmit"
+  },
+  "keywords": [
+    "trading-bot",
+    "prediction-markets",
+    "copy-trading",
+    "defi",
+    "dreamdex",
+    "polymarket",
+    "smart-money"
+  ],
+  "author": "Veritas Team",
+  "license": "MIT",
+  "dependencies": {
+    "@supabase/supabase-js": "^2.39.0",
+    "ethers": "^6.10.0",
+    "fastify": "^4.25.0",
+    "@fastify/cors": "^8.5.0",
+    "@fastify/websocket": "^8.3.1",
+    "dotenv": "^16.4.0",
+    "zod": "^3.22.4",
+    "pino": "^8.17.0",
+    "pino-pretty": "^10.3.0",
+    "mathjs": "^12.2.1",
+    "simple-statistics": "^7.8.3",
+    "node-cron": "^3.0.3",
+    "ws": "^8.16.0",
+    "undici": "^6.6.0"
+  },
+  "devDependencies": {
+    "@types/node": "^20.11.0",
+    "@types/ws": "^8.5.10",
+    "@types/node-cron": "^3.0.11",
+    "typescript": "^5.3.3",
+    "tsx": "^4.7.0",
+    "vitest": "^1.2.0",
+    "@vitest/coverage-v8": "^1.2.0",
+    "eslint": "^8.56.0",
+    "@typescript-eslint/eslint-plugin": "^6.19.0",
+    "@typescript-eslint/parser": "^6.19.0"
+  },
+  "engines": {
+    "node": ">=18.0.0"
+  }
+}

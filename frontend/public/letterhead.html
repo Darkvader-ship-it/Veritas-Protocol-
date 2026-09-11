@@ -1,0 +1,308 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Veritas Letterhead</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap');
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    @page {
+      size: A4;
+      margin: 0;
+    }
+
+    body {
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+      background: #fff;
+      color: #1a1a2e;
+      min-height: 100vh;
+    }
+
+    .letterhead {
+      width: 210mm;
+      min-height: 297mm;
+      margin: 0 auto;
+      background: #fff;
+      position: relative;
+      padding: 0;
+    }
+
+    /* Header */
+    .header {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      padding: 30px 40px 25px 40px;
+      border-bottom: 3px solid transparent;
+      background: linear-gradient(white, white) padding-box,
+                  linear-gradient(90deg, #DC2626, #F59E0B, #2563EB) border-box;
+      border-bottom: 3px solid transparent;
+      background: linear-gradient(#fff, #fff) padding-box,
+                  linear-gradient(90deg, #DC2626 0%, #F59E0B 50%, #2563EB 100%) border-box;
+    }
+
+    .logo-section {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+    }
+
+    .logo-text {
+      font-size: 28px;
+      font-weight: 900;
+      background: linear-gradient(135deg, #DC2626 0%, #F59E0B 50%, #2563EB 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      letter-spacing: -0.5px;
+    }
+
+    .tagline {
+      font-size: 11px;
+      color: #64748b;
+      font-weight: 500;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      margin-top: 4px;
+    }
+
+    .contact-info {
+      text-align: right;
+      font-size: 11px;
+      color: #475569;
+      line-height: 1.7;
+    }
+
+    .contact-info a {
+      color: #2563EB;
+      text-decoration: none;
+    }
+
+    /* Content Area */
+    .content {
+      padding: 50px 40px;
+      min-height: 180mm;
+    }
+
+    .date {
+      margin-bottom: 30px;
+      color: #64748b;
+      font-size: 12px;
+    }
+
+    .recipient {
+      margin-bottom: 30px;
+      line-height: 1.6;
+    }
+
+    .subject {
+      font-weight: 700;
+      margin-bottom: 25px;
+      font-size: 14px;
+    }
+
+    .body-text {
+      line-height: 1.8;
+      font-size: 12px;
+      color: #334155;
+    }
+
+    .body-text p {
+      margin-bottom: 16px;
+    }
+
+    .signature {
+      margin-top: 40px;
+    }
+
+    .signature-line {
+      margin-top: 50px;
+      padding-top: 5px;
+      border-top: 1px solid #1a1a2e;
+      width: 200px;
+      font-size: 12px;
+    }
+
+    /* Footer */
+    .footer {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      padding: 20px 40px;
+      background: linear-gradient(180deg, #f8fafc 0%, #f1f5f9 100%);
+      border-top: 1px solid #e2e8f0;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .footer-left {
+      font-size: 10px;
+      color: #64748b;
+    }
+
+    .footer-center {
+      display: flex;
+      gap: 20px;
+      font-size: 10px;
+      color: #475569;
+    }
+
+    .footer-center span {
+      display: flex;
+      align-items: center;
+      gap: 5px;
+    }
+
+    .footer-right {
+      font-size: 9px;
+      color: #94a3b8;
+      text-align: right;
+    }
+
+    /* Decorative Elements */
+    .corner-accent {
+      position: absolute;
+      width: 60px;
+      height: 60px;
+      opacity: 0.1;
+    }
+
+    .corner-accent.top-right {
+      top: 100px;
+      right: 20px;
+    }
+
+    .corner-accent.bottom-left {
+      bottom: 80px;
+      left: 20px;
+    }
+
+    @media print {
+      body {
+        print-color-adjust: exact;
+        -webkit-print-color-adjust: exact;
+      }
+      .letterhead {
+        margin: 0;
+        box-shadow: none;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="letterhead">
+    <!-- Header -->
+    <header class="header">
+      <div class="logo-section">
+        <!-- Veritas Logo SVG -->
+        <svg width="55" height="55" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <!-- Outer Ring - Red -->
+          <circle cx="50" cy="50" r="45" stroke="url(#redGrad)" stroke-width="4" fill="none"/>
+          <!-- Middle Ring - Blue -->
+          <circle cx="50" cy="50" r="32" stroke="url(#blueGrad)" stroke-width="3" fill="none"/>
+          <!-- Inner Ring - Gold -->
+          <circle cx="50" cy="50" r="20" stroke="url(#goldGrad)" stroke-width="3" fill="none"/>
+          <!-- Center Dot -->
+          <circle cx="50" cy="50" r="8" fill="url(#goldGrad)"/>
+          <!-- Crosshair Lines -->
+          <line x1="50" y1="5" x2="50" y2="25" stroke="url(#redGrad)" stroke-width="3" stroke-linecap="round"/>
+          <line x1="50" y1="75" x2="50" y2="95" stroke="url(#redGrad)" stroke-width="3" stroke-linecap="round"/>
+          <line x1="5" y1="50" x2="25" y2="50" stroke="url(#blueGrad)" stroke-width="3" stroke-linecap="round"/>
+          <line x1="75" y1="50" x2="95" y2="50" stroke="url(#blueGrad)" stroke-width="3" stroke-linecap="round"/>
+          <defs>
+            <linearGradient id="redGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+              <stop offset="0%" stop-color="#DC2626"/>
+              <stop offset="100%" stop-color="#EF4444"/>
+            </linearGradient>
+            <linearGradient id="blueGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+              <stop offset="0%" stop-color="#2563EB"/>
+              <stop offset="100%" stop-color="#3B82F6"/>
+            </linearGradient>
+            <linearGradient id="goldGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+              <stop offset="0%" stop-color="#F59E0B"/>
+              <stop offset="50%" stop-color="#FBBF24"/>
+              <stop offset="100%" stop-color="#F59E0B"/>
+            </linearGradient>
+          </defs>
+        </svg>
+        <div>
+          <div class="logo-text">Veritas</div>
+          <div class="tagline">Decentralized Prediction Intelligence</div>
+        </div>
+      </div>
+      <div class="contact-info">
+        <div><a href="https://veritas.io">veritas.io</a></div>
+        <div><a href="mailto:contact@veritas.io">contact@veritas.io</a></div>
+        <div>Multi-Chain Protocol</div>
+      </div>
+    </header>
+
+    <!-- Decorative Corner Accents -->
+    <div class="corner-accent top-right">
+      <svg viewBox="0 0 100 100" fill="none">
+        <circle cx="50" cy="50" r="45" stroke="#2563EB" stroke-width="2"/>
+        <circle cx="50" cy="50" r="30" stroke="#F59E0B" stroke-width="2"/>
+      </svg>
+    </div>
+
+    <!-- Main Content Area -->
+    <main class="content">
+      <div class="date">[Date]</div>
+
+      <div class="recipient">
+        <strong>[Recipient Name]</strong><br>
+        [Title/Position]<br>
+        [Organization]<br>
+        [Address]
+      </div>
+
+      <div class="subject">Re: [Subject Line]</div>
+
+      <div class="body-text">
+        <p>Dear [Recipient],</p>
+
+        <p>[Your letter content goes here. This letterhead is designed for professional correspondence related to Veritas - the decentralized prediction market aggregator and copy-trading platform.]</p>
+
+        <p>[Continue your message...]</p>
+
+        <p>Thank you for your time and consideration.</p>
+      </div>
+
+      <div class="signature">
+        <p>Best regards,</p>
+        <div class="signature-line">
+          [Your Name]<br>
+          [Your Title]<br>
+          Veritas
+        </div>
+      </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+      <div class="footer-left">
+        <strong>Veritas Protocol</strong>
+      </div>
+      <div class="footer-center">
+        <span>Ethereum</span>
+        <span>Base</span>
+        <span>Polygon</span>
+        <span>Arbitrum</span>
+        <span>Optimism</span>
+      </div>
+      <div class="footer-right">
+        Prediction Market Aggregation & Copy Trading
+      </div>
+    </footer>
+  </div>
+</body>
+</html>

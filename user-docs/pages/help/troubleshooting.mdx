@@ -1,0 +1,303 @@
+import { Callout, Steps } from 'nextra/components'
+
+# Troubleshooting Guide
+
+Having issues with Veritas? Find solutions to common problems here.
+
+## Wallet Connection Issues
+
+### "Wallet not detected"
+
+<div className="p-4 rounded-xl bg-amber-50 dark:bg-amber-900/20 mt-2">
+  **Symptoms:**
+  - "No wallet found" message
+  - Connect button doesn't respond
+  - Wallet popup doesn't appear
+</div>
+
+<Steps>
+
+### Check wallet extension
+
+Make sure your wallet extension (MetaMask, etc.) is:
+- Installed
+- Enabled
+- Unlocked
+
+### Refresh the page
+
+Sometimes a simple refresh fixes detection issues.
+
+### Try a different browser
+
+Wallet extensions work best on:
+- Chrome
+- Firefox
+- Brave
+
+### Disable other wallet extensions
+
+Multiple wallet extensions can conflict. Disable others temporarily.
+
+</Steps>
+
+### "Wrong network"
+
+<div className="p-4 rounded-xl bg-amber-50 dark:bg-amber-900/20 mt-2">
+  **Symptoms:**
+  - "Please switch to Somnia"
+  - Transactions fail
+  - Balance shows 0
+</div>
+
+**Solution:** Switch to STT Smart Chain in your wallet.
+
+<Callout type="info">
+  **Somnia Settings:**
+  - Chain ID: 56
+  - RPC: https://somnia-dataseed.somnia.org
+  - Symbol: STT
+</Callout>
+
+### "Connection rejected"
+
+<div className="p-4 rounded-xl bg-amber-50 dark:bg-amber-900/20 mt-2">
+  **Symptoms:**
+  - Connection popup appears then disappears
+  - "User rejected the request" error
+</div>
+
+**Solution:**
+1. Click connect again
+2. Make sure to click "Connect" in the wallet popup
+3. Don't close the popup too quickly
+
+## Registration Issues
+
+### "Registration failed"
+
+<div className="p-4 rounded-xl bg-amber-50 dark:bg-amber-900/20 mt-2">
+  **Symptoms:**
+  - Transaction fails
+  - Error after confirming
+  - NFT not received
+</div>
+
+**Possible causes and solutions:**
+
+| Cause | Solution |
+|-------|----------|
+| Insufficient STT | Add more STT for gas |
+| Already registered | Check if you already have an NFT |
+| Network congestion | Wait and try again |
+| Gas price too low | Increase gas in wallet |
+
+### "Already registered"
+
+If you see this message, you already have a Reputation NFT. Go to your Dashboard to view it.
+
+## Import Issues
+
+### "No predictions found"
+
+<div className="p-4 rounded-xl bg-amber-50 dark:bg-amber-900/20 mt-2">
+  **Symptoms:**
+  - Import completes but finds 0 predictions
+  - Empty import results
+</div>
+
+**Checklist:**
+- [ ] Are you using the same wallet you trade with?
+- [ ] Are you on the correct chain for that platform?
+- [ ] Have you actually traded on that platform?
+- [ ] Have your trades resolved (not pending)?
+
+### "Import on cooldown"
+
+Each platform has a 24-hour cooldown between imports.
+
+**Solution:** Wait for the cooldown to expire. Check your Dashboard for remaining time.
+
+### "Some predictions already imported"
+
+This is normal! We prevent duplicate imports. Only NEW predictions since your last import will be added.
+
+### "Import taking too long"
+
+<div className="p-4 rounded-xl bg-amber-50 dark:bg-amber-900/20 mt-2">
+  **If import hangs:**
+  1. Wait 2-3 minutes (large histories take time)
+  2. Don't refresh or navigate away
+  3. If nothing after 5 minutes, refresh and try again
+</div>
+
+## Score Issues
+
+### "Score not updating"
+
+<div className="p-4 rounded-xl bg-amber-50 dark:bg-amber-900/20 mt-2">
+  **Symptoms:**
+  - VeritasScore unchanged after import
+  - Predictions imported but score same
+</div>
+
+**Possible reasons:**
+1. **Predictions still pending** - Only resolved bets count
+2. **Win rate decreased** - New losses offset volume gains
+3. **Cache delay** - Wait a few minutes and refresh
+4. **Small sample** - With few bets, each one has less impact
+
+### "Score lower than expected"
+
+**Common reasons:**
+
+<div className="grid grid-cols-1 md:grid-cols-2 gap-4 mt-4">
+  <div className="p-4 rounded-xl bg-blue-50 dark:bg-blue-900/20">
+    <h4 className="font-semibold m-0">14-Day Cap</h4>
+    <p className="text-sm mt-2 mb-0">New accounts are capped at 50% for 14 days.</p>
+  </div>
+  <div className="p-4 rounded-xl bg-blue-50 dark:bg-blue-900/20">
+    <h4 className="font-semibold m-0">Experience Scaling</h4>
+    <p className="text-sm mt-2 mb-0">Under 50 predictions? Score is scaled down.</p>
+  </div>
+  <div className="p-4 rounded-xl bg-blue-50 dark:bg-blue-900/20">
+    <h4 className="font-semibold m-0">Wilson Score</h4>
+    <p className="text-sm mt-2 mb-0">Small samples are adjusted statistically.</p>
+  </div>
+  <div className="p-4 rounded-xl bg-blue-50 dark:bg-blue-900/20">
+    <h4 className="font-semibold m-0">Win Rate Impact</h4>
+    <p className="text-sm mt-2 mb-0">Low win rate limits score regardless of volume.</p>
+  </div>
+</div>
+
+### "Score went down"
+
+Currently, scores should only go up or stay the same. If yours went down:
+1. Refresh your browser
+2. Clear cache
+3. Contact support if it persists
+
+## Copy Trading Issues
+
+### "Can't create vault"
+
+<div className="p-4 rounded-xl bg-amber-50 dark:bg-amber-900/20 mt-2">
+  **Requirements:**
+  - Must be Gold tier or above (VeritasScore ≥ 1,000)
+  - Must not already have a vault
+  - Wallet must be connected
+</div>
+
+### "Deposit failed"
+
+**Common causes:**
+- Insufficient funds
+- Not enough gas
+- Below vault minimum deposit
+- Network issues
+
+**Solution:** Check balance, add gas, and try again.
+
+### "Can't withdraw"
+
+<div className="p-4 rounded-xl bg-amber-50 dark:bg-amber-900/20 mt-2">
+  **Possible reasons:**
+  - Funds locked in pending trades
+  - Not enough gas for transaction
+  - Network congestion
+</div>
+
+**Solution:** Wait for pending trades to settle, then try again.
+
+### "Trades not copying"
+
+If you're following a leader but no trades appear:
+1. Leader may not have traded recently
+2. Check if vault is paused
+3. Verify your deposit went through
+
+## Transaction Issues
+
+### "Transaction pending forever"
+
+<div className="p-4 rounded-xl bg-amber-50 dark:bg-amber-900/20 mt-2">
+  **Options:**
+  1. **Wait** - Network might be congested
+  2. **Speed up** - Increase gas in wallet (MetaMask allows this)
+  3. **Cancel** - Send 0 STT to yourself with same nonce
+</div>
+
+### "Transaction failed"
+
+Check:
+- Sufficient STT for gas
+- Correct network (Somnia)
+- Valid transaction data
+- Not trying to do something impossible (e.g., transfer soulbound NFT)
+
+### "Gas estimation failed"
+
+This usually means the transaction would fail anyway. Check:
+- You have funds
+- You meet requirements for the action
+- Network is functioning
+
+## Display Issues
+
+### "Page not loading"
+
+<Steps>
+
+### Hard refresh
+
+Press Ctrl+Shift+R (Windows) or Cmd+Shift+R (Mac)
+
+### Clear cache
+
+Clear your browser's cache and cookies
+
+### Try incognito
+
+Open in a private/incognito window
+
+### Different browser
+
+Try Chrome, Firefox, or Brave
+
+</Steps>
+
+### "NFT not showing in wallet"
+
+Some wallets need manual import:
+1. Go to NFTs section
+2. Click "Import NFT"
+3. Enter contract: `0xa216b13c0b27b00c23552c768088fe11004d4b37`
+4. Enter your token ID
+
+### "Dashboard data outdated"
+
+1. Try manual refresh button
+2. Wait a few minutes
+3. Clear browser cache
+4. Reconnect wallet
+
+## Still Stuck?
+
+<div className="p-6 rounded-xl bg-blue-50 dark:bg-blue-900/20 mt-6">
+  **Before contacting support, gather:**
+  - Your wallet address
+  - Screenshot of the error
+  - Steps you took
+  - Browser and wallet you're using
+
+  **Contact:**
+  - Discord: Fastest response
+  - Twitter: @Veritas
+  - Email: support@veritas.io
+</div>
+
+## Related
+
+- [FAQ](/help/faq) - Common questions answered
+- [Contact](/help/contact) - Get in touch
+- [Getting Started](/getting-started) - Setup guide

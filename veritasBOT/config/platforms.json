@@ -1,0 +1,34 @@
+{
+  "dreamdex": {
+    "name": "DreamDEX Event Contracts",
+    "chainId": 56,
+    "predictionContract": "0xB52c5934113Af5c0Bb20eb3C72290C8215f755b9",
+    "roundDuration": 300,
+    "bufferSeconds": 30,
+    "platformFee": 0.03,
+    "minBetAmount": "0.001",
+    "currency": "STT",
+    "explorerUrl": "https://somniascan.com"
+  },
+  "polymarket": {
+    "name": "Polymarket",
+    "chainId": 137,
+    "apiUrl": "https://gamma-api.polymarket.com",
+    "currency": "USDC",
+    "explorerUrl": "https://polygonscan.com"
+  },
+  "azuro": {
+    "name": "Azuro",
+    "chainId": 137,
+    "subgraphUrl": "https://thegraph.azuro.org/subgraphs/name/azuro-protocol/azuro-api-polygon-v3",
+    "currency": "USDT",
+    "explorerUrl": "https://polygonscan.com"
+  },
+  "overtime": {
+    "name": "Overtime Markets",
+    "chainId": 10,
+    "apiUrl": "https://api.thalesmarket.io",
+    "currency": "sUSD",
+    "explorerUrl": "https://optimistic.etherscan.io"
+  }
+}

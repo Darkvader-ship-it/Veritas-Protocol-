@@ -1,0 +1,339 @@
+import { Callout, Steps, Tabs, Cards, Card } from 'nextra/components'
+
+# User Guide
+
+This guide explains how to use Veritas as a prediction market trader or copy trader.
+
+## Getting Started
+
+### Prerequisites
+
+- A Web3 wallet (MetaMask, WalletConnect, etc.)
+- STT for gas fees (testnet or mainnet)
+- Prediction market activity on supported platforms
+
+### Connecting Your Wallet
+
+<Steps>
+
+### Visit Veritas
+
+Go to [Veritas](https://veritas.xyz)
+
+### Connect Wallet
+
+Click **"Connect Wallet"** in the top right
+
+### Select Provider
+
+Choose your wallet provider (MetaMask, WalletConnect, etc.)
+
+### Approve Connection
+
+Approve the connection request in your wallet
+
+### Verify Network
+
+Ensure you're on Somnia (Mainnet or Testnet)
+
+</Steps>
+
+## Registration
+
+### Minting Your Reputation NFT
+
+<Callout type="info">
+  Your Veritas identity is a **soulbound NFT** - a non-transferable token that represents your prediction market reputation.
+</Callout>
+
+<Steps>
+
+### Navigate to Dashboard
+
+Click on "Dashboard" in the navigation
+
+### Click Register
+
+Click the **"Register"** button
+
+### Confirm Transaction
+
+Approve the transaction in your wallet (0.0005 STT fee)
+
+### Wait for Confirmation
+
+Wait for the transaction to be confirmed
+
+### NFT Minted
+
+Your soulbound NFT is now minted and tied to your wallet
+
+</Steps>
+
+**What You Get:**
+- Unique soulbound NFT tied to your wallet
+- Starting VeritasScore of 0
+- Bronze tier status
+- Access to import predictions
+
+## Importing Predictions
+
+### Supported Platforms
+
+<Cards>
+  <Card title="DreamDEX" href="#">
+    5-min binary predictions on Somnia
+  </Card>
+  <Card title="Polymarket" href="#">
+    Event-based predictions on Polygon
+  </Card>
+  <Card title="Azuro" href="#">
+    Sports & events on Polygon
+  </Card>
+  <Card title="Overtime" href="#">
+    Sports predictions (multi-chain)
+  </Card>
+</Cards>
+
+### Import Process
+
+<Steps>
+
+### Open Import Modal
+
+Go to **Dashboard** and click **"Import Predictions"**
+
+### Select Platform
+
+Choose a platform from the dropdown
+
+### Review Summary
+
+Review your prediction summary:
+- Total bets
+- Win/Loss record
+- Total volume
+
+### Confirm Import
+
+Click **"Confirm Import"** and sign the transaction
+
+### Score Updates
+
+Your VeritasScore updates automatically
+
+</Steps>
+
+<Callout type="warning">
+  You can only import from each platform once per hour (cooldown period).
+</Callout>
+
+## Understanding Your VeritasScore
+
+### Score Components
+
+| Component | Weight | Description |
+|-----------|--------|-------------|
+| Win Rate | Primary | Percentage of winning predictions |
+| Volume | Multiplier | Total amount wagered (square root scaling) |
+| Consistency | Modifier | Performance over time |
+
+### Formula
+
+```
+VeritasScore = (winRate × 100) × sqrt(totalVolume / 1e16) / 100
+```
+
+### Tier System
+
+| Tier | Score Range | Badge | Benefits |
+|------|-------------|-------|----------|
+| Bronze | 0 - 299 | 🥉 | Basic profile |
+| Silver | 300 - 499 | 🥈 | Leaderboard eligibility |
+| Gold | 500 - 699 | 🥇 | Copy trading eligible |
+| Platinum | 700 - 899 | 💎 | Priority visibility |
+| Diamond | 900 - 1099 | 👑 | Premium status |
+| Legendary | 1100+ | 🏆 | Elite status (max activity) |
+
+### Score Progression Examples
+
+| Profile | Win Rate | Volume | Bets | Score | Tier |
+|---------|----------|--------|------|-------|------|
+| Beginner | 52% | 2 STT | 20 | ~120 | Bronze |
+| Regular | 55% | 10 STT | 100 | ~350 | Bronze |
+| Skilled | 60% | 30 STT | 200 | ~520 | Silver |
+| Expert | 65% | 50 STT | 400 | ~720 | Silver |
+| Elite | 70% | 100 STT | 800 | ~950 | Silver |
+
+## Copy Trading
+
+### Overview
+
+<Callout type="info">
+  Copy trading allows you to automatically mirror trades from top performers.
+</Callout>
+
+### Becoming a Follower
+
+**Requirements:**
+- Registered with NFT
+- STT in your wallet
+
+<Steps>
+
+### Go to Copy Trading
+
+Navigate to **Copy Trading** page
+
+### Browse Leaders
+
+Browse available leaders (Gold tier and above)
+
+### Click Follow
+
+Click **"Follow"** on a trader you want to copy
+
+### Configure Settings
+
+Set your preferences:
+- **Allocation %**: How much of leader's bet to copy (e.g., 50%)
+- **Max Bet**: Maximum per trade (e.g., 0.5 STT)
+
+### Deposit to Vault
+
+Deposit STT to your copy trading vault
+
+### Confirm Follow
+
+Confirm the follow transaction
+
+</Steps>
+
+### Fee Structure
+
+| Fee Type | Amount | When Charged |
+|----------|--------|--------------|
+| Protocol Fee | 10% | On profits only |
+| Leader Fee | 10% | On profits only |
+
+**Example:**
+```
+You copy a trade that wins 0.1 STT profit:
+- Protocol takes: 0.01 STT (10%)
+- Leader takes: 0.01 STT (10%)
+- You keep: 0.08 STT (80%)
+```
+
+### Simulation Mode
+
+<Callout>
+  Test copy trading without real funds using Simulation Mode.
+</Callout>
+
+1. Enable **"Simulation Mode"** toggle
+2. Follow traders normally
+3. Track virtual P&L
+4. Switch to real mode when ready
+
+## Becoming a Leader
+
+### Requirements
+
+- Gold tier or higher (VeritasScore 500+)
+- Minimum 50 predictions
+- Account age > 14 days
+
+### Benefits
+
+- 10% of follower profits
+- Increased visibility on leaderboard
+- Premium badge on profile
+
+### Enabling Copy Trading
+
+<Steps>
+
+### Reach Gold Tier
+
+Build your VeritasScore to 500+ (Gold tier)
+
+### Open Settings
+
+Go to **Profile** > **Settings**
+
+### Enable Copy Trading
+
+Toggle **"Allow Copy Trading"**
+
+### Confirm
+
+Confirm the transaction
+
+</Steps>
+
+## Tips for Success
+
+### Building Your Score
+
+1. **Start Small**: Build consistency before volume
+2. **Diversify**: Trade across multiple platforms
+3. **Be Patient**: 50+ bets needed for full score
+4. **Track Performance**: Use analytics to improve
+
+### Copy Trading Tips
+
+1. **Research Leaders**: Check their full history
+2. **Start with Simulation**: Test before real funds
+3. **Diversify**: Follow multiple traders
+4. **Set Limits**: Use max bet settings
+5. **Monitor**: Check performance regularly
+
+### Common Mistakes to Avoid
+
+<Callout type="error" emoji="❌">
+  - **Over-allocation**: Don't put too much in one leader
+  - **Chasing Losses**: Stick to your strategy
+  - **Ignoring Fees**: Factor in 20% profit fees
+  - **No Exit Strategy**: Set stop-loss mentally
+</Callout>
+
+## FAQ
+
+<Tabs items={['General', 'Copy Trading', 'Technical']}>
+  <Tabs.Tab>
+    **Q: Can I transfer my NFT?**
+    A: No, Veritas NFTs are soulbound (non-transferable) by design.
+
+    **Q: How often does my score update?**
+    A: After each import or when predictions resolve.
+
+    **Q: What happens if I lose my wallet?**
+    A: Your reputation is tied to that wallet. Use a secure wallet with backup.
+  </Tabs.Tab>
+  <Tabs.Tab>
+    **Q: Can I be both a leader and follower?**
+    A: Yes, but be aware of cascading copy risks.
+
+    **Q: What's the minimum deposit?**
+    A: 0.01 STT minimum.
+
+    **Q: How long is the withdrawal lock?**
+    A: 1 hour time-lock for security.
+  </Tabs.Tab>
+  <Tabs.Tab>
+    **Q: Are there minimum bets?**
+    A: Minimum 0.001 STT per prediction.
+
+    **Q: Which networks are supported?**
+    A: Somnia (mainnet and testnet).
+
+    **Q: How is win rate calculated?**
+    A: Using Wilson Score Lower Bound for statistical accuracy.
+  </Tabs.Tab>
+</Tabs>
+
+## Next Steps
+
+- [VeritasScore Algorithm](/contracts/score-calculator) - Deep dive into scoring
+- [Copy Trading Vault](/contracts/copy-trading-vault) - Technical details
+- [Developer Guide](/guides/developer-guide) - Build on Veritas

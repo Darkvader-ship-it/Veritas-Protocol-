@@ -1,0 +1,142 @@
+import { Callout, Steps, Cards, Card } from 'nextra/components'
+
+# Getting Started
+
+Welcome! This guide will help you set up Veritas and start building your prediction market reputation in just a few minutes.
+
+<Callout type="info">
+  **Time needed:** About 5 minutes to complete your first setup.
+</Callout>
+
+## What You'll Need
+
+Before you start, make sure you have:
+
+export const RequirementsList = () => (
+  <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mt-4">
+    <div className="p-4 rounded-xl bg-green-50 dark:bg-green-900/20 border border-green-200 dark:border-green-800">
+      <h4 className="font-semibold m-0">A Web3 Wallet</h4>
+      <p className="text-sm text-gray-600 dark:text-gray-400 m-0 mt-2">
+        MetaMask, Trust Wallet, or any WalletConnect-compatible wallet
+      </p>
+    </div>
+    <div className="p-4 rounded-xl bg-green-50 dark:bg-green-900/20 border border-green-200 dark:border-green-800">
+      <h4 className="font-semibold m-0">A Little STT</h4>
+      <p className="text-sm text-gray-600 dark:text-gray-400 m-0 mt-2">
+        About 0.001 STT for registration and gas fees
+      </p>
+    </div>
+    <div className="p-4 rounded-xl bg-green-50 dark:bg-green-900/20 border border-green-200 dark:border-green-800">
+      <h4 className="font-semibold m-0">Prediction History</h4>
+      <p className="text-sm text-gray-600 dark:text-gray-400 m-0 mt-2">
+        Past trades on DreamDEX, Polymarket, or other platforms
+      </p>
+    </div>
+  </div>
+)
+
+<RequirementsList />
+
+## Quick Start Steps
+
+<Steps>
+
+### Set Up Your Wallet
+
+If you don't have a wallet yet, we recommend [MetaMask](https://metamask.io). It's free and takes 2 minutes to set up.
+
+[Detailed wallet setup guide](/getting-started/wallet-setup)
+
+### Connect to Veritas
+
+1. Go to [Veritas](https://veritas.xyz)
+2. Click **"Connect Wallet"** in the top right
+3. Select your wallet and approve the connection
+4. Make sure you're on **Somnia** network
+
+### Register Your Account
+
+1. Click **"Register"** on the dashboard
+2. Confirm the transaction (costs 0.0005 STT)
+3. Wait for your **Reputation NFT** to be minted
+4. You're now a Veritas member!
+
+[Detailed registration guide](/getting-started/registration)
+
+### Import Your Predictions
+
+1. Click **"Import Predictions"**
+2. Select a platform (e.g., DreamDEX)
+3. Review your prediction history
+4. Confirm the import
+5. Watch your VeritasScore update!
+
+[Detailed import guide](/getting-started/first-import)
+
+</Steps>
+
+## What Happens Next?
+
+After completing these steps:
+
+| You'll Have | What It Means |
+|-------------|---------------|
+| **Reputation NFT** | A unique, soulbound token proving your identity |
+| **VeritasScore** | A number representing your prediction accuracy |
+| **Tier Status** | Bronze, Silver, Gold, Platinum, or Diamond |
+| **Leaderboard Position** | Your global ranking among all traders |
+
+## Choose Your Path
+
+<Cards>
+  <Card
+    title="I'm New to Prediction Markets"
+    href="/getting-started/wallet-setup"
+  >
+    Start with wallet setup and learn the basics
+  </Card>
+  <Card
+    title="I Have Trading History"
+    href="/getting-started/first-import"
+  >
+    Jump straight to importing your predictions
+  </Card>
+  <Card
+    title="I Want to Copy Trade"
+    href="/copy-trading"
+  >
+    Learn how to follow successful traders
+  </Card>
+  <Card
+    title="I Want to Be Followed"
+    href="/copy-trading/becoming-leader"
+  >
+    Enable copy trading and earn fees
+  </Card>
+</Cards>
+
+## Need Help?
+
+<Callout type="warning">
+  **Stuck somewhere?** Check our [FAQ](/help/faq) or [Troubleshooting](/help/troubleshooting) guides.
+</Callout>
+
+## Video Walkthrough
+
+Watch the demo to see Veritas in action:
+
+export const VideoEmbed = () => (
+  <div className="mt-4 aspect-video rounded-xl overflow-hidden">
+    <iframe
+      width="100%"
+      height="100%"
+      src="https://www.youtube.com/embed/pY2zK1swwUw"
+      title="Veritas Demo"
+      frameBorder="0"
+      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+      allowFullScreen
+    />
+  </div>
+)
+
+<VideoEmbed />

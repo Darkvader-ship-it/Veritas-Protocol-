@@ -1,0 +1,236 @@
+import { Callout, Steps, Tabs } from 'nextra/components'
+
+# Your First Import
+
+Importing predictions is how you build your VeritasScore. This guide walks you through importing from your first platform.
+
+<Callout type="info" emoji="🎯">
+  **Goal:** Import your prediction history to start building your reputation.
+</Callout>
+
+## How Importing Works
+
+1. You select a platform (like DreamDEX)
+2. Veritas fetches your prediction history
+3. You review and confirm the data
+4. Your VeritasScore is calculated and updated
+5. Your NFT metadata updates automatically
+
+## Supported Platforms
+
+| Platform | Type | Best For |
+|----------|------|----------|
+| 🥞 DreamDEX | 5-min price predictions | Active traders |
+| 🔮 Polymarket | Event predictions | News/politics followers |
+| ⚽ Azuro | Sports betting | Sports fans |
+| 🏀 Overtime | Sports markets | US sports bettors |
+| ♾️ Limitless | Various predictions | General predictors |
+| ⚡ Speed Markets | Quick binary bets | Fast traders |
+
+## Step-by-Step: Import from DreamDEX
+
+<Tabs items={['DreamDEX', 'Polymarket', 'Other Platforms']}>
+  <Tabs.Tab>
+    <Steps>
+
+    ### Open the Import Modal
+
+    On your Dashboard, click the **"Import Predictions"** button.
+
+    ### Select DreamDEX
+
+    From the platform dropdown, choose **"DreamDEX Event Contracts"**.
+
+    ### Review Your History
+
+    Veritas will fetch your prediction history. You'll see:
+
+    - **Total Predictions:** How many bets you've placed
+    - **Wins:** Number of correct predictions
+    - **Win Rate:** Your success percentage
+    - **Volume:** Total amount wagered (in STT)
+
+    <Callout type="warning">
+      **Don't see your predictions?** Make sure you're connected with the same wallet you used on DreamDEX.
+    </Callout>
+
+    ### Confirm the Import
+
+    If everything looks correct, click **"Confirm Import"**.
+
+    ### Sign the Transaction
+
+    Your wallet will ask you to sign a transaction:
+    - This records your stats on-chain
+    - Gas fee is minimal (~0.0001 STT)
+    - Click "Confirm" to proceed
+
+    ### Watch Your Score Update!
+
+    After confirmation:
+    - Your VeritasScore updates immediately
+    - Your tier may change
+    - Your NFT visual updates
+    - You appear on the leaderboard
+
+    </Steps>
+  </Tabs.Tab>
+  <Tabs.Tab>
+    <Steps>
+
+    ### Open the Import Modal
+
+    Click **"Import Predictions"** on your Dashboard.
+
+    ### Select Polymarket
+
+    Choose **"Polymarket"** from the platform dropdown.
+
+    ### Connect Polygon Wallet
+
+    Polymarket uses Polygon network. Make sure you:
+    - Have activity on Polygon
+    - Are connected with the right wallet
+
+    ### Review Your Trades
+
+    You'll see your resolved Polymarket positions:
+    - Markets you participated in
+    - Your positions (Yes/No)
+    - Outcomes and profits
+
+    ### Confirm and Import
+
+    Click **"Confirm Import"** and sign the transaction.
+
+    </Steps>
+  </Tabs.Tab>
+  <Tabs.Tab>
+    The process is similar for all platforms:
+
+    1. **Select the platform** from the dropdown
+    2. **Wait for data fetch** (this may take a few seconds)
+    3. **Review your statistics**
+    4. **Confirm the import**
+    5. **Sign the transaction**
+
+    See platform-specific guides:
+    - [Azuro Guide](/platforms/azuro)
+    - [Overtime Guide](/platforms/overtime)
+    - [Limitless Guide](/platforms/limitless)
+    - [Speed Markets Guide](/platforms/speedmarkets)
+  </Tabs.Tab>
+</Tabs>
+
+## What Gets Imported
+
+When you import, Veritas records:
+
+| Data | Description |
+|------|-------------|
+| **Win Count** | Number of successful predictions |
+| **Total Bets** | Total number of predictions made |
+| **Volume** | Total amount wagered (in platform currency) |
+| **Batch Hash** | Unique identifier to prevent duplicate imports |
+
+<Callout type="info" emoji="🔒">
+  **Privacy:** We only import aggregate statistics, not individual trade details.
+</Callout>
+
+## Import Rules
+
+### Cooldown Period
+
+You can only import from each platform **once per hour**. This prevents spam and ensures fair scoring.
+
+### No Duplicate Imports
+
+Each set of predictions can only be imported once. The system uses a "batch hash" to track this.
+
+### Accuracy Verification
+
+Veritas verifies data directly from the blockchain, so:
+- ✅ You can't fake your history
+- ✅ Everyone's reputation is trustworthy
+- ✅ The leaderboard is fair
+
+## After Your First Import
+
+Congratulations! You've just started building your reputation. Here's what happened:
+
+<div className="grid grid-cols-2 md:grid-cols-4 gap-4 mt-4">
+  <div className="text-center p-4 rounded-xl bg-blue-50 dark:bg-blue-900/20">
+    <div className="text-3xl font-bold text-blue-600">📈</div>
+    <p className="text-sm mt-1 mb-0">VeritasScore Updated</p>
+  </div>
+  <div className="text-center p-4 rounded-xl bg-green-50 dark:bg-green-900/20">
+    <div className="text-3xl font-bold text-green-600">🏅</div>
+    <p className="text-sm mt-1 mb-0">Tier Calculated</p>
+  </div>
+  <div className="text-center p-4 rounded-xl bg-purple-50 dark:bg-purple-900/20">
+    <div className="text-3xl font-bold text-purple-600">🏆</div>
+    <p className="text-sm mt-1 mb-0">Leaderboard Rank</p>
+  </div>
+  <div className="text-center p-4 rounded-xl bg-amber-50 dark:bg-amber-900/20">
+    <div className="text-3xl font-bold text-amber-600">🎨</div>
+    <p className="text-sm mt-1 mb-0">NFT Updated</p>
+  </div>
+</div>
+
+## Next Steps
+
+<div className="grid grid-cols-1 md:grid-cols-2 gap-4 mt-6">
+  <a href="/reputation/veritasscore" className="block p-4 rounded-xl border border-gray-200 dark:border-gray-700 hover:border-blue-500 transition-colors no-underline">
+    <h4 className="font-semibold m-0">📊 Understand Your Score</h4>
+    <p className="text-sm text-gray-600 dark:text-gray-400 mt-1 mb-0">
+      Learn how VeritasScore is calculated
+    </p>
+  </a>
+  <a href="/platforms" className="block p-4 rounded-xl border border-gray-200 dark:border-gray-700 hover:border-blue-500 transition-colors no-underline">
+    <h4 className="font-semibold m-0">🌐 Add More Platforms</h4>
+    <p className="text-sm text-gray-600 dark:text-gray-400 mt-1 mb-0">
+      Import from other prediction markets
+    </p>
+  </a>
+  <a href="/reputation/improving-score" className="block p-4 rounded-xl border border-gray-200 dark:border-gray-700 hover:border-blue-500 transition-colors no-underline">
+    <h4 className="font-semibold m-0">⬆️ Grow Your Reputation</h4>
+    <p className="text-sm text-gray-600 dark:text-gray-400 mt-1 mb-0">
+      Tips for climbing the leaderboard
+    </p>
+  </a>
+  <a href="/copy-trading" className="block p-4 rounded-xl border border-gray-200 dark:border-gray-700 hover:border-blue-500 transition-colors no-underline">
+    <h4 className="font-semibold m-0">👥 Explore Copy Trading</h4>
+    <p className="text-sm text-gray-600 dark:text-gray-400 mt-1 mb-0">
+      Follow top traders or become one
+    </p>
+  </a>
+</div>
+
+## Troubleshooting
+
+### "No predictions found"
+
+**Possible causes:**
+- You're using a different wallet than you trade with
+- You haven't made any predictions on this platform yet
+- The platform data is still syncing
+
+**Solution:** Double-check you're connected with the correct wallet address.
+
+### "Cooldown active"
+
+You've imported from this platform recently. Wait until the cooldown ends (shown on the button) before importing again.
+
+### "Import failed"
+
+This usually means a network issue. Try:
+1. Wait a few seconds and try again
+2. Check your internet connection
+3. Refresh the page
+
+<a
+  href="/getting-started/dashboard-tour"
+  className="inline-flex items-center justify-center px-6 py-3 mt-6 bg-blue-600 text-white rounded-lg font-semibold hover:bg-blue-700 transition-colors no-underline"
+>
+  Take a Dashboard Tour →
+</a>

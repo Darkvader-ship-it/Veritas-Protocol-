@@ -1,0 +1,281 @@
+import { Callout, Steps } from 'nextra/components'
+
+# SpeedMarkets
+
+SpeedMarkets offers ultra-fast crypto price predictions. If you like the quick pace of DreamDEX but want more asset options, SpeedMarkets is for you.
+
+## Overview
+
+<div className="grid grid-cols-2 md:grid-cols-4 gap-4 mt-6">
+  <div className="p-4 rounded-xl bg-orange-50 dark:bg-orange-900/20 text-center">
+    <div className="text-2xl mb-2">⚡</div>
+    <div className="text-xs text-gray-500">Platform</div>
+    <div className="font-bold">SpeedMarkets</div>
+  </div>
+  <div className="p-4 rounded-xl bg-orange-50 dark:bg-orange-900/20 text-center">
+    <div className="text-2xl mb-2">⛓️</div>
+    <div className="text-xs text-gray-500">Chains</div>
+    <div className="font-bold">Multi-Chain</div>
+  </div>
+  <div className="p-4 rounded-xl bg-orange-50 dark:bg-orange-900/20 text-center">
+    <div className="text-2xl mb-2">⏱️</div>
+    <div className="text-xs text-gray-500">Duration</div>
+    <div className="font-bold">Minutes</div>
+  </div>
+  <div className="p-4 rounded-xl bg-orange-50 dark:bg-orange-900/20 text-center">
+    <div className="text-2xl mb-2">💰</div>
+    <div className="text-xs text-gray-500">Currency</div>
+    <div className="font-bold">Chain Native</div>
+  </div>
+</div>
+
+## How SpeedMarkets Works
+
+SpeedMarkets is similar to DreamDEX Event Contracts but with more flexibility:
+
+<Steps>
+
+### Pick an asset
+
+Choose from available cryptocurrencies:
+- BTC
+- ETH
+- And other supported assets
+
+### Choose direction
+
+Predict whether the price will go:
+- **UP** ↗️ - Price will be higher
+- **DOWN** ↘️ - Price will be lower
+
+### Select timeframe
+
+Pick your prediction window:
+- 1 minute
+- 5 minutes
+- 15 minutes
+- Custom intervals
+
+### Place bet
+
+Choose your stake and confirm. Your position is locked in.
+
+### Wait for result
+
+When time expires, if the price moved in your direction, you win!
+
+</Steps>
+
+## What Sets SpeedMarkets Apart
+
+<div className="grid grid-cols-1 md:grid-cols-3 gap-4 mt-6">
+  <div className="p-4 rounded-xl bg-blue-50 dark:bg-blue-900/20">
+    <h4 className="font-semibold m-0">🪙 Multiple Assets</h4>
+    <p className="text-sm text-gray-600 dark:text-gray-400 mt-2 mb-0">
+      Not just STT - predict on BTC, ETH, and other major cryptos.
+    </p>
+  </div>
+  <div className="p-4 rounded-xl bg-green-50 dark:bg-green-900/20">
+    <h4 className="font-semibold m-0">⏱️ Custom Timeframes</h4>
+    <p className="text-sm text-gray-600 dark:text-gray-400 mt-2 mb-0">
+      Choose your preferred prediction window, not just fixed 5-minute rounds.
+    </p>
+  </div>
+  <div className="p-4 rounded-xl bg-purple-50 dark:bg-purple-900/20">
+    <h4 className="font-semibold m-0">🌐 Multi-Chain</h4>
+    <p className="text-sm text-gray-600 dark:text-gray-400 mt-2 mb-0">
+      Available on multiple blockchains for flexibility.
+    </p>
+  </div>
+</div>
+
+## Supported Chains
+
+<div className="grid grid-cols-2 md:grid-cols-3 gap-3 mt-4">
+  <div className="p-3 rounded-lg bg-gray-50 dark:bg-gray-800 text-center">
+    <span className="text-xl">🔴</span>
+    <div className="text-sm font-medium mt-1">Optimism</div>
+  </div>
+  <div className="p-3 rounded-lg bg-gray-50 dark:bg-gray-800 text-center">
+    <span className="text-xl">🟣</span>
+    <div className="text-sm font-medium mt-1">Polygon</div>
+  </div>
+  <div className="p-3 rounded-lg bg-gray-50 dark:bg-gray-800 text-center">
+    <span className="text-xl">🔵</span>
+    <div className="text-sm font-medium mt-1">Arbitrum</div>
+  </div>
+</div>
+
+<Callout type="info">
+  Chain availability may vary. Check SpeedMarkets for current supported networks.
+</Callout>
+
+## Importing to Veritas
+
+### What Gets Imported
+
+| Data | Description |
+|------|-------------|
+| **Asset** | Which crypto you predicted (BTC, ETH, etc.) |
+| **Direction** | UP or DOWN |
+| **Timeframe** | How long until resolution |
+| **Amount** | Stake amount |
+| **Strike Price** | Price when you entered |
+| **Close Price** | Price at resolution |
+| **Result** | Win or Loss |
+
+### Import Process
+
+<Steps>
+
+### Go to Platforms
+
+Dashboard → Platforms → SpeedMarkets
+
+### Select chain
+
+Choose which chain to import from (if you've used multiple)
+
+### Connect wallet
+
+Make sure you're on the correct network
+
+### Click Import
+
+We scan your SpeedMarkets activity
+
+### Review
+
+See imported predictions and VeritasScore impact
+
+</Steps>
+
+<Callout type="warning">
+  If you've used SpeedMarkets on multiple chains, you'll need to import from each separately.
+</Callout>
+
+## Trading Tips
+
+### Timing is Everything
+
+<div className="p-4 rounded-xl bg-green-50 dark:bg-green-900/20 mt-4">
+  <ul className="space-y-2 mb-0">
+    <li>**Trend with momentum** - In a clear trend, go with the flow</li>
+    <li>**Avoid chop** - Sideways markets are unpredictable</li>
+    <li>**Watch for news** - Economic data can cause quick moves</li>
+    <li>**Know the session** - Asian, European, US hours behave differently</li>
+  </ul>
+</div>
+
+### Risk Management
+
+<div className="p-4 rounded-xl bg-amber-50 dark:bg-amber-900/20 mt-4">
+  <ul className="space-y-2 mb-0">
+    <li>**Set a daily limit** - Stop after X losses</li>
+    <li>**Consistent sizing** - Don't double down after losses</li>
+    <li>**Track your results** - Know what's working</li>
+    <li>**Take breaks** - Fast trading causes fatigue</li>
+  </ul>
+</div>
+
+### What to Avoid
+
+<div className="p-4 rounded-xl bg-red-50 dark:bg-red-900/20 mt-4">
+  <ul className="space-y-2 mb-0">
+    <li>**High volatility events** - FOMC, CPI releases are unpredictable</li>
+    <li>**Revenge trading** - After a loss, take a break</li>
+    <li>**Overtrading** - Not every minute is a good entry</li>
+    <li>**Ignoring the trend** - Fighting momentum rarely works</li>
+  </ul>
+</div>
+
+## Asset-Specific Tips
+
+<div className="grid grid-cols-1 md:grid-cols-2 gap-4 mt-4">
+  <div className="p-4 rounded-xl border border-gray-200 dark:border-gray-700">
+    <h4 className="font-semibold m-0">₿ Bitcoin</h4>
+    <ul className="text-sm mt-2 mb-0 space-y-1">
+      <li>Most liquid, smoothest moves</li>
+      <li>Institutional hours (US) most active</li>
+      <li>Macro events matter (inflation, Fed)</li>
+    </ul>
+  </div>
+  <div className="p-4 rounded-xl border border-gray-200 dark:border-gray-700">
+    <h4 className="font-semibold m-0">Ξ Ethereum</h4>
+    <ul className="text-sm mt-2 mb-0 space-y-1">
+      <li>More volatile than BTC</li>
+      <li>DeFi activity affects price</li>
+      <li>Gas spikes = network activity</li>
+    </ul>
+  </div>
+</div>
+
+## Understanding Win Rate
+
+For SpeedMarkets:
+
+```
+Win Rate = (Correct Predictions / Total Predictions) × 100
+```
+
+<Callout>
+  A 55%+ win rate is profitable long-term (depending on payouts). The best short-term traders hit 60-70%.
+</Callout>
+
+### Why Fast Predictions Are Hard
+
+Short timeframes are essentially 50/50 unless you have an edge:
+- Random noise dominates micro-movements
+- Spreads and fees eat into edge
+- Emotional decision-making is common
+
+**The key:** Only trade when you see clear setups, not constantly.
+
+## Troubleshooting
+
+### "No predictions found"
+
+<div className="p-4 rounded-xl bg-amber-50 dark:bg-amber-900/20 mt-2">
+  **Possible causes:**
+  - Wrong chain selected
+  - No SpeedMarkets activity on this address
+  - All positions still pending
+
+  **Solution:** Try different chains or verify wallet address
+</div>
+
+### "Some predictions missing"
+
+<div className="p-4 rounded-xl bg-amber-50 dark:bg-amber-900/20 mt-2">
+  **Cause:** We import from one chain at a time
+
+  **Solution:** Import from each chain you've used separately
+</div>
+
+### "Timeframe shows different"
+
+<div className="p-4 rounded-xl bg-amber-50 dark:bg-amber-900/20 mt-2">
+  **Cause:** Display rounding or timestamp differences
+
+  **Solution:** Minor display differences are normal and don't affect scoring
+</div>
+
+## FAQ
+
+**How is this different from DreamDEX?**
+SpeedMarkets offers multiple assets and customizable timeframes. DreamDEX is only STT with fixed 5-minute rounds.
+
+**What's the minimum bet?**
+Minimums vary by chain and current settings. Check the platform for current limits.
+
+**Are there bonuses or incentives?**
+SpeedMarkets may offer various promotions. Check their official channels for current offers.
+
+**How fast do results settle?**
+Results are typically instant after the timeframe expires, as prices come from oracles.
+
+## Related
+
+- [DreamDEX](/platforms/dreamdex) - Similar platform on Somnia
+- [Improving Score](/reputation/improving-score) - VeritasScore tips
+- [Strategies](/strategies) - Trading approaches

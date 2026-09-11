@@ -1,0 +1,115 @@
+import { Callout, Steps } from 'nextra/components'
+
+# Drift BET
+
+Drift is a leading Solana-based DeFi protocol that offers prediction markets alongside perpetual trading. Drift BET is their prediction markets product.
+
+## Overview
+
+<div className="grid grid-cols-2 md:grid-cols-4 gap-4 mt-6">
+  <div className="p-4 rounded-xl bg-violet-50 dark:bg-violet-900/20 text-center">
+    <div className="text-2xl mb-2">🌊</div>
+    <div className="text-xs text-gray-500">Platform</div>
+    <div className="font-bold">Drift</div>
+  </div>
+  <div className="p-4 rounded-xl bg-violet-50 dark:bg-violet-900/20 text-center">
+    <div className="text-2xl mb-2">⛓️</div>
+    <div className="text-xs text-gray-500">Chain</div>
+    <div className="font-bold">Solana</div>
+  </div>
+  <div className="p-4 rounded-xl bg-violet-50 dark:bg-violet-900/20 text-center">
+    <div className="text-2xl mb-2">⏱️</div>
+    <div className="text-xs text-gray-500">Duration</div>
+    <div className="font-bold">Varies</div>
+  </div>
+  <div className="p-4 rounded-xl bg-violet-50 dark:bg-violet-900/20 text-center">
+    <div className="text-2xl mb-2">💰</div>
+    <div className="text-xs text-gray-500">Currency</div>
+    <div className="font-bold">USDC</div>
+  </div>
+</div>
+
+## Market Types
+
+Drift BET covers various prediction markets:
+
+<div className="grid grid-cols-2 gap-3 mt-4">
+  <div className="p-3 rounded-lg bg-gray-50 dark:bg-gray-800 text-center">
+    <span className="text-2xl">💹</span>
+    <div className="text-sm font-medium mt-1">Crypto Events</div>
+  </div>
+  <div className="p-3 rounded-lg bg-gray-50 dark:bg-gray-800 text-center">
+    <span className="text-2xl">🗳️</span>
+    <div className="text-sm font-medium mt-1">Politics</div>
+  </div>
+  <div className="p-3 rounded-lg bg-gray-50 dark:bg-gray-800 text-center">
+    <span className="text-2xl">🌍</span>
+    <div className="text-sm font-medium mt-1">World Events</div>
+  </div>
+  <div className="p-3 rounded-lg bg-gray-50 dark:bg-gray-800 text-center">
+    <span className="text-2xl">📊</span>
+    <div className="text-sm font-medium mt-1">Economics</div>
+  </div>
+</div>
+
+## How Drift BET Works
+
+<Steps>
+
+### Connect Solana wallet
+
+Use Phantom, Solflare, or other Solana wallets.
+
+### Fund with USDC
+
+Deposit USDC to your Drift account.
+
+### Select a market
+
+Browse available prediction markets on Drift.
+
+### Take a position
+
+Buy YES or NO shares based on your prediction.
+
+### Resolution
+
+Markets resolve based on oracle data or governance.
+
+</Steps>
+
+## Why Drift?
+
+<div className="p-4 rounded-xl bg-violet-50 dark:bg-violet-900/20 mt-4">
+  <ul className="space-y-2 mb-0">
+    <li>**Solana Speed** - Near-instant transactions</li>
+    <li>**Low Fees** - Minimal transaction costs</li>
+    <li>**DeFi Native** - Integrated with Drift's trading ecosystem</li>
+    <li>**Established Protocol** - Trusted by the Solana community</li>
+  </ul>
+</div>
+
+## Importing to Veritas
+
+<Callout type="info">
+  Drift trades are on Solana. Veritas reads your prediction history using your Solana wallet address.
+</Callout>
+
+### What Gets Imported
+
+| Data | Description |
+|------|-------------|
+| **Market** | Event being predicted |
+| **Position** | YES or NO |
+| **Amount** | USDC staked |
+| **Result** | Win or Loss |
+| **Payout** | Amount received |
+
+<Callout type="warning">
+  Make sure you're using the same Solana address you trade with on Drift.
+</Callout>
+
+## Related
+
+- [Kalshi](/platforms/kalshi) - Regulated event predictions
+- [Polymarket](/platforms/polymarket) - EVM prediction markets

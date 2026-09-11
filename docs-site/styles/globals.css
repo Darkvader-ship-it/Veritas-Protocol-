@@ -1,0 +1,157 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --nextra-primary-hue: 217deg;
+  --nextra-primary-saturation: 91%;
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background: hsl(var(--nextra-primary-hue) var(--nextra-primary-saturation) 60% / 0.3);
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: hsl(var(--nextra-primary-hue) var(--nextra-primary-saturation) 60% / 0.5);
+}
+
+/* Code blocks */
+.nextra-code-block {
+  @apply rounded-lg overflow-hidden;
+}
+
+/* Callouts */
+.nextra-callout {
+  @apply rounded-lg;
+}
+
+/* Cards */
+.nextra-card {
+  @apply transition-all duration-200;
+}
+
+.nextra-card:hover {
+  @apply shadow-lg;
+  transform: translateY(-2px);
+}
+
+/* Tables */
+table {
+  @apply w-full;
+}
+
+th {
+  @apply text-left font-semibold;
+}
+
+/* Custom tier badge colors */
+.tier-bronze {
+  color: #CC8033;
+}
+
+.tier-silver {
+  color: #9CA3AF;
+}
+
+.tier-gold {
+  color: #EAB308;
+}
+
+.tier-platinum {
+  color: #7DD3E8;
+}
+
+.tier-diamond {
+  color: #22D3EE;
+}
+
+/* Architecture diagrams */
+pre:has(code) {
+  @apply overflow-x-auto;
+}
+
+/* Animation for cards */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.nextra-cards > div {
+  animation: fadeIn 0.3s ease-out;
+}
+
+.nextra-cards > div:nth-child(1) { animation-delay: 0ms; }
+.nextra-cards > div:nth-child(2) { animation-delay: 50ms; }
+.nextra-cards > div:nth-child(3) { animation-delay: 100ms; }
+.nextra-cards > div:nth-child(4) { animation-delay: 150ms; }
+
+/* Sidebar styling */
+.nextra-sidebar-container {
+  @apply border-r border-gray-200 dark:border-gray-800;
+}
+
+/* Footer styling */
+.nextra-footer {
+  @apply border-t border-gray-200 dark:border-gray-800;
+}
+
+/* Banner styling */
+.nextra-banner {
+  @apply bg-gradient-to-r from-blue-600 to-blue-500;
+}
+
+/* Custom syntax highlighting colors */
+.dark .shiki {
+  background-color: #0d1117 !important;
+}
+
+/* Heading anchors */
+h1 .anchor,
+h2 .anchor,
+h3 .anchor,
+h4 .anchor {
+  @apply opacity-0 transition-opacity;
+}
+
+h1:hover .anchor,
+h2:hover .anchor,
+h3:hover .anchor,
+h4:hover .anchor {
+  @apply opacity-100;
+}
+
+/* Steps component */
+.nextra-steps {
+  @apply ml-4 border-l-2 border-gray-200 dark:border-gray-800;
+}
+
+.nextra-steps > div {
+  @apply pl-6 relative;
+}
+
+.nextra-steps > div::before {
+  @apply absolute left-0 w-4 h-4 bg-blue-500 rounded-full -translate-x-1/2;
+  content: '';
+}
+
+/* File tree component */
+.nextra-filetree {
+  @apply bg-gray-50 dark:bg-gray-900 rounded-lg p-4;
+}

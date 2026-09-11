@@ -1,0 +1,19 @@
+{
+  "name": "real-markets-simulator",
+  "version": "1.0.0",
+  "description": "Fetches REAL markets from all 7 prediction platforms with simulated betting",
+  "main": "index.ts",
+  "scripts": {
+    "start": "npx tsx index.ts",
+    "dev": "npx tsx watch index.ts",
+    "fetch": "npx tsx fetch-all.ts",
+    "simulate": "npx tsx run-simulation.ts"
+  },
+  "dependencies": {
+    "@supabase/supabase-js": "^2.39.0"
+  },
+  "devDependencies": {
+    "tsx": "^4.7.0",
+    "typescript": "^5.3.0"
+  }
+}

@@ -1,0 +1,27 @@
+{
+  "name": "veritas-mvp",
+  "version": "1.0.0",
+  "description": "Veritas - On-Chain Reputation for Prediction Markets",
+  "scripts": {
+    "index-users": "tsx script/indexer/IndexRealUsers.ts",
+    "index-multiplatform": "tsx script/indexer/MultiPlatformIndexer.ts",
+    "test": "forge test",
+    "deploy:testnet": "forge script script/Deploy.s.sol:Deploy --rpc-url somniaTestnet --broadcast",
+    "deploy:mainnet": "forge script script/Deploy.s.sol:Deploy --rpc-url somnia --broadcast",
+    "use:demo": "node scripts/switch-to-demo.js",
+    "use:mainnet": "node scripts/switch-to-mainnet.js",
+    "check:mode": "node scripts/check-mode.js",
+    "dev": "cd frontend && npm run dev"
+  },
+  "devDependencies": {
+    "@types/node": "^20.10.6",
+    "docx": "^9.5.1",
+    "tsx": "^4.20.6",
+    "typescript": "^5.3.3"
+  },
+  "dependencies": {
+    "@supabase/ssr": "^0.12.6",
+    "@supabase/supabase-js": "^2.115.0",
+    "viem": "^2.x"
+  }
+}

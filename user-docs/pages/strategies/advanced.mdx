@@ -1,0 +1,329 @@
+import { Callout } from 'nextra/components'
+
+# Advanced Strategies
+
+For experienced predictors looking to optimize performance, scale operations, and maximize VeritasScore efficiency.
+
+## Advanced Score Optimization
+
+### The Math Behind Scaling
+
+<div className="p-6 rounded-xl bg-blue-50 dark:bg-blue-900/20 mt-6">
+  **VeritasScore = Win Rate × √(Volume)**
+
+  Understanding the implications:
+
+  | Win Rate | √Volume Factor | Score |
+  |----------|----------------|-------|
+  | 70% × | √100 = 10 | 700 |
+  | 65% × | √200 = 14.1 | 920 |
+  | 60% × | √400 = 20 | 1,200 |
+  | 55% × | √800 = 28.3 | 1,556 |
+
+  **Key insight:** You can trade off some win rate for volume IF the math works out.
+</div>
+
+### Break-Even Analysis
+
+Calculate when increasing volume is worth a win rate drop:
+
+<div className="p-4 rounded-xl bg-gray-50 dark:bg-gray-800 mt-4">
+  **Formula:**
+  ```
+  New Score > Old Score when:
+  (New WR × √New Volume) > (Old WR × √Old Volume)
+  ```
+
+  **Example:**
+  - Current: 65% WR, 100 volume = 650 score
+  - Option: 60% WR, 200 volume = 848 score
+  - Worth it? YES (+30% score despite -5% WR)
+</div>
+
+### Volume Efficiency
+
+Not all volume is equal:
+
+<div className="grid grid-cols-1 md:grid-cols-2 gap-4 mt-4">
+  <div className="p-4 rounded-xl bg-green-50 dark:bg-green-900/20">
+    <h4 className="font-semibold m-0">Efficient Volume</h4>
+    <ul className="mt-2 mb-0 text-sm space-y-1">
+      <li>High-conviction bets only</li>
+      <li>Consistent sizing</li>
+      <li>Spread across platforms</li>
+      <li>Maintains win rate</li>
+    </ul>
+  </div>
+  <div className="p-4 rounded-xl bg-red-50 dark:bg-red-900/20">
+    <h4 className="font-semibold m-0">Wasted Volume</h4>
+    <ul className="mt-2 mb-0 text-sm space-y-1">
+      <li>Low-conviction gambles</li>
+      <li>Tilted oversizing</li>
+      <li>Single platform only</li>
+      <li>Destroys win rate</li>
+    </ul>
+  </div>
+</div>
+
+## Multi-Platform Mastery
+
+### Platform Synergies
+
+<div className="p-4 rounded-xl bg-purple-50 dark:bg-purple-900/20 mt-4">
+  **Optimal combinations:**
+
+  | Combo | Why It Works |
+  |-------|--------------|
+  | DreamDEX + Polymarket | Technical + Fundamental |
+  | Sports + Events | Different analysis skills |
+  | Fast + Slow | Short-term + Long-term edge |
+  | High-volume + High-accuracy | Volume from one, WR from other |
+</div>
+
+### Platform-Specific Edge
+
+<div className="space-y-4 mt-4">
+  <div className="p-4 rounded-xl border border-gray-200 dark:border-gray-700">
+    <h4 className="font-semibold m-0">🥞 DreamDEX Edge</h4>
+    <p className="text-sm text-gray-600 dark:text-gray-400 mt-2">
+      Pattern recognition, momentum trading, avoiding high-volatility periods.
+      Edge: Fast reaction to STT price movements.
+    </p>
+  </div>
+  <div className="p-4 rounded-xl border border-gray-200 dark:border-gray-700">
+    <h4 className="font-semibold m-0">🔮 Polymarket Edge</h4>
+    <p className="text-sm text-gray-600 dark:text-gray-400 mt-2">
+      Deep research, domain expertise, contrarian insights.
+      Edge: Better information or analysis than the market.
+    </p>
+  </div>
+  <div className="p-4 rounded-xl border border-gray-200 dark:border-gray-700">
+    <h4 className="font-semibold m-0">⚽ Sports Edge</h4>
+    <p className="text-sm text-gray-600 dark:text-gray-400 mt-2">
+      Statistical models, injury awareness, line value.
+      Edge: Finding lines that don't reflect true probability.
+    </p>
+  </div>
+</div>
+
+## Risk Management at Scale
+
+### Position Sizing Models
+
+<div className="p-4 rounded-xl bg-gray-50 dark:bg-gray-800 mt-4">
+  **Kelly Criterion (simplified):**
+  ```
+  Optimal Bet % = (Edge / Odds) × Confidence Factor
+  ```
+
+  **Conservative approach:** Bet 1/4 to 1/2 of Kelly suggestion to reduce variance.
+
+  **Example:**
+  - You think you have 55% edge on a 50/50 market
+  - Full Kelly: 10% of bankroll
+  - Half Kelly: 5% of bankroll (recommended)
+</div>
+
+### Drawdown Limits
+
+<div className="p-4 rounded-xl bg-amber-50 dark:bg-amber-900/20 mt-4">
+  **Set hard limits:**
+
+  | Drawdown Level | Action |
+  |----------------|--------|
+  | -10% from peak | Reduce position sizes |
+  | -20% from peak | Stop trading, analyze |
+  | -30% from peak | Extended break, full review |
+  | -50% from peak | Consider if this is for you |
+</div>
+
+### Correlation Management
+
+Don't concentrate risk:
+
+<div className="p-4 rounded-xl bg-blue-50 dark:bg-blue-900/20 mt-4">
+  **Diversify across:**
+  - Platforms (don't put everything on DreamDEX)
+  - Time (don't bet your month's budget in one day)
+  - Types (mix crypto, events, sports)
+  - Direction (not all bullish or bearish)
+</div>
+
+## Copy Trading as a Leader
+
+### Vault Optimization
+
+<div className="grid grid-cols-1 md:grid-cols-2 gap-4 mt-4">
+  <div className="p-4 rounded-xl bg-blue-50 dark:bg-blue-900/20">
+    <h4 className="font-semibold m-0">Attract Followers</h4>
+    <ul className="mt-2 mb-0 text-sm space-y-1">
+      <li>Maintain 60%+ win rate</li>
+      <li>Trade regularly (show activity)</li>
+      <li>Avoid large drawdowns</li>
+      <li>Be consistent in approach</li>
+    </ul>
+  </div>
+  <div className="p-4 rounded-xl bg-green-50 dark:bg-green-900/20">
+    <h4 className="font-semibold m-0">Maximize Fees</h4>
+    <ul className="mt-2 mb-0 text-sm space-y-1">
+      <li>Grow vault size carefully</li>
+      <li>Protect capital (avoid -EV bets)</li>
+      <li>Compound gains for followers</li>
+      <li>Build long-term trust</li>
+    </ul>
+  </div>
+</div>
+
+### Scaling with Responsibility
+
+<Callout type="warning">
+  As vault size grows, your responsibility increases. A 20% drawdown affects more people.
+</Callout>
+
+**Considerations:**
+- Larger positions may move markets
+- More followers = more scrutiny
+- Consistency becomes more valuable than big wins
+- Protect reputation above short-term gains
+
+## Data-Driven Decision Making
+
+### Metrics to Track
+
+<div className="p-4 rounded-xl bg-gray-50 dark:bg-gray-800 mt-4">
+  **Beyond basic win rate:**
+
+  | Metric | Why It Matters |
+  |--------|----------------|
+  | Win rate by platform | Find your strongest area |
+  | Win rate by bet size | Is sizing affecting results? |
+  | Win rate by day/time | Optimal trading windows |
+  | Streak analysis | Are you tilting after losses? |
+  | ROI (not just WR) | Actual profitability |
+</div>
+
+### A/B Testing
+
+<div className="p-4 rounded-xl bg-purple-50 dark:bg-purple-900/20 mt-4">
+  **Test hypotheses:**
+  - "Am I better in the morning or evening?"
+  - "Do higher-conviction bets win more?"
+  - "Does waiting 5 min before betting help?"
+
+  Track separately, compare results, iterate.
+</div>
+
+## Psychological Edge
+
+### Maintaining Discipline at Scale
+
+<div className="space-y-4 mt-4">
+  <div className="p-4 rounded-xl border border-gray-200 dark:border-gray-700">
+    <h4 className="font-semibold m-0">Emotional Detachment</h4>
+    <p className="text-sm mt-2 mb-0">
+      At high volume, individual wins/losses matter less. Focus on the system, not the outcome.
+    </p>
+  </div>
+  <div className="p-4 rounded-xl border border-gray-200 dark:border-gray-700">
+    <h4 className="font-semibold m-0">Process Over Results</h4>
+    <p className="text-sm mt-2 mb-0">
+      Judge decisions by process quality, not outcome. Good decisions can lose; bad decisions can win.
+    </p>
+  </div>
+  <div className="p-4 rounded-xl border border-gray-200 dark:border-gray-700">
+    <h4 className="font-semibold m-0">Handling Success</h4>
+    <p className="text-sm mt-2 mb-0">
+      Don't let winning streaks inflate ego. Stay humble, stay process-oriented.
+    </p>
+  </div>
+</div>
+
+### Burnout Prevention
+
+<div className="p-4 rounded-xl bg-amber-50 dark:bg-amber-900/20 mt-4">
+  **Signs of burnout:**
+  - Dreading trading sessions
+  - Careless mistakes increasing
+  - Checking results compulsively
+  - Losing sleep over bets
+
+  **Prevention:**
+  - Set trading hours (not 24/7)
+  - Take regular breaks
+  - Diversify income sources
+  - Have non-trading hobbies
+</div>
+
+## Advanced VeritasScore Tactics
+
+### Optimal Import Timing
+
+<div className="p-4 rounded-xl bg-blue-50 dark:bg-blue-900/20 mt-4">
+  **Strategy:** Import when you have a batch of winners
+
+  While you can't selectively import (all trades come in), timing your imports for when you're on a hot streak:
+  - Captures momentum
+  - Shows recent performance
+  - Updates score during peak
+</div>
+
+### Platform Rotation
+
+<div className="p-4 rounded-xl bg-green-50 dark:bg-green-900/20 mt-4">
+  **Strategy:** Cycle between platforms based on conditions
+
+  - DreamDEX: Good for trending markets
+  - Polymarket: Good when events are approaching
+  - Sports: Good during season peaks
+  - SpeedMarkets: Good in volatile periods
+</div>
+
+## Building a Prediction System
+
+### Systematic Approach
+
+<div className="p-4 rounded-xl bg-gray-50 dark:bg-gray-800 mt-4">
+  **Components of a system:**
+
+  1. **Entry criteria** - What must be true to bet?
+  2. **Position sizing** - How much based on conviction?
+  3. **Exit rules** - When do you cut or hold?
+  4. **Review process** - How do you learn and iterate?
+
+  Document these. Follow them. Refine over time.
+</div>
+
+### Automation Considerations
+
+<Callout type="info">
+  While Veritas doesn't directly support automation, you can:
+  - Set alerts for opportunities
+  - Pre-plan your bets
+  - Use spreadsheets for sizing
+  - Schedule regular review sessions
+</Callout>
+
+## Diamond Tier Mindset
+
+What separates Diamond from Platinum:
+
+<div className="grid grid-cols-1 md:grid-cols-3 gap-4 mt-6">
+  <div className="p-4 rounded-xl bg-sky-50 dark:bg-sky-900/20">
+    <h4 className="font-semibold m-0">Long-Term View</h4>
+    <p className="text-sm mt-2 mb-0">Years, not months. Compound small edges over time.</p>
+  </div>
+  <div className="p-4 rounded-xl bg-sky-50 dark:bg-sky-900/20">
+    <h4 className="font-semibold m-0">Risk Awareness</h4>
+    <p className="text-sm mt-2 mb-0">Never risk catastrophic loss. Protect the bankroll.</p>
+  </div>
+  <div className="p-4 rounded-xl bg-sky-50 dark:bg-sky-900/20">
+    <h4 className="font-semibold m-0">Continuous Learning</h4>
+    <p className="text-sm mt-2 mb-0">Never stop improving. Markets evolve; so must you.</p>
+  </div>
+</div>
+
+## Related
+
+- [VeritasScore Deep Dive](/reputation/veritasscore) - Formula details
+- [Becoming a Leader](/copy-trading/becoming-leader) - Copy trading mastery
+- [Building Reputation](/strategies/building-reputation) - Foundational strategies

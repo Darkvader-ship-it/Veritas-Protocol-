@@ -1,0 +1,266 @@
+import { Callout, Steps } from 'nextra/components'
+
+# Limitless
+
+Limitless is a prediction market platform on Base chain. It offers a variety of markets from crypto to entertainment to sports.
+
+## Overview
+
+<div className="grid grid-cols-2 md:grid-cols-4 gap-4 mt-6">
+  <div className="p-4 rounded-xl bg-cyan-50 dark:bg-cyan-900/20 text-center">
+    <div className="text-2xl mb-2">♾️</div>
+    <div className="text-xs text-gray-500">Platform</div>
+    <div className="font-bold">Limitless</div>
+  </div>
+  <div className="p-4 rounded-xl bg-cyan-50 dark:bg-cyan-900/20 text-center">
+    <div className="text-2xl mb-2">⛓️</div>
+    <div className="text-xs text-gray-500">Chain</div>
+    <div className="font-bold">Base</div>
+  </div>
+  <div className="p-4 rounded-xl bg-cyan-50 dark:bg-cyan-900/20 text-center">
+    <div className="text-2xl mb-2">⏱️</div>
+    <div className="text-xs text-gray-500">Duration</div>
+    <div className="font-bold">Varies</div>
+  </div>
+  <div className="p-4 rounded-xl bg-cyan-50 dark:bg-cyan-900/20 text-center">
+    <div className="text-2xl mb-2">💰</div>
+    <div className="text-xs text-gray-500">Currency</div>
+    <div className="font-bold">ETH / USDC</div>
+  </div>
+</div>
+
+## What Makes Limitless Different
+
+<div className="grid grid-cols-1 md:grid-cols-2 gap-4 mt-6">
+  <div className="p-4 rounded-xl border border-gray-200 dark:border-gray-700">
+    <h4 className="font-semibold m-0">🌐 Diverse Markets</h4>
+    <p className="text-sm text-gray-600 dark:text-gray-400 mt-2 mb-0">
+      Not just crypto or sports - entertainment, politics, culture, and more.
+    </p>
+  </div>
+  <div className="p-4 rounded-xl border border-gray-200 dark:border-gray-700">
+    <h4 className="font-semibold m-0">⚡ Base Chain</h4>
+    <p className="text-sm text-gray-600 dark:text-gray-400 mt-2 mb-0">
+      Coinbase's L2 means low fees and fast transactions.
+    </p>
+  </div>
+  <div className="p-4 rounded-xl border border-gray-200 dark:border-gray-700">
+    <h4 className="font-semibold m-0">🆕 Growing Platform</h4>
+    <p className="text-sm text-gray-600 dark:text-gray-400 mt-2 mb-0">
+      Newer platform with unique market opportunities.
+    </p>
+  </div>
+  <div className="p-4 rounded-xl border border-gray-200 dark:border-gray-700">
+    <h4 className="font-semibold m-0">🎨 Community Markets</h4>
+    <p className="text-sm text-gray-600 dark:text-gray-400 mt-2 mb-0">
+      Users can propose and create markets on topics they care about.
+    </p>
+  </div>
+</div>
+
+## How Limitless Works
+
+<Steps>
+
+### Connect to Base
+
+Make sure your wallet is connected to Base chain.
+
+### Browse markets
+
+Find markets you have opinions on. Categories include:
+- Crypto events
+- Sports outcomes
+- Entertainment
+- Politics
+- Random/fun predictions
+
+### Check the odds
+
+Like Polymarket, prices reflect implied probability:
+- $0.30 = 30% implied chance
+- $0.70 = 70% implied chance
+
+### Buy shares
+
+- Buy "Yes" if you think it will happen
+- Buy "No" if you think it won't
+
+### Wait for resolution
+
+When the event resolves:
+- Winning shares pay $1.00
+- Losing shares pay $0.00
+
+</Steps>
+
+## Importing to Veritas
+
+<Callout type="info">
+  Limitless runs on Base chain. Veritas reads your positions directly from the blockchain.
+</Callout>
+
+### What Gets Imported
+
+| Data | Description |
+|------|-------------|
+| **Market** | Question and category |
+| **Position** | Yes or No |
+| **Amount** | Stake in ETH or USDC |
+| **Entry Price** | Price you bought at |
+| **Result** | Win or Loss |
+| **Payout** | Amount received if won |
+
+### Import Process
+
+<Steps>
+
+### Navigate to Platforms
+
+Dashboard → Platforms → Limitless
+
+### Connect to Base
+
+Switch your wallet to Base network if not already
+
+### Click Import
+
+We scan your Limitless activity on Base
+
+### Review results
+
+See imported markets and VeritasScore impact
+
+</Steps>
+
+<Callout type="warning">
+  Only resolved markets count toward your VeritasScore. Open positions will be added once they resolve.
+</Callout>
+
+## Tips for Limitless
+
+### Finding Value
+
+<div className="p-4 rounded-xl bg-green-50 dark:bg-green-900/20 mt-4">
+  <ul className="space-y-2 mb-0">
+    <li>**New markets** - Early pricing is often inefficient</li>
+    <li>**Niche topics** - Areas where you have expertise</li>
+    <li>**Unique markets** - Less arbitraged than common topics</li>
+    <li>**Community insights** - Follow smart traders on the platform</li>
+  </ul>
+</div>
+
+### Common Mistakes
+
+<div className="p-4 rounded-xl bg-red-50 dark:bg-red-900/20 mt-4">
+  <ul className="space-y-2 mb-0">
+    <li>**Chasing hype** - Popular markets often have worse odds</li>
+    <li>**Ignoring resolution rules** - Read how the market will be settled</li>
+    <li>**Overtrading** - Quality over quantity</li>
+    <li>**FOMO** - Don't chase moves after they happen</li>
+  </ul>
+</div>
+
+## Market Categories
+
+### Crypto
+
+<div className="p-4 rounded-xl bg-gray-50 dark:bg-gray-800 mt-2">
+  **Examples:**
+  - "Will BTC hit $X by date?"
+  - "Will ETH 2.0 upgrade happen by Q2?"
+  - "Will X token launch?"
+</div>
+
+### Entertainment
+
+<div className="p-4 rounded-xl bg-gray-50 dark:bg-gray-800 mt-2">
+  **Examples:**
+  - "Will X movie gross $Y?"
+  - "Who wins Best Picture?"
+  - "Will X celebrity do Y?"
+</div>
+
+### Sports
+
+<div className="p-4 rounded-xl bg-gray-50 dark:bg-gray-800 mt-2">
+  **Examples:**
+  - Championship winners
+  - Award predictions
+  - Record-breaking events
+</div>
+
+### Culture & Politics
+
+<div className="p-4 rounded-xl bg-gray-50 dark:bg-gray-800 mt-2">
+  **Examples:**
+  - Election outcomes
+  - Policy decisions
+  - Social trends
+</div>
+
+## Getting Started on Base
+
+If you're new to Base chain:
+
+<Steps>
+
+### Add Base to wallet
+
+**Network Details:**
+- Name: Base Mainnet
+- RPC: https://mainnet.base.org
+- Chain ID: 8453
+- Symbol: ETH
+- Explorer: https://basescan.org
+
+### Bridge assets
+
+Use the [Base Bridge](https://bridge.base.org) to move ETH from Ethereum to Base.
+
+### Get ETH for gas
+
+Base uses ETH for gas. Keep some available for transactions.
+
+</Steps>
+
+## Troubleshooting
+
+### "No markets found"
+
+<div className="p-4 rounded-xl bg-amber-50 dark:bg-amber-900/20 mt-2">
+  **Possible causes:**
+  - Not connected to Base chain
+  - All positions are still open
+  - New account with no activity
+
+  **Solution:** Switch to Base network and verify wallet address
+</div>
+
+### "Can't see resolved markets"
+
+<div className="p-4 rounded-xl bg-amber-50 dark:bg-amber-900/20 mt-2">
+  **Cause:** Markets may take time to resolve after events end
+
+  **Solution:** Wait for official resolution and re-import
+</div>
+
+## FAQ
+
+**Is Limitless related to Polymarket?**
+No, they're separate platforms. Limitless operates on Base, Polymarket on Polygon.
+
+**Can I create my own markets?**
+Limitless allows community market proposals. Check their docs for details.
+
+**What about liquidity?**
+Limitless is growing. Popular markets have good liquidity, niche ones may be thinner.
+
+**How does resolution work?**
+Markets are resolved by designated resolvers or oracles, depending on the market type.
+
+## Related
+
+- [Polymarket](/platforms/polymarket) - Similar prediction market on Polygon
+- [Improving Score](/reputation/improving-score) - VeritasScore optimization
+- [First Import](/getting-started/first-import) - Import walkthrough

@@ -1,0 +1,1037 @@
+<!DOCTYPE html><html><head><title></title><meta charset="utf-8"><style>* {
+	box-sizing: border-box;
+}
+
+html {
+	font-size: 100%;
+}
+
+body {
+	font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell',
+		'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;
+	line-height: 1.6;
+	font-size: 0.6875em; /* 11 pt */
+	color: #111;
+	margin: 0;
+}
+
+body > :first-child {
+	padding-top: 0;
+	margin-top: 0;
+}
+
+body > :last-child {
+	margin-bottom: 0;
+	padding-bottom: 0;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+	margin: 0;
+	padding: 0.5em 0 0.25em;
+}
+
+h5,
+h6 {
+	padding: 0;
+}
+
+h5 {
+	font-size: 1em;
+}
+
+h6 {
+	font-size: 0.875em;
+	text-transform: uppercase;
+}
+
+p {
+	margin: 0.25em 0 1em;
+}
+
+blockquote {
+	margin: 0.5em 0 1em;
+	padding-left: 0.5em;
+	padding-right: 1em;
+	border-left: 4px solid gainsboro;
+	font-style: italic;
+}
+
+ul,
+ol {
+	margin: 0;
+	margin-left: 1em;
+	padding: 0 1.5em 0.5em;
+}
+
+pre {
+	white-space: pre-wrap;
+}
+
+h1 code,
+h2 code,
+h3 code,
+h4 code,
+h5 code,
+h6 code,
+p code,
+li code,
+pre code {
+	background-color: #f8f8f8;
+	padding: 0.1em 0.375em;
+	border: 1px solid #f8f8f8;
+	border-radius: 0.25em;
+	font-family: monospace;
+	font-size: 1.2em;
+}
+
+pre code {
+	display: block;
+	padding: 0.5em;
+}
+
+.page-break {
+	page-break-after: always;
+}
+
+img {
+	max-width: 100%;
+	margin: 1em 0;
+}
+
+table {
+	border-spacing: 0;
+	border-collapse: collapse;
+	display: block;
+	margin: 0 0 1em;
+	width: 100%;
+	overflow: auto;
+}
+
+table th,
+table td {
+	padding: 0.5em 1em;
+	border: 1px solid gainsboro;
+}
+
+table th {
+	font-weight: 600;
+}
+
+table tr {
+	background-color: white;
+	border-top: 1px solid gainsboro;
+}
+
+table tr:nth-child(2n) {
+	background-color: whitesmoke;
+}
+/*# sourceURL=C:\Users\farr\.nvm\versions\node\v22.21.1\bin\node_modules\md-to-pdf\markdown.css*/</style><style>pre code.hljs {
+  display: block;
+  overflow-x: auto;
+  padding: 1em
+}
+code.hljs {
+  padding: 3px 5px
+}
+/*!
+  Theme: GitHub
+  Description: Light theme as seen on github.com
+  Author: github.com
+  Maintainer: @Hirse
+  Updated: 2021-05-15
+
+  Outdated base version: https://github.com/primer/github-syntax-light
+  Current colors taken from GitHub's CSS
+*/
+.hljs {
+  color: #24292e;
+  background: #ffffff
+}
+.hljs-doctag,
+.hljs-keyword,
+.hljs-meta .hljs-keyword,
+.hljs-template-tag,
+.hljs-template-variable,
+.hljs-type,
+.hljs-variable.language_ {
+  /* prettylights-syntax-keyword */
+  color: #d73a49
+}
+.hljs-title,
+.hljs-title.class_,
+.hljs-title.class_.inherited__,
+.hljs-title.function_ {
+  /* prettylights-syntax-entity */
+  color: #6f42c1
+}
+.hljs-attr,
+.hljs-attribute,
+.hljs-literal,
+.hljs-meta,
+.hljs-number,
+.hljs-operator,
+.hljs-variable,
+.hljs-selector-attr,
+.hljs-selector-class,
+.hljs-selector-id {
+  /* prettylights-syntax-constant */
+  color: #005cc5
+}
+.hljs-regexp,
+.hljs-string,
+.hljs-meta .hljs-string {
+  /* prettylights-syntax-string */
+  color: #032f62
+}
+.hljs-built_in,
+.hljs-symbol {
+  /* prettylights-syntax-variable */
+  color: #e36209
+}
+.hljs-comment,
+.hljs-code,
+.hljs-formula {
+  /* prettylights-syntax-comment */
+  color: #6a737d
+}
+.hljs-name,
+.hljs-quote,
+.hljs-selector-tag,
+.hljs-selector-pseudo {
+  /* prettylights-syntax-entity-tag */
+  color: #22863a
+}
+.hljs-subst {
+  /* prettylights-syntax-storage-modifier-import */
+  color: #24292e
+}
+.hljs-section {
+  /* prettylights-syntax-markup-heading */
+  color: #005cc5;
+  font-weight: bold
+}
+.hljs-bullet {
+  /* prettylights-syntax-markup-list */
+  color: #735c0f
+}
+.hljs-emphasis {
+  /* prettylights-syntax-markup-italic */
+  color: #24292e;
+  font-style: italic
+}
+.hljs-strong {
+  /* prettylights-syntax-markup-bold */
+  color: #24292e;
+  font-weight: bold
+}
+.hljs-addition {
+  /* prettylights-syntax-markup-inserted */
+  color: #22863a;
+  background-color: #f0fff4
+}
+.hljs-deletion {
+  /* prettylights-syntax-markup-deleted */
+  color: #b31d28;
+  background-color: #ffeef0
+}
+.hljs-char.escape_,
+.hljs-link,
+.hljs-params,
+.hljs-property,
+.hljs-punctuation,
+.hljs-tag {
+  /* purposely ignored */
+  
+}/*# sourceURL=C:\Users\farr\.nvm\versions\node\v22.21.1\bin\node_modules\md-to-pdf\node_modules\highlight.js\styles\github.css*/</style></head>
+	<body class="">
+		<h1 id="veritas-pitch-deck">Veritas Pitch Deck</h1>
+<hr>
+<h2 id="slide-1-title">Slide 1: Title</h2>
+<h1 id="veritas">Veritas</h1>
+<p><strong>Turn Prediction Accuracy Into Verifiable On-Chain Reputation</strong></p>
+<p>The universal reputation layer for prediction markets.</p>
+<p><em>Built on Somnia</em></p>
+<hr>
+<h2 id="slide-2-the-problem">Slide 2: The Problem</h2>
+<h3 id="prediction-markets-are-broken">Prediction Markets Are Broken</h3>
+<p><strong>$3B+ traded on Polymarket in 2024</strong> - but users can't verify who's actually skilled.</p>
+<table>
+<thead>
+<tr>
+<th>Problem</th>
+<th>Impact</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>No Verifiable Reputation</strong></td>
+<td>Anyone can claim "90% win rate" with no proof</td>
+</tr>
+<tr>
+<td><strong>Fragmented Platforms</strong></td>
+<td>Your Polymarket skills don't transfer to DreamDEX</td>
+</tr>
+<tr>
+<td><strong>No Trust Signals</strong></td>
+<td>New users follow scammers, lose money, leave</td>
+</tr>
+<tr>
+<td><strong>No Monetization</strong></td>
+<td>Top traders only earn from their own bets</td>
+</tr>
+</tbody></table>
+<blockquote>
+<p><em>"I made $100K on Polymarket with 75% accuracy. When I try DreamDEX, I'm treated like a beginner. My reputation should follow me."</em></p>
+</blockquote>
+<hr>
+<h2 id="slide-3-the-solution">Slide 3: The Solution</h2>
+<h3 id="veritas-universal-prediction-market-reputation">Veritas: Universal Prediction Market Reputation</h3>
+<p><strong>One Score. All Platforms. Cryptographically Verified.</strong></p>
+<pre><code>┌─────────────────────────────────────────────────────────┐
+│                     Veritas                         │
+│                                                         │
+│   ┌─────────┐   ┌─────────┐   ┌─────────┐              │
+│   │Polymarket│   │DreamDEX│  │ Azuro  │  + More     │
+│   └────┬────┘   └────┬─────┘   └───┬────┘              │
+│        │             │              │                   │
+│        └─────────────┼──────────────┘                   │
+│                      ▼                                  │
+│              ┌──────────────┐                           │
+│              │  VeritasScore  │                           │
+│              │  Soulbound   │                           │
+│              │     NFT      │                           │
+│              └──────────────┘                           │
+└─────────────────────────────────────────────────────────┘
+</code></pre>
+<ul>
+<li><strong>Soulbound NFTs</strong> - Non-transferable reputation tied to your wallet</li>
+<li><strong>Cross-Platform</strong> - Aggregate performance from multiple markets</li>
+<li><strong>On-Chain Proof</strong> - Cryptographically verifiable, not self-reported</li>
+<li><strong>Copy Trading</strong> - Follow verified Diamond traders automatically</li>
+</ul>
+<hr>
+<h2 id="slide-4-how-it-works">Slide 4: How It Works</h2>
+<h3 id="from-predictions-to-reputation-in-3-steps">From Predictions to Reputation in 3 Steps</h3>
+<p><strong>Step 1: Connect &amp; Register</strong></p>
+<ul>
+<li>Connect wallet (Somnia)</li>
+<li>Pay 0.0005 STT minting fee (~$0.30)</li>
+<li>Receive your Soulbound Reputation NFT</li>
+</ul>
+<p><strong>Step 2: Import Your History</strong></p>
+<ul>
+<li>Pull data from DreamDEX Event Contracts (via The Graph)</li>
+<li>Pull data from Polymarket (via REST API)</li>
+<li>All historical bets automatically analyzed</li>
+</ul>
+<p><strong>Step 3: Build Your VeritasScore</strong></p>
+<pre><code>VeritasScore = (WinRate × 100) × √(Volume) / 100
+</code></pre>
+<table>
+<thead>
+<tr>
+<th>Win Rate</th>
+<th>Volume</th>
+<th>VeritasScore</th>
+<th>Tier</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>50%</td>
+<td>1 STT</td>
+<td>500</td>
+<td>Silver</td>
+</tr>
+<tr>
+<td>70%</td>
+<td>10 STT</td>
+<td>2,213</td>
+<td>Platinum</td>
+</tr>
+<tr>
+<td>75%</td>
+<td>50 STT</td>
+<td>5,303</td>
+<td>Diamond</td>
+</tr>
+</tbody></table>
+<hr>
+<h2 id="slide-5-the-veritasscore-system">Slide 5: The VeritasScore System</h2>
+<h3 id="skill--capital">Skill &gt; Capital</h3>
+<p><strong>Why Square Root Scaling?</strong></p>
+<p>Without √: 100 STT trader has <strong>100×</strong> advantage over 1 STT trader
+With √: 100 STT trader has <strong>10×</strong> advantage</p>
+<p><em>Skill matters more than bankroll.</em></p>
+<h3 id="tier-progression">Tier Progression</h3>
+<table>
+<thead>
+<tr>
+<th>Tier</th>
+<th>Score</th>
+<th>Benefits</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Bronze</td>
+<td>0-499</td>
+<td>Basic profile, leaderboard</td>
+</tr>
+<tr>
+<td>Silver</td>
+<td>500-999</td>
+<td>Enhanced visibility</td>
+</tr>
+<tr>
+<td>Gold</td>
+<td>1,000-1,999</td>
+<td>Copy trading eligible</td>
+</tr>
+<tr>
+<td>Platinum</td>
+<td>2,000-4,999</td>
+<td>Premium features</td>
+</tr>
+<tr>
+<td>Diamond</td>
+<td>5,000+</td>
+<td>Top trader status, monetization</td>
+</tr>
+</tbody></table>
+<hr>
+<h2 id="slide-6-product-features">Slide 6: Product Features</h2>
+<h3 id="core-platform-capabilities">Core Platform Capabilities</h3>
+<p><strong>Dashboard</strong></p>
+<ul>
+<li>Personal VeritasScore card with dynamic NFT</li>
+<li>Import predictions from DreamDEX &amp; Polymarket</li>
+<li>Performance analytics and history</li>
+</ul>
+<p><strong>Markets</strong></p>
+<ul>
+<li>Live DreamDEX Event Contracts rounds</li>
+<li>Direct betting from Veritas app</li>
+<li>Polymarket events with deep linking</li>
+</ul>
+<p><strong>Leaderboard</strong></p>
+<ul>
+<li>Global rankings by VeritasScore</li>
+<li>Filter by tier, platform, time period</li>
+<li>Trader discovery and search</li>
+</ul>
+<p><strong>Copy Trading</strong></p>
+<ul>
+<li>Follow verified traders</li>
+<li>Set allocation % and max bet</li>
+<li>Automated bet execution</li>
+</ul>
+<hr>
+<h2 id="slide-7-market-opportunity">Slide 7: Market Opportunity</h2>
+<h3 id="10b-total-addressable-market">$10B+ Total Addressable Market</h3>
+<p><strong>Prediction Markets Growth</strong></p>
+<ul>
+<li>Polymarket: $3B+ volume in 2024 (10× YoY growth)</li>
+<li>DreamDEX Event Contracts: Millions of daily bets</li>
+<li>New platforms launching monthly</li>
+</ul>
+<p><strong>Copy Trading Precedent</strong></p>
+<ul>
+<li>eToro: $1B+ annual revenue from copy trading</li>
+<li>30M+ users following top traders</li>
+</ul>
+<p><strong>No Competition</strong></p>
+<ul>
+<li>Zero cross-platform reputation protocols exist</li>
+<li>Platforms building in isolation</li>
+<li>First-mover advantage in a blue ocean</li>
+</ul>
+<hr>
+<h2 id="slide-8-business-model">Slide 8: Business Model</h2>
+<h3 id="7-revenue-streams-across-3-categories">7 Revenue Streams Across 3 Categories</h3>
+<p><strong>A. Transaction Fees (Recurring)</strong></p>
+<table>
+<thead>
+<tr>
+<th>Stream</th>
+<th>Fee</th>
+<th>Volume Driver</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>NFT Minting</td>
+<td>0.0005 STT (~$0.30)</td>
+<td>New user registrations</td>
+</tr>
+<tr>
+<td>Copy Trade Execution</td>
+<td>1% of bet amount</td>
+<td>Automated copy trades</td>
+</tr>
+<tr>
+<td>Profit Share</td>
+<td>10% of copier profits</td>
+<td>Successful copy trades</td>
+</tr>
+</tbody></table>
+<p><strong>B. Susomniaription Revenue (MRR)</strong></p>
+<table>
+<thead>
+<tr>
+<th>Stream</th>
+<th>Price</th>
+<th>Target Segment</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Premium Analytics</td>
+<td>$9.99/month</td>
+<td>Active traders</td>
+</tr>
+<tr>
+<td>Pro Trader Tools</td>
+<td>$29.99/month</td>
+<td>Professional traders</td>
+</tr>
+<tr>
+<td>Platform API</td>
+<td>$500-2,000/month</td>
+<td>Prediction platforms</td>
+</tr>
+</tbody></table>
+<p><strong>C. Ecosystem Revenue</strong></p>
+<table>
+<thead>
+<tr>
+<th>Stream</th>
+<th>Fee</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Sponsored Leaderboards</td>
+<td>$1,000/month</td>
+<td>Platform visibility</td>
+</tr>
+<tr>
+<td>Verified Badge</td>
+<td>$5 one-time</td>
+<td>Sybil-resistant identity</td>
+</tr>
+<tr>
+<td>Signal Marketplace</td>
+<td>15% commission</td>
+<td>Trader tips/insights</td>
+</tr>
+</tbody></table>
+<hr>
+<h2 id="slide-8b-revenue-projections">Slide 8b: Revenue Projections</h2>
+<h3 id="conservative-growth-model">Conservative Growth Model</h3>
+<table>
+<thead>
+<tr>
+<th>Phase</th>
+<th>Timeline</th>
+<th>Users</th>
+<th>MAU</th>
+<th>Annual Revenue</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Launch</td>
+<td>Q1 2026</td>
+<td>10K</td>
+<td>3K</td>
+<td>$50K</td>
+</tr>
+<tr>
+<td>Growth</td>
+<td>Q2-Q3 2026</td>
+<td>50K</td>
+<td>15K</td>
+<td>$300K</td>
+</tr>
+<tr>
+<td>Scale</td>
+<td>Q4 2026+</td>
+<td>200K</td>
+<td>60K</td>
+<td>$1.2M</td>
+</tr>
+<tr>
+<td>Mature</td>
+<td>2027+</td>
+<td>500K</td>
+<td>150K</td>
+<td>$3.5M</td>
+</tr>
+</tbody></table>
+<h3 id="revenue-breakdown-at-scale-200k-users">Revenue Breakdown at Scale (200K Users)</h3>
+<pre><code>Copy Trading Fees     $480K  (40%)  ← Primary driver
+├── 1% execution fee on $4M monthly volume
+└── 10% profit share on $400K monthly profits
+
+Susomniariptions         $360K  (30%)
+├── 2,000 Premium @ $10/mo = $240K
+└── 400 Pro @ $25/mo = $120K
+
+Platform API          $240K  (20%)
+└── 20 platforms @ $1,000/mo
+
+Other Revenue         $120K  (10%)
+├── Sponsored leaderboards
+├── Verification fees
+└── Signal marketplace
+</code></pre>
+<h3 id="unit-economics">Unit Economics</h3>
+<table>
+<thead>
+<tr>
+<th>Metric</th>
+<th>Value</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>CAC (Customer Acquisition Cost)</td>
+<td>$2-5</td>
+</tr>
+<tr>
+<td>LTV (Lifetime Value)</td>
+<td>$45-120</td>
+</tr>
+<tr>
+<td>LTV:CAC Ratio</td>
+<td>15-24x</td>
+</tr>
+<tr>
+<td>Gross Margin</td>
+<td>85%+</td>
+</tr>
+<tr>
+<td>Payback Period</td>
+<td>&lt; 30 days</td>
+</tr>
+</tbody></table>
+<hr>
+<h2 id="slide-9-competitive-advantage">Slide 9: Competitive Advantage</h2>
+<h3 id="why-veritas-wins">Why Veritas Wins</h3>
+<table>
+<thead>
+<tr>
+<th>Feature</th>
+<th>Others</th>
+<th>Veritas</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Reputation Scope</td>
+<td>Single platform</td>
+<td><strong>Cross-platform</strong></td>
+</tr>
+<tr>
+<td>Verification</td>
+<td>Self-reported</td>
+<td><strong>On-chain proof</strong></td>
+</tr>
+<tr>
+<td>Portability</td>
+<td>None</td>
+<td><strong>Soulbound NFT</strong></td>
+</tr>
+<tr>
+<td>Copy Trading</td>
+<td>Platform-locked</td>
+<td><strong>Any platform</strong></td>
+</tr>
+<tr>
+<td>Revenue for Traders</td>
+<td>Bet winnings only</td>
+<td><strong>Multiple streams</strong></td>
+</tr>
+</tbody></table>
+<h3 id="moat">Moat</h3>
+<ol>
+<li><strong>Network Effects</strong> - More platforms = more valuable reputation</li>
+<li><strong>Data Advantage</strong> - Historical performance data compounds</li>
+<li><strong>Integration Lock-in</strong> - Platforms integrate once, stay forever</li>
+<li><strong>Community</strong> - Verified traders become advocates</li>
+</ol>
+<hr>
+<h2 id="slide-10-technology">Slide 10: Technology</h2>
+<h3 id="built-for-scale">Built for Scale</h3>
+<p><strong>Smart Contracts (Solidity 0.8.28)</strong></p>
+<ul>
+<li><code>VeritasCore.sol</code> - User registration &amp; reputation</li>
+<li><code>ReputationNFT.sol</code> - Dynamic soulbound NFTs</li>
+<li><code>ScoreCalculator.sol</code> - VeritasScore algorithm</li>
+<li><code>CopyTradingVault.sol</code> - Automated copy trading</li>
+</ul>
+<p><strong>Frontend (Next.js 14)</strong></p>
+<ul>
+<li>wagmi v2 + viem for Web3</li>
+<li>RainbowKit wallet connection</li>
+<li>Real-time data updates</li>
+<li>Mobile responsive</li>
+</ul>
+<p><strong>Infrastructure</strong></p>
+<ul>
+<li>The Graph for blockchain indexing</li>
+<li>Supabase for off-chain data</li>
+<li>Vercel for deployment</li>
+<li>Somnia (fast, cheap transactions)</li>
+</ul>
+<hr>
+<h2 id="slide-11-validation">Slide 11: Validation</h2>
+<h3 id="problem-validated-by-the-community">Problem Validated by the Community</h3>
+<p><strong>Reddit r/Polymarket:</strong></p>
+<blockquote>
+<p>"I wish there was a way to see who the top traders are and copy their bets."</p>
+</blockquote>
+<p><strong>Twitter/X:</strong></p>
+<blockquote>
+<p>"Made $10K on Polymarket but on DreamDEX I'm treated like a noob."</p>
+</blockquote>
+<p><strong>Platform Founders:</strong></p>
+<blockquote>
+<p>"We'd integrate reputation if someone built it."</p>
+</blockquote>
+<h3 id="development-status">Development Status</h3>
+<ul>
+<li>Smart contracts developed and tested</li>
+<li>Full-stack application built</li>
+<li>DreamDEX + Polymarket integration complete</li>
+<li>Copy trading system implemented</li>
+<li><strong>Target Launch: Q1 2026</strong></li>
+</ul>
+<hr>
+<h2 id="slide-12-roadmap">Slide 12: Roadmap</h2>
+<h3 id="building-the-standard">Building the Standard</h3>
+<p><strong>Phase 1: Foundation &amp; Launch (Q1 2026)</strong></p>
+<ul>
+<li><input checked="" disabled="" type="checkbox"> Soulbound NFT implementation</li>
+<li><input checked="" disabled="" type="checkbox"> VeritasScore algorithm</li>
+<li><input checked="" disabled="" type="checkbox"> DreamDEX integration</li>
+<li><input checked="" disabled="" type="checkbox"> Polymarket integration</li>
+<li><input checked="" disabled="" type="checkbox"> Copy trading system</li>
+<li><input checked="" disabled="" type="checkbox"> Leaderboard &amp; trader search</li>
+<li><input disabled="" type="checkbox"> Security audit &amp; mainnet deployment</li>
+</ul>
+<p><strong>Phase 2: Growth (Q2-Q3 2026)</strong></p>
+<ul>
+<li><input disabled="" type="checkbox"> Premium analytics tier</li>
+<li><input disabled="" type="checkbox"> Platform API for enterprise</li>
+<li><input disabled="" type="checkbox"> Telegram bot for notifications</li>
+<li><input disabled="" type="checkbox"> More platforms (Azuro, Thales)</li>
+<li><input disabled="" type="checkbox"> Mobile app</li>
+</ul>
+<p><strong>Phase 3: Scale (Q4 2026+)</strong></p>
+<ul>
+<li><input disabled="" type="checkbox"> Multi-chain expansion</li>
+<li><input disabled="" type="checkbox"> DAO governance</li>
+<li><input disabled="" type="checkbox"> Token launch</li>
+<li><input disabled="" type="checkbox"> AI-powered recommendations</li>
+</ul>
+<hr>
+<h2 id="slide-13-team">Slide 13: Team</h2>
+<h3 id="built-by-prediction-market-enthusiasts">Built by Prediction Market Enthusiasts</h3>
+<p><strong>Technical Capabilities</strong></p>
+<ul>
+<li>Full-stack Web3 development</li>
+<li>Solidity smart contracts (Foundry)</li>
+<li>Next.js / TypeScript / React</li>
+<li>DeFi integrations</li>
+</ul>
+<p><strong>Domain Expertise</strong></p>
+<ul>
+<li>Active prediction market participants</li>
+<li>Deep understanding of user pain points</li>
+<li>Experience with copy trading systems</li>
+</ul>
+<hr>
+<h2 id="slide-14-the-ask">Slide 14: The Ask</h2>
+<h3 id="join-the-reputation-revolution">Join the Reputation Revolution</h3>
+<p><strong>We're Seeking:</strong></p>
+<ul>
+<li>Strategic partnerships with prediction platforms</li>
+<li>Seed funding for accelerated growth</li>
+<li>Advisors in DeFi/prediction markets</li>
+</ul>
+<p><strong>Use of Funds:</strong></p>
+<ul>
+<li>Engineering team expansion</li>
+<li>Platform integrations</li>
+<li>Marketing &amp; community building</li>
+<li>Security audits</li>
+</ul>
+<p><strong>Why Now?</strong></p>
+<ul>
+<li>Prediction markets exploding (Polymarket 10× YoY)</li>
+<li>No competitors in cross-platform reputation</li>
+<li>Technical infrastructure ready</li>
+<li>Regulatory clarity improving</li>
+</ul>
+<hr>
+<h2 id="slide-15-contact">Slide 15: Contact</h2>
+<h3 id="lets-build-the-future-of-prediction-markets">Let's Build the Future of Prediction Markets</h3>
+<p><strong>Veritas</strong>
+<em>The universal reputation layer for prediction markets</em></p>
+<ul>
+<li>Website: [veritas.xyz]</li>
+<li>GitHub: [github.com/veritas]</li>
+<li>Twitter: [@veritas]</li>
+</ul>
+<hr>
+<h2 id="appendix-a-technical-architecture">Appendix A: Technical Architecture</h2>
+<pre><code>┌──────────────────────────────────────────────────────────────┐
+│                        Frontend (Next.js)                     │
+│  ┌──────────┐ ┌──────────┐ ┌──────────┐ ┌──────────┐        │
+│  │Dashboard │ │ Markets  │ │Leaderboard│ │Copy Trade│        │
+│  └────┬─────┘ └────┬─────┘ └────┬─────┘ └────┬─────┘        │
+└───────┼────────────┼────────────┼────────────┼───────────────┘
+        │            │            │            │
+        ▼            ▼            ▼            ▼
+┌──────────────────────────────────────────────────────────────┐
+│                    API Layer (Next.js Routes)                 │
+│  ┌──────────┐ ┌──────────┐ ┌──────────┐                      │
+│  │The Graph │ │Polymarket│ │ SomniaScan  │                      │
+│  │   API    │ │   API    │ │   API    │                      │
+│  └────┬─────┘ └────┬─────┘ └────┬─────┘                      │
+└───────┼────────────┼────────────┼────────────────────────────┘
+        │            │            │
+        ▼            ▼            ▼
+┌──────────────────────────────────────────────────────────────┐
+│                    STT Smart Chain                            │
+│  ┌──────────────┐ ┌──────────────┐ ┌──────────────┐          │
+│  │VeritasCore│ │ReputationNFT │ │CopyTradingVault│        │
+│  └──────────────┘ └──────────────┘ └──────────────┘          │
+└──────────────────────────────────────────────────────────────┘
+</code></pre>
+<hr>
+<h2 id="appendix-b-veritasscore-formula">Appendix B: VeritasScore Formula</h2>
+<pre><code>VeritasScore = (winRate × volumeSqrt) / 100
+
+where:
+  winRate = (correctPredictions / totalPredictions) × 10000
+  volumeSqrt = √(totalVolume / 1e16)
+</code></pre>
+<p><strong>Example Calculation:</strong></p>
+<ul>
+<li>100 predictions, 70 correct</li>
+<li>50 STT total volume</li>
+<li>winRate = (70/100) × 10000 = 7000</li>
+<li>volumeSqrt = √(50 × 10^18 / 10^16) = √5000 ≈ 70.71</li>
+<li><strong>VeritasScore = (7000 × 70.71) / 100 = 4,950 (Platinum)</strong></li>
+</ul>
+<hr>
+<h2 id="appendix-c-revenue-model-details">Appendix C: Revenue Model Details</h2>
+<h3 id="smart-contract-fee-implementation">Smart Contract Fee Implementation</h3>
+<pre><code class="hljs solidity">uint256 public constant MINT_FEE = 0.0005 ether;
+uint256 public constant COPY_TRADE_FEE = 100; // 1% (basis points)
+uint256 public constant PROFIT_SHARE = 1000;  // 10% (basis points)
+
+function registerUser() external payable {
+    require(msg.value &gt;= MINT_FEE, "Insufficient fee");
+    // Minting logic...
+}
+
+function executeCopyTrade(uint256 amount) external {
+    uint256 fee = (amount * COPY_TRADE_FEE) / 10000;
+    // Execute trade minus fee...
+}
+</code></pre>
+<h3 id="detailed-revenue-model-by-phase">Detailed Revenue Model by Phase</h3>
+<p><strong>Phase 1: Launch (Q1 2026) - $50K ARR</strong></p>
+<table>
+<thead>
+<tr>
+<th>Stream</th>
+<th>Users/Volume</th>
+<th>Rate</th>
+<th>Annual</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>NFT Minting</td>
+<td>10,000 users</td>
+<td>$0.30</td>
+<td>$3,000</td>
+</tr>
+<tr>
+<td>Copy Trading</td>
+<td>$500K volume</td>
+<td>1%</td>
+<td>$5,000</td>
+</tr>
+<tr>
+<td>Premium Subs</td>
+<td>200 users</td>
+<td>$10/mo</td>
+<td>$24,000</td>
+</tr>
+<tr>
+<td>API Access</td>
+<td>2 platforms</td>
+<td>$750/mo</td>
+<td>$18,000</td>
+</tr>
+</tbody></table>
+<p><strong>Phase 2: Growth (Q2-Q3 2026) - $300K ARR</strong></p>
+<table>
+<thead>
+<tr>
+<th>Stream</th>
+<th>Users/Volume</th>
+<th>Rate</th>
+<th>Annual</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>NFT Minting</td>
+<td>50,000 users</td>
+<td>$0.30</td>
+<td>$15,000</td>
+</tr>
+<tr>
+<td>Copy Trading</td>
+<td>$2M volume</td>
+<td>1% + 10% profit</td>
+<td>$80,000</td>
+</tr>
+<tr>
+<td>Premium Subs</td>
+<td>1,000 users</td>
+<td>$10/mo</td>
+<td>$120,000</td>
+</tr>
+<tr>
+<td>Pro Subs</td>
+<td>100 users</td>
+<td>$30/mo</td>
+<td>$36,000</td>
+</tr>
+<tr>
+<td>API Access</td>
+<td>5 platforms</td>
+<td>$1,000/mo</td>
+<td>$60,000</td>
+</tr>
+</tbody></table>
+<p><strong>Phase 3: Scale (Q4 2026+) - $1.2M ARR</strong></p>
+<table>
+<thead>
+<tr>
+<th>Stream</th>
+<th>Users/Volume</th>
+<th>Rate</th>
+<th>Annual</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>NFT Minting</td>
+<td>200,000 users</td>
+<td>$0.30</td>
+<td>$60,000</td>
+</tr>
+<tr>
+<td>Copy Trading</td>
+<td>$8M volume</td>
+<td>1% + 10% profit</td>
+<td>$320,000</td>
+</tr>
+<tr>
+<td>Premium Subs</td>
+<td>3,000 users</td>
+<td>$10/mo</td>
+<td>$360,000</td>
+</tr>
+<tr>
+<td>Pro Subs</td>
+<td>500 users</td>
+<td>$30/mo</td>
+<td>$180,000</td>
+</tr>
+<tr>
+<td>API Access</td>
+<td>20 platforms</td>
+<td>$1,000/mo</td>
+<td>$240,000</td>
+</tr>
+<tr>
+<td>Ecosystem</td>
+<td>Various</td>
+<td>Various</td>
+<td>$80,000</td>
+</tr>
+</tbody></table>
+<h3 id="comparable-market-validation">Comparable Market Validation</h3>
+<table>
+<thead>
+<tr>
+<th>Company</th>
+<th>Model</th>
+<th>Revenue</th>
+<th>Our Advantage</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>eToro Copy Trading</td>
+<td>1-2% spread</td>
+<td>$1B+/year</td>
+<td>Cross-platform, lower fees</td>
+</tr>
+<tr>
+<td>TradingView Pro</td>
+<td>$15-60/month</td>
+<td>$300M+/year</td>
+<td>Prediction-market focused</td>
+</tr>
+<tr>
+<td>Nansen API</td>
+<td>$1-10K/month</td>
+<td>$50M+/year</td>
+<td>Reputation-specific data</td>
+</tr>
+</tbody></table>
+<h3 id="path-to-profitability">Path to Profitability</h3>
+<table>
+<thead>
+<tr>
+<th>Metric</th>
+<th>Q1 2026</th>
+<th>Q4 2026</th>
+<th>2027</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Revenue</td>
+<td>$50K</td>
+<td>$1.2M</td>
+<td>$3.5M</td>
+</tr>
+<tr>
+<td>Costs</td>
+<td>$80K</td>
+<td>$400K</td>
+<td>$800K</td>
+</tr>
+<tr>
+<td>Net</td>
+<td>-$30K</td>
+<td>$800K</td>
+<td>$2.7M</td>
+</tr>
+<tr>
+<td>Margin</td>
+<td>-60%</td>
+<td>67%</td>
+<td>77%</td>
+</tr>
+</tbody></table>
+<hr>
+<p><em>Launching Q1 2026 on Somnia</em></p>
+
+	
+
+</body></html>

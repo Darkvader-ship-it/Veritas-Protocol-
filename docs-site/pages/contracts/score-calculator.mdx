@@ -1,0 +1,257 @@
+import { Callout, Tabs } from 'nextra/components'
+
+# VeritasScore Algorithm
+
+The VeritasScore is Veritas's reputation metric that aggregates prediction market performance into a single, verifiable number.
+
+## Overview
+
+VeritasScore balances two key factors:
+1. **Accuracy**: How often you win
+2. **Volume**: How much you've wagered
+
+This prevents gaming through either tiny high-accuracy bets or massive low-accuracy volume.
+
+## Formula
+
+<Callout type="info">
+  ```
+  VeritasScore = (winRate × 100) × sqrt(totalVolume / 1e16) / 100
+  ```
+</Callout>
+
+### Components
+
+| Component | Calculation | Purpose |
+|-----------|-------------|---------|
+| Win Rate | `wins / totalBets × 10000` | Basis points (0-10000) |
+| Volume Multiplier | `sqrt(totalVolume / 1e16)` | Square root scaling |
+| Final Score | `winRate × volumeSqrt / 100` | Combined metric |
+
+### Why Square Root for Volume?
+
+Linear volume scaling would allow whales to dominate regardless of accuracy. Square root provides:
+- Diminishing returns on volume
+- Rewards consistency over single large bets
+- Fair competition across wealth levels
+
+**Volume Scaling Examples:**
+
+| Volume (STT) | Multiplier |
+|--------------|------------|
+| 1 | 10 |
+| 10 | 31.6 |
+| 100 | 100 |
+| 1000 | 316 |
+
+## Score Calculation Examples
+
+### Example 1: New Trader
+
+```
+Wins: 15
+Total Bets: 25
+Volume: 2 STT (2e18 wei)
+
+Win Rate: 15/25 = 60% = 6000 bps
+Volume Sqrt: sqrt(2e18 / 1e16) = sqrt(200) ≈ 14.14
+
+VeritasScore = (6000 × 14.14) / 100 = 848
+```
+
+### Example 2: Experienced Trader
+
+```
+Wins: 285
+Total Bets: 450
+Volume: 45.5 STT
+
+Win Rate: 285/450 = 63.3% = 6333 bps
+Volume Sqrt: sqrt(45.5e18 / 1e16) ≈ 67.45
+
+VeritasScore = (6333 × 67.45) / 100 = 4272
+```
+
+### Example 3: High Volume, Low Accuracy
+
+```
+Wins: 520
+Total Bets: 1000
+Volume: 200 STT
+
+Win Rate: 52% = 5200 bps
+Volume Sqrt: sqrt(200e18 / 1e16) ≈ 141.4
+
+VeritasScore = (5200 × 141.4) / 100 = 7353
+```
+
+## Anti-Gaming Mechanisms
+
+### 1. Minimum Bet Requirement
+
+- **Leaderboard Visibility**: Requires 10+ bets
+- **Full Score**: Requires 50+ bets
+
+```solidity
+if (totalBets < 10) {
+    return 0; // Not on leaderboard
+}
+
+if (totalBets < 50) {
+    // Linear scaling: 10 bets = 20%, 50 bets = 100%
+    score = score * totalBets / 50;
+}
+```
+
+### 2. New Account Cap
+
+Accounts less than 14 days old have a 50% score cap:
+
+```solidity
+if (accountAge < 14 days) {
+    score = score / 2;
+}
+```
+
+### 3. Wilson Score Lower Bound
+
+Instead of raw win rate, we use Wilson Score Confidence Interval:
+
+<Callout>
+  This rewards sample size and punishes small samples with lucky streaks.
+</Callout>
+
+| Scenario | Raw Win Rate | Wilson Score |
+|----------|--------------|--------------|
+| 3/3 wins | 100% | 43.8% |
+| 30/50 wins | 60% | 46.7% |
+| 650/1000 wins | 65% | 62.1% |
+
+## Tier System
+
+| Tier | Score Range | Benefits |
+|------|-------------|----------|
+| 🥉 Bronze | 0 - 499 | Basic profile |
+| 🥈 Silver | 500 - 999 | Leaderboard visibility |
+| 🥇 Gold | 1000 - 1999 | Copy trading eligible |
+| 💎 Platinum | 2000 - 4999 | Priority visibility |
+| 👑 Diamond | 5000+ | Premium status |
+
+## Contract Implementation
+
+```solidity copy
+function calculateScore(
+    uint256 wins,
+    uint256 total,
+    uint256 volume,
+    uint256 accountAge
+) external pure returns (uint256) {
+    if (total == 0) return 0;
+    if (total < 10) return 0; // Min bets for leaderboard
+
+    // Win rate in basis points (0-10000)
+    uint256 winRate = (wins * 10000) / total;
+
+    // Volume multiplier (square root scaling)
+    uint256 volumeSqrt = sqrt(volume / 1e16);
+
+    // Base score
+    uint256 score = (winRate * volumeSqrt) / 100;
+
+    // Apply bet count scaling
+    if (total < 50) {
+        score = (score * total) / 50;
+    }
+
+    // Apply new account cap
+    if (accountAge < 14 days) {
+        score = score / 2;
+    }
+
+    return score;
+}
+
+function getTier(uint256 score) external pure returns (Tier) {
+    if (score >= 5000) return Tier.Diamond;
+    if (score >= 2000) return Tier.Platinum;
+    if (score >= 1000) return Tier.Gold;
+    if (score >= 500) return Tier.Silver;
+    return Tier.Bronze;
+}
+```
+
+## Score Update Triggers
+
+VeritasScore updates when:
+
+1. **Prediction Import**: User imports history from platform
+2. **Bet Resolution**: Indexed bet resolves (win/loss)
+3. **Manual Refresh**: User triggers score recalculation
+4. **Daily Batch**: Automated daily score refresh
+
+### Update Flow
+
+```
+User Import → VeritasCore.importPredictions()
+                     │
+                     ▼
+            ScoreCalculator.calculateScore()
+                     │
+                     ▼
+            ReputationNFT.updateScore()
+                     │
+                     ▼
+            NFT Metadata Refresh
+```
+
+## Querying Scores
+
+<Tabs items={['On-Chain', 'Off-Chain']}>
+  <Tabs.Tab>
+    ```solidity copy
+    // Get user's current score
+    uint256 score = veritasCore.getUserScore(userAddress);
+
+    // Get tier
+    ScoreCalculator.Tier tier = scoreCalculator.getTier(score);
+    ```
+  </Tabs.Tab>
+  <Tabs.Tab>
+    ```typescript copy
+    // Via API
+    const response = await fetch(`/api/leaderboard?address=${address}`);
+    const { veritasScore, tier, rank } = await response.json();
+
+    // Via Supabase
+    const { data } = await supabase
+      .from('user_platform_stats')
+      .select('score')
+      .eq('wallet_address', address)
+      .single();
+    ```
+  </Tabs.Tab>
+</Tabs>
+
+## Comparison to Other Systems
+
+| System | Formula | Pros | Cons |
+|--------|---------|------|------|
+| Raw Win Rate | wins/total | Simple | Gameable |
+| ELO | Complex | Battle-tested | Requires matchups |
+| VeritasScore | winRate × sqrt(volume) | Balanced | Novel |
+| PnL Only | total profit | Direct value | Favors risk-takers |
+
+## Future Improvements
+
+### Planned Enhancements
+
+1. **Recency Weighting**: Recent bets weighted higher
+2. **Platform-Specific Scores**: Different weights per platform
+3. **Streak Bonuses**: Rewards for consistent performance
+4. **Decay Factor**: Inactive accounts gradually decrease
+
+## Related Documentation
+
+- [Smart Contracts Overview](/contracts)
+- [VeritasCore](/contracts/veritas-core)
+- [User Guide](/guides/user-guide)

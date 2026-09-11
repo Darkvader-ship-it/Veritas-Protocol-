@@ -1,0 +1,320 @@
+import { Callout, Tabs, Steps } from 'nextra/components'
+
+# Indexer Architecture
+
+The indexer services monitor blockchain events and populate the database with prediction market activity.
+
+## Overview
+
+Indexers are background services that:
+1. Connect to blockchain RPC nodes
+2. Listen for relevant contract events
+3. Process and transform event data
+4. Store records in Supabase
+5. Trigger stat recalculations
+
+## Architecture Diagram
+
+```
+┌─────────────────────────────────────────────────────────────────────────┐
+│                         Blockchain Networks                             │
+│  ┌───────────────┐  ┌───────────────┐  ┌───────────────────────────┐   │
+│  │  Somnia    │  │    Polygon    │  │       Optimism            │   │
+│  │  (Chain 56)   │  │  (Chain 137)  │  │      (Chain 10)           │   │
+│  └───────────────┘  └───────────────┘  └───────────────────────────┘   │
+└─────────────────────────────────────────────────────────────────────────┘
+          │                   │                        │
+          ▼                   ▼                        ▼
+┌─────────────────────────────────────────────────────────────────────────┐
+│                         Indexer Services                                │
+│  ┌──────────────────┐  ┌──────────────────┐  ┌──────────────────────┐  │
+│  │ DreamDEX      │  │ Polymarket       │  │ Overtime             │  │
+│  │ Indexer          │  │ Indexer          │  │ Indexer              │  │
+│  └──────────────────┘  └──────────────────┘  └──────────────────────┘  │
+└─────────────────────────────────────────────────────────────────────────┘
+          │                   │                        │
+          └───────────────────┼────────────────────────┘
+                              ▼
+┌─────────────────────────────────────────────────────────────────────────┐
+│                           Supabase                                      │
+│  ┌─────────────┐  ┌─────────────────────┐  ┌─────────────────────────┐ │
+│  │   users     │  │        bets         │  │  user_platform_stats    │ │
+│  └─────────────┘  └─────────────────────┘  └─────────────────────────┘ │
+└─────────────────────────────────────────────────────────────────────────┘
+```
+
+## DreamDEX Indexer
+
+### Events Monitored
+
+```solidity
+event BetBull(address indexed sender, uint256 indexed epoch, uint256 amount);
+event BetBear(address indexed sender, uint256 indexed epoch, uint256 amount);
+event Claim(address indexed sender, uint256 indexed epoch, uint256 amount);
+event EndRound(uint256 indexed epoch, uint256 roundId, int256 price);
+```
+
+### Implementation
+
+```typescript filename="services/indexer/dreamdex-indexer.ts" copy
+import { createPublicClient, http, parseAbiItem } from 'viem';
+import { somnia, somniaTestnet } from 'viem/chains';
+import { supabase } from './utils/supabase';
+
+const PREDICTION_ADDRESS = '0xB52c5934113Af5c0Bb20eb3C72290C8215f755b9';
+const BATCH_SIZE = 10000;
+const POLL_INTERVAL = 10000; // 10 seconds
+
+async function indexDreamDEX(network: 'mainnet' | 'testnet') {
+  const chain = network === 'mainnet' ? somnia : somniaTestnet;
+
+  const client = createPublicClient({
+    chain,
+    transport: http(process.env.Somnia_RPC_URL),
+  });
+
+  // Get last processed block
+  let lastBlock = await getLastProcessedBlock('dreamdex', network);
+
+  console.log(`Starting DreamDEX indexer from block ${lastBlock}`);
+
+  while (true) {
+    try {
+      const currentBlock = await client.getBlockNumber();
+      const toBlock = Math.min(lastBlock + BigInt(BATCH_SIZE), currentBlock);
+
+      if (lastBlock >= currentBlock) {
+        await sleep(POLL_INTERVAL);
+        continue;
+      }
+
+      // Fetch events in parallel
+      const [betBullLogs, betBearLogs, claimLogs, endRoundLogs] =
+        await Promise.all([
+          client.getLogs({ /* BetBull event */ }),
+          client.getLogs({ /* BetBear event */ }),
+          client.getLogs({ /* Claim event */ }),
+          client.getLogs({ /* EndRound event */ }),
+        ]);
+
+      // Process events
+      await processBetEvents([...betBullLogs, ...betBearLogs]);
+      await processClaimEvents(claimLogs);
+      await processEndRoundEvents(endRoundLogs);
+
+      // Update state
+      lastBlock = toBlock + 1n;
+      await updateLastProcessedBlock('dreamdex', network, lastBlock);
+
+    } catch (error) {
+      console.error('Indexer error:', error);
+      await sleep(5000);
+    }
+  }
+}
+```
+
+## Running Indexers
+
+<Tabs items={['Development', 'PM2 (Production)', 'Docker']}>
+  <Tabs.Tab>
+    ```bash copy
+    cd services
+    npm install
+
+    # Single platform
+    npm run index:dreamdex:testnet
+    npm run index:dreamdex:mainnet
+
+    # All platforms
+    npm run index:all
+    ```
+  </Tabs.Tab>
+  <Tabs.Tab>
+    ```bash copy
+    # Install PM2
+    npm install -g pm2
+
+    # Start indexers
+    pm2 start npm --name "dreamdex-mainnet" -- run index:dreamdex:mainnet
+    pm2 start npm --name "dreamdex-testnet" -- run index:dreamdex:testnet
+
+    # Save and auto-restart
+    pm2 save
+    pm2 startup
+
+    # Monitor
+    pm2 status
+    pm2 logs dreamdex-mainnet
+    pm2 monit
+    ```
+  </Tabs.Tab>
+  <Tabs.Tab>
+    ```dockerfile copy
+    FROM node:20-alpine
+
+    WORKDIR /app
+
+    COPY package*.json ./
+    RUN npm ci --production
+
+    COPY . .
+
+    CMD ["npm", "run", "index:all"]
+    ```
+
+    ```yaml filename="docker-compose.yml" copy
+    version: '3.8'
+    services:
+      dreamdex-indexer:
+        build: ./services
+        command: npm run index:dreamdex:mainnet
+        environment:
+          - Somnia_RPC_URL=${Somnia_RPC_URL}
+          - SUPABASE_URL=${SUPABASE_URL}
+          - SUPABASE_SERVICE_ROLE_KEY=${SUPABASE_SERVICE_ROLE_KEY}
+        restart: unless-stopped
+    ```
+  </Tabs.Tab>
+</Tabs>
+
+## Configuration
+
+### Environment Variables
+
+```env filename=".env" copy
+# RPC Endpoints
+Somnia_RPC_URL=https://somnia-dataseed.somnia.org
+Somnia_TESTNET_RPC_URL=https://data-seed-presomnia-1-s1.somnia.org:8545
+POLYGON_RPC_URL=https://polygon-rpc.com
+OPTIMISM_RPC_URL=https://mainnet.optimism.io
+
+# Supabase
+NEXT_PUBLIC_SUPABASE_URL=https://xxx.supabase.co
+SUPABASE_SERVICE_ROLE_KEY=xxx
+
+# Indexer Config
+BATCH_SIZE=10000
+POLL_INTERVAL=10000
+LOG_LEVEL=info
+```
+
+## Error Handling
+
+### Retry Logic
+
+```typescript copy
+async function withRetry<T>(
+  fn: () => Promise<T>,
+  maxRetries = 3,
+  delay = 1000
+): Promise<T> {
+  for (let i = 0; i < maxRetries; i++) {
+    try {
+      return await fn();
+    } catch (error) {
+      if (i === maxRetries - 1) throw error;
+      console.warn(`Retry ${i + 1}/${maxRetries} after error:`, error);
+      await sleep(delay * Math.pow(2, i)); // Exponential backoff
+    }
+  }
+  throw new Error('Max retries exceeded');
+}
+```
+
+### RPC Fallback
+
+```typescript copy
+const RPC_FALLBACKS = {
+  56: [
+    'https://somnia-dataseed.somnia.org',
+    'https://somnia-dataseed1.defibit.io',
+    'https://somnia-dataseed1.ninicoin.io',
+  ],
+};
+
+async function getWorkingRpc(chainId: number): Promise<string> {
+  for (const rpc of RPC_FALLBACKS[chainId]) {
+    try {
+      const client = createPublicClient({ transport: http(rpc) });
+      await client.getBlockNumber();
+      return rpc;
+    } catch {
+      continue;
+    }
+  }
+  throw new Error(`No working RPC for chain ${chainId}`);
+}
+```
+
+## Monitoring
+
+### Health Check Endpoint
+
+```typescript filename="services/indexer/health.ts" copy
+import express from 'express';
+
+const app = express();
+
+app.get('/health', async (req, res) => {
+  const states = await getAllIndexerStates();
+
+  const status = states.map((s) => ({
+    platform: s.platform,
+    lastBlock: s.last_block,
+    lastUpdated: s.last_updated,
+    lagSeconds: (Date.now() - new Date(s.last_updated).getTime()) / 1000,
+    healthy: (Date.now() - new Date(s.last_updated).getTime()) < 60000,
+  }));
+
+  const allHealthy = status.every((s) => s.healthy);
+
+  res.status(allHealthy ? 200 : 503).json({
+    status: allHealthy ? 'healthy' : 'unhealthy',
+    indexers: status,
+  });
+});
+
+app.listen(3001);
+```
+
+## Performance Optimization
+
+### Batch Processing
+
+```typescript copy
+// Process events in batches for better database performance
+async function batchInsert(records: any[], batchSize = 100) {
+  for (let i = 0; i < records.length; i += batchSize) {
+    const batch = records.slice(i, i + batchSize);
+    await supabase.from('bets').upsert(batch);
+  }
+}
+```
+
+### Caching
+
+```typescript copy
+// Cache user IDs to reduce database lookups
+const userCache = new Map<string, string>();
+
+async function getOrCreateUser(address: string): Promise<string> {
+  const cached = userCache.get(address);
+  if (cached) return cached;
+
+  const { data } = await supabase
+    .from('users')
+    .upsert({ wallet_address: address.toLowerCase() })
+    .select('id')
+    .single();
+
+  userCache.set(address, data.id);
+  return data.id;
+}
+```
+
+## Related Documentation
+
+- [Architecture Overview](/architecture)
+- [Database Schema](/architecture/database-schema)
+- [Developer Guide](/guides/developer-guide)

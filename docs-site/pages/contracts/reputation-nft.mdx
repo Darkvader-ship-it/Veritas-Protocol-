@@ -1,0 +1,268 @@
+import { Callout, Tabs } from 'nextra/components'
+
+# ReputationNFT Contract
+
+Soulbound ERC-721 tokens representing user identity and reputation on Veritas.
+
+## Overview
+
+ReputationNFT implements non-transferable identity tokens with:
+- Dynamic on-chain SVG metadata
+- Tier-based visual evolution
+- Score-linked attributes
+- One NFT per address
+
+**Address (Testnet):** `0xa216b13c0b27b00c23552c768088fe11004d4b37`
+
+**Source:** `contracts/src/core/ReputationNFT.sol`
+
+## Soulbound Implementation
+
+<Callout type="info">
+  The NFT is **non-transferable** by design. It can only be minted or burned, never transferred.
+</Callout>
+
+```solidity copy
+function _beforeTokenTransfer(
+    address from,
+    address to,
+    uint256 tokenId,
+    uint256 batchSize
+) internal virtual override {
+    require(
+        from == address(0) || to == address(0),
+        "Soulbound: non-transferable"
+    );
+    super._beforeTokenTransfer(from, to, tokenId, batchSize);
+}
+```
+
+**Allowed:**
+- Minting (from = address(0))
+- Burning (to = address(0))
+
+**Prevented:**
+- Transfers between addresses
+- Marketplace sales
+- Approvals for transfer
+
+## Tier System
+
+### Tier Enumeration
+
+```solidity
+enum Tier {
+    Bronze,
+    Silver,
+    Gold,
+    Platinum,
+    Diamond
+}
+```
+
+### Tier Thresholds
+
+| Tier | Score Range | Color | Hex |
+|------|-------------|-------|-----|
+| 🥉 Bronze | 0 - 499 | Bronze | #CC8033 |
+| 🥈 Silver | 500 - 999 | Silver | #9CA3AF |
+| 🥇 Gold | 1000 - 1999 | Gold | #EAB308 |
+| 💎 Platinum | 2000 - 4999 | Platinum | #7DD3E8 |
+| 👑 Diamond | 5000+ | Diamond | #22D3EE |
+
+### Tier Calculation
+
+```solidity copy
+function getTier(uint256 score) public pure returns (Tier) {
+    if (score >= 5000) return Tier.Diamond;
+    if (score >= 2000) return Tier.Platinum;
+    if (score >= 1000) return Tier.Gold;
+    if (score >= 500) return Tier.Silver;
+    return Tier.Bronze;
+}
+```
+
+## Functions
+
+### mint
+
+Mints a new soulbound NFT. Only callable by VeritasCore.
+
+```solidity copy
+function mint(address to) external onlyCore returns (uint256) {
+    require(addressToTokenId[to] == 0, "Already has NFT");
+
+    _tokenIdCounter++;
+    uint256 tokenId = _tokenIdCounter;
+
+    _safeMint(to, tokenId);
+
+    tokenData[tokenId] = TokenData({
+        owner: to,
+        score: 0,
+        mintedAt: block.timestamp,
+        lastUpdated: block.timestamp
+    });
+
+    addressToTokenId[to] = tokenId;
+
+    emit Minted(to, tokenId);
+
+    return tokenId;
+}
+```
+
+### updateScore
+
+Updates the score stored in the NFT.
+
+```solidity copy
+function updateScore(address user, uint256 newScore) external onlyCore {
+    uint256 tokenId = addressToTokenId[user];
+    require(tokenId != 0, "No NFT found");
+
+    Tier oldTier = getTier(tokenData[tokenId].score);
+    Tier newTier = getTier(newScore);
+
+    tokenData[tokenId].score = newScore;
+    tokenData[tokenId].lastUpdated = block.timestamp;
+
+    if (oldTier != newTier) {
+        emit TierChanged(user, tokenId, oldTier, newTier);
+    }
+
+    emit ScoreUpdated(user, tokenId, newScore);
+}
+```
+
+### tokenURI
+
+Returns dynamic on-chain metadata with SVG image.
+
+```solidity copy
+function tokenURI(uint256 tokenId) public view override returns (string memory) {
+    require(_exists(tokenId), "Token does not exist");
+
+    TokenData memory data = tokenData[tokenId];
+    Tier tier = getTier(data.score);
+
+    string memory svg = generateSVG(tokenId, data.score, tier);
+    string memory json = generateJSON(tokenId, data, tier, svg);
+
+    return string(abi.encodePacked(
+        "data:application/json;base64,",
+        Base64.encode(bytes(json))
+    ));
+}
+```
+
+## On-Chain SVG Generation
+
+The NFT generates a dynamic SVG that updates with the user's score and tier:
+
+```solidity copy
+function generateSVG(
+    uint256 tokenId,
+    uint256 score,
+    Tier tier
+) internal pure returns (string memory) {
+    string memory tierColor = getTierColor(tier);
+    string memory tierName = getTierName(tier);
+
+    return string(abi.encodePacked(
+        '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 400">',
+        // ... SVG content with dynamic score and tier colors
+        '</svg>'
+    ));
+}
+```
+
+**Output Example:**
+
+The SVG displays:
+- Veritas branding
+- Current VeritasScore
+- Tier name and color
+- Token ID
+
+## View Functions
+
+```solidity copy
+// Get token ID for address
+function getTokenId(address user) external view returns (uint256);
+
+// Get score for address
+function getScore(address user) external view returns (uint256);
+
+// Get tier for address
+function getUserTier(address user) external view returns (Tier);
+
+// Check if address has NFT
+function hasNFT(address user) external view returns (bool);
+```
+
+## Events
+
+```solidity
+event Minted(address indexed to, uint256 indexed tokenId);
+event ScoreUpdated(address indexed user, uint256 indexed tokenId, uint256 newScore);
+event TierChanged(address indexed user, uint256 indexed tokenId, Tier oldTier, Tier newTier);
+```
+
+## Integration Example
+
+### Displaying NFT
+
+```typescript copy
+import { useContractRead } from 'wagmi';
+
+function NFTDisplay({ address }) {
+  const { data: tokenURI } = useContractRead({
+    address: NFT_ADDRESS,
+    abi: REPUTATION_NFT_ABI,
+    functionName: 'tokenURI',
+    args: [tokenId],
+  });
+
+  if (!tokenURI) return null;
+
+  // Decode base64 JSON
+  const json = JSON.parse(atob(tokenURI.split(',')[1]));
+
+  return (
+    <div>
+      <img src={json.image} alt={json.name} />
+      <h3>{json.name}</h3>
+      <p>Score: {json.attributes[0].value}</p>
+      <p>Tier: {json.attributes[1].value}</p>
+    </div>
+  );
+}
+```
+
+### Checking Tier
+
+```typescript copy
+const { data: tier } = useContractRead({
+  address: NFT_ADDRESS,
+  abi: REPUTATION_NFT_ABI,
+  functionName: 'getUserTier',
+  args: [userAddress],
+});
+
+const tierNames = ['Bronze', 'Silver', 'Gold', 'Platinum', 'Diamond'];
+console.log(`User tier: ${tierNames[tier]}`);
+```
+
+## Gas Costs
+
+| Function | Approximate Gas |
+|----------|-----------------|
+| mint | ~120,000 |
+| updateScore | ~40,000 |
+| tokenURI (view) | ~0 |
+
+## Related Documentation
+
+- [VeritasCore](/contracts/veritas-core)
+- [VeritasScore Algorithm](/contracts/score-calculator)

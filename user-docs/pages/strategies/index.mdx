@@ -1,0 +1,203 @@
+import { Cards, Card, Callout } from 'nextra/components'
+
+# Prediction Strategies
+
+Whether you're just starting out or looking to optimize your approach, this section offers strategies and tips to improve your prediction game.
+
+## Choose Your Path
+
+export const PathGrid = () => (
+  <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mt-6">
+    <a href="/strategies/beginners" className="block p-6 rounded-xl border-2 border-green-500 bg-green-50 dark:bg-green-900/20 hover:shadow-lg transition-shadow no-underline">
+      <h3 className="font-bold text-xl m-0 text-gray-900 dark:text-white">Beginners</h3>
+      <p className="text-gray-600 dark:text-gray-400 mt-2 mb-0">
+        New to prediction markets? Start here with foundational concepts and safe practices.
+      </p>
+    </a>
+    <a href="/strategies/building-reputation" className="block p-6 rounded-xl border-2 border-blue-500 bg-blue-50 dark:bg-blue-900/20 hover:shadow-lg transition-shadow no-underline">
+      <h3 className="font-bold text-xl m-0 text-gray-900 dark:text-white">Building Reputation</h3>
+      <p className="text-gray-600 dark:text-gray-400 mt-2 mb-0">
+        Focused strategies for improving your VeritasScore and climbing the ranks.
+      </p>
+    </a>
+    <a href="/strategies/advanced" className="block p-6 rounded-xl border-2 border-purple-500 bg-purple-50 dark:bg-purple-900/20 hover:shadow-lg transition-shadow no-underline">
+      <h3 className="font-bold text-xl m-0 text-gray-900 dark:text-white">Advanced</h3>
+      <p className="text-gray-600 dark:text-gray-400 mt-2 mb-0">
+        For experienced predictors looking to optimize and scale.
+      </p>
+    </a>
+  </div>
+)
+
+<PathGrid />
+
+## Core Principles
+
+Before diving into specific strategies, internalize these fundamentals:
+
+### 1. Accuracy Over Volume
+
+export const AccuracyTip = () => (
+  <div className="p-4 rounded-xl bg-blue-50 dark:bg-blue-900/20 mt-4">
+    <p className="m-0">The VeritasScore formula rewards accuracy more than volume:</p>
+    <pre className="mt-2 mb-2">VeritasScore = Win Rate × √(Volume)</pre>
+    <ul className="mb-0">
+      <li><strong>Doubling your volume</strong> only increases your score by 1.41×</li>
+      <li><strong>Increasing win rate 10%</strong> directly increases your score by 10%</li>
+    </ul>
+  </div>
+)
+
+<AccuracyTip />
+
+### 2. Patience Pays
+
+export const PatienceTip = () => (
+  <div className="p-4 rounded-xl bg-green-50 dark:bg-green-900/20 mt-4">
+    <ul className="mb-0 mt-0">
+      <li>New account cap (14 days) rewards patience</li>
+      <li>Experience scaling (50+ predictions) rewards consistency</li>
+      <li>Building a track record takes time</li>
+      <li>Don't rush to bet on everything</li>
+    </ul>
+  </div>
+)
+
+<PatienceTip />
+
+### 3. Specialize First, Diversify Later
+
+export const SpecializeTip = () => (
+  <div className="p-4 rounded-xl bg-amber-50 dark:bg-amber-900/20 mt-4">
+    <ul className="mb-0 mt-0">
+      <li>Master one platform or prediction type</li>
+      <li>Get your win rate high</li>
+      <li>Then expand to other platforms</li>
+      <li>Maintain accuracy as you grow</li>
+    </ul>
+  </div>
+)
+
+<SpecializeTip />
+
+### 4. Risk Management is King
+
+export const RiskTip = () => (
+  <div className="p-4 rounded-xl bg-red-50 dark:bg-red-900/20 mt-4">
+    <ul className="mb-0 mt-0">
+      <li>Never bet more than you can afford to lose</li>
+      <li>Consistent sizing beats emotional betting</li>
+      <li>Losing streaks happen to everyone</li>
+      <li>Protect your bankroll for the long term</li>
+    </ul>
+  </div>
+)
+
+<RiskTip />
+
+## Strategy by Platform
+
+Different platforms require different approaches:
+
+export const PlatformStrategies = () => (
+  <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mt-6">
+    <div className="p-4 rounded-xl border border-gray-200 dark:border-gray-700">
+      <h4 className="font-semibold m-0">DreamDEX</h4>
+      <p className="text-sm text-gray-600 dark:text-gray-400 mt-2">
+        Fast-paced, technical analysis, pattern recognition. Best for traders who can read charts.
+      </p>
+      <ul className="text-sm mt-2 mb-0 space-y-1">
+        <li>Watch trends before betting</li>
+        <li>Avoid high-volatility moments</li>
+        <li>Don't bet every round</li>
+      </ul>
+    </div>
+    <div className="p-4 rounded-xl border border-gray-200 dark:border-gray-700">
+      <h4 className="font-semibold m-0">Polymarket</h4>
+      <p className="text-sm text-gray-600 dark:text-gray-400 mt-2">
+        Research-heavy, fundamentals-driven. Best for those who follow news and can analyze events.
+      </p>
+      <ul className="text-sm mt-2 mb-0 space-y-1">
+        <li>Research thoroughly</li>
+        <li>Look for mispriced markets</li>
+        <li>Use your domain expertise</li>
+      </ul>
+    </div>
+    <div className="p-4 rounded-xl border border-gray-200 dark:border-gray-700">
+      <h4 className="font-semibold m-0">Sports (Azuro/Overtime)</h4>
+      <p className="text-sm text-gray-600 dark:text-gray-400 mt-2">
+        Sports knowledge, statistical analysis. Best for sports enthusiasts with analytical skills.
+      </p>
+      <ul className="text-sm mt-2 mb-0 space-y-1">
+        <li>Focus on sports you know</li>
+        <li>Check injury reports</li>
+        <li>Avoid emotional picks</li>
+      </ul>
+    </div>
+    <div className="p-4 rounded-xl border border-gray-200 dark:border-gray-700">
+      <h4 className="font-semibold m-0">SpeedMarkets</h4>
+      <p className="text-sm text-gray-600 dark:text-gray-400 mt-2">
+        Quick predictions, multiple assets. Best for active traders who can make fast decisions.
+      </p>
+      <ul className="text-sm mt-2 mb-0 space-y-1">
+        <li>Trade with the trend</li>
+        <li>Avoid news events</li>
+        <li>Set daily limits</li>
+      </ul>
+    </div>
+  </div>
+)
+
+<PlatformStrategies />
+
+## Common Mistakes
+
+<Callout type="error">
+  Avoid these frequent errors:
+</Callout>
+
+export const MistakesGrid = () => (
+  <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mt-4">
+    <div className="p-4 rounded-xl bg-red-50 dark:bg-red-900/20">
+      <h4 className="font-semibold m-0">Chasing Losses</h4>
+      <p className="text-sm mt-2 mb-0">
+        After a loss, betting bigger to "recover" usually leads to bigger losses.
+      </p>
+    </div>
+    <div className="p-4 rounded-xl bg-red-50 dark:bg-red-900/20">
+      <h4 className="font-semibold m-0">FOMO Trading</h4>
+      <p className="text-sm mt-2 mb-0">
+        Jumping into bets because "everyone else is" without your own analysis.
+      </p>
+    </div>
+    <div className="p-4 rounded-xl bg-red-50 dark:bg-red-900/20">
+      <h4 className="font-semibold m-0">Overconfidence</h4>
+      <p className="text-sm mt-2 mb-0">
+        A winning streak doesn't mean you can't lose. Stay humble, stay cautious.
+      </p>
+    </div>
+    <div className="p-4 rounded-xl bg-red-50 dark:bg-red-900/20">
+      <h4 className="font-semibold m-0">Ignoring Bankroll</h4>
+      <p className="text-sm mt-2 mb-0">
+        Betting too much per trade can wipe you out on a bad streak.
+      </p>
+    </div>
+  </div>
+)
+
+<MistakesGrid />
+
+## Explore Further
+
+<Cards>
+  <Card title="Beginner Guide" href="/strategies/beginners" />
+  <Card title="Building Reputation" href="/strategies/building-reputation" />
+  <Card title="Common Mistakes" href="/strategies/common-mistakes" />
+  <Card title="Advanced Strategies" href="/strategies/advanced" />
+</Cards>
+
+## Related
+
+- [VeritasScore](/reputation/veritasscore) - Understand the formula
+- [Improving Score](/reputation/improving-score) - Score optimization
+- [Platform Guides](/platforms) - Platform-specific details

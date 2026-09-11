@@ -1,0 +1,221 @@
+import { Callout } from 'nextra/components'
+
+# Dashboard Tour
+
+Your dashboard is the command center for your Veritas experience. Let's explore what each section does.
+
+## Dashboard Overview
+
+When you open your dashboard, you'll see several key areas:
+
+```
+┌─────────────────────────────────────────────────────────────────┐
+│  Navigation Bar                                    [Wallet] [Menu]│
+├─────────────────────────────────────────────────────────────────┤
+│                                                                  │
+│  ┌──────────────────┐  ┌─────────────────────────────────────┐  │
+│  │                  │  │                                     │  │
+│  │   Your NFT       │  │         Quick Stats                 │  │
+│  │   [Image]        │  │   Score | Tier | Rank | Win Rate    │  │
+│  │                  │  │                                     │  │
+│  └──────────────────┘  └─────────────────────────────────────┘  │
+│                                                                  │
+│  ┌───────────────────────────────────────────────────────────┐  │
+│  │                   Import Predictions                       │  │
+│  │   [Select Platform ▼]              [Import Button]        │  │
+│  └───────────────────────────────────────────────────────────┘  │
+│                                                                  │
+│  ┌───────────────────────────────────────────────────────────┐  │
+│  │                   Platform Stats                           │  │
+│  │   DreamDEX | Polymarket | Azuro | ...                  │  │
+│  └───────────────────────────────────────────────────────────┘  │
+│                                                                  │
+└─────────────────────────────────────────────────────────────────┘
+```
+
+## 1. Your Reputation NFT
+
+export const NFTDisplay = () => (
+  <div className="p-4 rounded-xl bg-gray-50 dark:bg-gray-800 mt-4">
+    <h4 className="font-semibold m-0">NFT Display</h4>
+    <p className="text-gray-600 dark:text-gray-400 mt-1 mb-0">
+      Shows your unique Reputation NFT with:
+    </p>
+    <ul className="mt-2 mb-0 text-sm">
+      <li>Your current VeritasScore prominently displayed</li>
+      <li>Tier badge (Bronze → Diamond)</li>
+      <li>Visual design that evolves as you level up</li>
+      <li>Your unique token ID</li>
+    </ul>
+  </div>
+)
+
+<NFTDisplay />
+
+## 2. Quick Stats Panel
+
+export const QuickStats = () => (
+  <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mt-4">
+    <div className="p-4 rounded-xl bg-blue-50 dark:bg-blue-900/20 text-center">
+      <div className="text-2xl font-bold text-blue-600">1,250</div>
+      <div className="text-sm text-gray-600 dark:text-gray-400">VeritasScore</div>
+    </div>
+    <div className="p-4 rounded-xl bg-yellow-50 dark:bg-yellow-900/20 text-center">
+      <div className="text-2xl font-bold text-yellow-600">Gold</div>
+      <div className="text-sm text-gray-600 dark:text-gray-400">Current Tier</div>
+    </div>
+    <div className="p-4 rounded-xl bg-purple-50 dark:bg-purple-900/20 text-center">
+      <div className="text-2xl font-bold text-purple-600">#247</div>
+      <div className="text-sm text-gray-600 dark:text-gray-400">Global Rank</div>
+    </div>
+    <div className="p-4 rounded-xl bg-green-50 dark:bg-green-900/20 text-center">
+      <div className="text-2xl font-bold text-green-600">63.5%</div>
+      <div className="text-sm text-gray-600 dark:text-gray-400">Win Rate</div>
+    </div>
+  </div>
+)
+
+<QuickStats />
+
+### What Each Stat Means
+
+| Stat | Description |
+|------|-------------|
+| **VeritasScore** | Your overall reputation score ([learn more](/reputation/veritasscore)) |
+| **Tier** | Your current tier level ([see tiers](/reputation/tiers)) |
+| **Rank** | Your position on the global leaderboard |
+| **Win Rate** | Percentage of predictions you've won |
+
+## 3. Import Section
+
+This is where you bring in your prediction history from different platforms.
+
+export const ImportHowTo = () => (
+  <div className="p-4 rounded-xl border border-blue-200 dark:border-blue-800 bg-blue-50 dark:bg-blue-900/20 mt-4">
+    <h4 className="font-semibold m-0">How to Use:</h4>
+    <ol className="mt-2 mb-0">
+      <li>Select a platform from the dropdown</li>
+      <li>Wait for your data to load</li>
+      <li>Review the summary</li>
+      <li>Click "Import" and confirm</li>
+    </ol>
+  </div>
+)
+
+<ImportHowTo />
+
+<Callout type="info">
+  **Tip:** Import from all platforms you use to maximize your VeritasScore!
+</Callout>
+
+## 4. Platform Stats Breakdown
+
+See your performance on each platform:
+
+| Column | What It Shows |
+|--------|---------------|
+| **Platform** | Name and icon of the platform |
+| **Bets** | Total number of predictions |
+| **Wins** | How many you got right |
+| **Win Rate** | Success percentage |
+| **Volume** | Total amount wagered |
+| **Contribution** | How much this platform adds to your score |
+
+## Navigation Menu
+
+The main menu gives you access to:
+
+### Dashboard
+Your personal stats and import tools (you are here)
+
+### Leaderboard
+Global rankings of all Veritas users. Filter by:
+- Platform
+- Time period
+- Tier
+
+### Markets
+View active prediction markets across platforms
+
+### Copy Trading
+Follow top traders or manage your followers
+
+### Profile
+Public view of your profile (what others see)
+
+## Page Actions
+
+### Refresh Stats
+Click the refresh icon to update your stats with the latest data.
+
+### Share Profile
+Get a link to share your Veritas profile on social media.
+
+### Export Data
+Download your prediction history as a CSV file.
+
+## Mobile Experience
+
+On mobile, the dashboard adapts:
+- Stats stack vertically
+- NFT appears at the top
+- Swipe between platform tabs
+- Bottom navigation for quick access
+
+## Keyboard Shortcuts
+
+| Shortcut | Action |
+|----------|--------|
+| `D` | Go to Dashboard |
+| `L` | Go to Leaderboard |
+| `C` | Go to Copy Trading |
+| `I` | Open Import Modal |
+| `?` | Show all shortcuts |
+
+## Tips for Using Your Dashboard
+
+export const DashboardTips = () => (
+  <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mt-4">
+    <div className="p-4 rounded-xl bg-green-50 dark:bg-green-900/20">
+      <h4 className="font-semibold text-green-800 dark:text-green-200 m-0">Do This</h4>
+      <ul className="mt-2 mb-0 text-sm">
+        <li>Check daily for new import opportunities</li>
+        <li>Track your win rate trends</li>
+        <li>Celebrate tier upgrades!</li>
+      </ul>
+    </div>
+    <div className="p-4 rounded-xl bg-amber-50 dark:bg-amber-900/20">
+      <h4 className="font-semibold text-amber-800 dark:text-amber-200 m-0">Pro Tips</h4>
+      <ul className="mt-2 mb-0 text-sm">
+        <li>Import from multiple platforms</li>
+        <li>Check leaderboard to see competitors</li>
+        <li>Share your profile to build credibility</li>
+      </ul>
+    </div>
+  </div>
+)
+
+<DashboardTips />
+
+## You're All Set!
+
+You now know your way around Veritas. Here's what to explore next:
+
+export const NextLinks = () => (
+  <div className="flex flex-wrap gap-3 mt-6">
+    <a href="/reputation" className="inline-flex items-center px-4 py-2 bg-gray-100 dark:bg-gray-800 rounded-lg hover:bg-gray-200 dark:hover:bg-gray-700 transition-colors no-underline text-sm">
+      Learn About Reputation
+    </a>
+    <a href="/platforms" className="inline-flex items-center px-4 py-2 bg-gray-100 dark:bg-gray-800 rounded-lg hover:bg-gray-200 dark:hover:bg-gray-700 transition-colors no-underline text-sm">
+      Platform Guides
+    </a>
+    <a href="/copy-trading" className="inline-flex items-center px-4 py-2 bg-gray-100 dark:bg-gray-800 rounded-lg hover:bg-gray-200 dark:hover:bg-gray-700 transition-colors no-underline text-sm">
+      Copy Trading
+    </a>
+    <a href="/strategies" className="inline-flex items-center px-4 py-2 bg-gray-100 dark:bg-gray-800 rounded-lg hover:bg-gray-200 dark:hover:bg-gray-700 transition-colors no-underline text-sm">
+      Tips & Strategies
+    </a>
+  </div>
+)
+
+<NextLinks />

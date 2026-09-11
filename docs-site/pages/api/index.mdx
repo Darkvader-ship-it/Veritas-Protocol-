@@ -1,0 +1,335 @@
+import { Callout, Tabs } from 'nextra/components'
+
+# API Reference
+
+Veritas exposes REST APIs through Next.js API routes for accessing leaderboard data, market information, and copy trading operations.
+
+**Base URL:** `https://veritas.xyz/api`
+
+**Local:** `http://localhost:3000/api`
+
+## Authentication
+
+Most read endpoints are public. Write operations require wallet signature authentication via the frontend.
+
+## Leaderboard APIs
+
+### Get Global Leaderboard
+
+Returns ranked list of traders by VeritasScore.
+
+```
+GET /api/leaderboard
+```
+
+**Query Parameters:**
+
+| Parameter | Type | Default | Description |
+|-----------|------|---------|-------------|
+| limit | number | 100 | Max results |
+| offset | number | 0 | Pagination offset |
+| platform | string | all | Filter by platform |
+
+**Response:**
+
+```json
+{
+  "success": true,
+  "data": [
+    {
+      "rank": 1,
+      "address": "0x1234...5678",
+      "veritasScore": 1250,
+      "tier": "gold",
+      "totalBets": 450,
+      "wins": 285,
+      "winRate": 63.3,
+      "volume": "45.5",
+      "platforms": ["dreamdex", "polymarket"]
+    }
+  ],
+  "pagination": {
+    "total": 1500,
+    "limit": 100,
+    "offset": 0
+  }
+}
+```
+
+### Additional Leaderboard Endpoints
+
+| Endpoint | Description |
+|----------|-------------|
+| `GET /api/leaderboard-db` | Database leaderboard (faster, cached) |
+| `GET /api/leaderboard-live` | Real-time with latest blockchain data |
+
+## Platform APIs
+
+### DreamDEX
+
+<Tabs items={['Markets', 'Resolve']}>
+  <Tabs.Tab>
+    ```
+    GET /api/dreamdex
+    ```
+
+    Returns active DreamDEX prediction rounds.
+
+    **Response:**
+    ```json
+    {
+      "success": true,
+      "data": {
+        "currentEpoch": 12345,
+        "rounds": [
+          {
+            "epoch": 12345,
+            "startTimestamp": 1704067200,
+            "lockTimestamp": 1704067500,
+            "closeTimestamp": 1704067800,
+            "lockPrice": "300.50",
+            "totalAmount": "125.5",
+            "bullAmount": "75.2",
+            "bearAmount": "50.3"
+          }
+        ]
+      }
+    }
+    ```
+  </Tabs.Tab>
+  <Tabs.Tab>
+    ```
+    GET /api/dreamdex/resolve
+    ```
+
+    Triggers resolution of completed rounds.
+  </Tabs.Tab>
+</Tabs>
+
+### Other Platforms
+
+| Platform | Markets Endpoint | Resolve Endpoint |
+|----------|------------------|------------------|
+| Polymarket | `GET /api/polymarket` | `GET /api/polymarket/resolve` |
+| Azuro | `GET /api/azuro` | `GET /api/azuro/resolve` |
+| Overtime | `GET /api/overtime` | `GET /api/overtime/resolve` |
+| Limitless | `GET /api/limitless` | `GET /api/limitless/resolve` |
+| Speed Markets | `GET /api/speedmarkets` | `GET /api/speedmarkets/resolve` |
+
+## Copy Trading APIs
+
+### Follow a Trader
+
+```
+POST /api/copy-trade/follow
+```
+
+**Request Body:**
+
+```json
+{
+  "follower": "0x1234...5678",
+  "leader": "0xabcd...efgh",
+  "allocationBps": 1000,
+  "maxBetSize": "1000000000000000000"
+}
+```
+
+**Response:**
+
+```json
+{
+  "success": true,
+  "data": {
+    "followId": "uuid",
+    "follower": "0x1234...5678",
+    "leader": "0xabcd...efgh",
+    "allocationBps": 1000,
+    "maxBetSize": "1.0",
+    "createdAt": "2024-01-01T00:00:00Z"
+  }
+}
+```
+
+### Get Copy Trade History
+
+```
+GET /api/copy-trade/history
+```
+
+**Query Parameters:**
+
+| Parameter | Type | Required | Description |
+|-----------|------|----------|-------------|
+| address | string | Yes | Wallet address |
+| limit | number | No | Max results (default: 50) |
+
+**Response:**
+
+```json
+{
+  "success": true,
+  "data": [
+    {
+      "id": "uuid",
+      "leader": "0xabcd...efgh",
+      "platform": "dreamdex",
+      "marketId": "12345",
+      "amount": "0.1",
+      "position": "BULL",
+      "result": "WIN",
+      "profitLoss": "0.09",
+      "timestamp": "2024-01-01T12:00:00Z"
+    }
+  ]
+}
+```
+
+### Additional Copy Trading Endpoints
+
+| Endpoint | Method | Description |
+|----------|--------|-------------|
+| `/api/copy-trading/simulation` | GET | Simulated copy trading results |
+| `/api/copy-trading/stats` | GET | Aggregate statistics |
+| `/api/copy-trading/monitor` | GET | Real-time monitoring |
+
+## Analytics API
+
+### Get Analytics
+
+```
+GET /api/analytics
+```
+
+**Response:**
+
+```json
+{
+  "success": true,
+  "data": {
+    "totalUsers": 5000,
+    "totalBets": 150000,
+    "totalVolume": "25000.0",
+    "platformBreakdown": {
+      "dreamdex": {
+        "users": 3500,
+        "bets": 100000,
+        "volume": "15000.0"
+      },
+      "polymarket": {
+        "users": 1500,
+        "bets": 50000,
+        "volume": "10000.0"
+      }
+    }
+  }
+}
+```
+
+## Notifications API
+
+### Send Notification
+
+```
+POST /api/notify
+```
+
+Sends notification via Telegram bot.
+
+**Request Body:**
+
+```json
+{
+  "message": "Trade executed",
+  "chatId": "123456789"
+}
+```
+
+## Error Responses
+
+All endpoints return errors in consistent format:
+
+```json
+{
+  "success": false,
+  "error": {
+    "code": "INVALID_ADDRESS",
+    "message": "Invalid wallet address provided"
+  }
+}
+```
+
+### Common Error Codes
+
+| Code | Description |
+|------|-------------|
+| INVALID_ADDRESS | Malformed wallet address |
+| NOT_FOUND | Resource not found |
+| RATE_LIMITED | Too many requests |
+| INTERNAL_ERROR | Server error |
+| INVALID_PARAMS | Invalid query parameters |
+
+## Rate Limiting
+
+| Endpoint Type | Limit |
+|---------------|-------|
+| Read endpoints | 100/min |
+| Write endpoints | 20/min |
+| Resolve endpoints | 10/min |
+
+## Caching
+
+| Endpoint | Cache Duration |
+|----------|---------------|
+| /api/leaderboard | 60 seconds |
+| /api/leaderboard-db | 30 seconds |
+| /api/[platform] | 10 seconds |
+| /api/analytics | 5 minutes |
+
+## TypeScript Types
+
+```typescript
+interface LeaderboardEntry {
+  rank: number;
+  address: string;
+  veritasScore: number;
+  tier: 'bronze' | 'silver' | 'gold' | 'platinum' | 'diamond';
+  totalBets: number;
+  wins: number;
+  winRate: number;
+  volume: string;
+  platforms: string[];
+}
+
+interface CopyTradeRecord {
+  id: string;
+  leader: string;
+  platform: string;
+  marketId: string;
+  amount: string;
+  position: string;
+  result: 'WIN' | 'LOSS' | 'PENDING';
+  profitLoss: string;
+  timestamp: string;
+}
+
+interface ApiResponse<T> {
+  success: boolean;
+  data?: T;
+  error?: {
+    code: string;
+    message: string;
+  };
+  pagination?: {
+    total: number;
+    limit: number;
+    offset: number;
+  };
+}
+```
+
+## Related Documentation
+
+- [Architecture Overview](/architecture)
+- [Database Schema](/architecture/database-schema)
+- [Developer Guide](/guides/developer-guide)

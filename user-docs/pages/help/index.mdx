@@ -1,0 +1,116 @@
+import { Cards, Card, Callout } from 'nextra/components'
+
+# Help Center
+
+Find answers to common questions, troubleshoot issues, and get support for Veritas.
+
+## Quick Help
+
+export const QuickHelpGrid = () => (
+  <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mt-6">
+    <a href="/help/faq" className="block p-6 rounded-xl border-2 border-blue-500 bg-blue-50 dark:bg-blue-900/20 hover:shadow-lg transition-shadow no-underline">
+      <h3 className="font-bold text-xl m-0 text-gray-900 dark:text-white">FAQ</h3>
+      <p className="text-gray-600 dark:text-gray-400 mt-2 mb-0">
+        Answers to the most frequently asked questions about Veritas.
+      </p>
+    </a>
+    <a href="/help/troubleshooting" className="block p-6 rounded-xl border-2 border-amber-500 bg-amber-50 dark:bg-amber-900/20 hover:shadow-lg transition-shadow no-underline">
+      <h3 className="font-bold text-xl m-0 text-gray-900 dark:text-white">Troubleshooting</h3>
+      <p className="text-gray-600 dark:text-gray-400 mt-2 mb-0">
+        Solutions to common problems and issues you might encounter.
+      </p>
+    </a>
+    <a href="/help/glossary" className="block p-6 rounded-xl border-2 border-purple-500 bg-purple-50 dark:bg-purple-900/20 hover:shadow-lg transition-shadow no-underline">
+      <h3 className="font-bold text-xl m-0 text-gray-900 dark:text-white">Glossary</h3>
+      <p className="text-gray-600 dark:text-gray-400 mt-2 mb-0">
+        Definitions of terms and concepts used in Veritas.
+      </p>
+    </a>
+    <a href="/help/contact" className="block p-6 rounded-xl border-2 border-green-500 bg-green-50 dark:bg-green-900/20 hover:shadow-lg transition-shadow no-underline">
+      <h3 className="font-bold text-xl m-0 text-gray-900 dark:text-white">Contact Us</h3>
+      <p className="text-gray-600 dark:text-gray-400 mt-2 mb-0">
+        Get in touch with the Veritas team for support.
+      </p>
+    </a>
+  </div>
+)
+
+<QuickHelpGrid />
+
+## Quick Answers
+
+### Most Common Questions
+
+export const FAQAccordion = () => (
+  <div className="space-y-4 mt-6">
+    <details className="p-4 rounded-xl bg-gray-50 dark:bg-gray-800">
+      <summary className="cursor-pointer font-semibold">How do I get started?</summary>
+      <p className="mt-2 mb-0 text-gray-600 dark:text-gray-400">
+        Connect your wallet, register for free (you'll receive a Reputation NFT), and import your first predictions. See our Getting Started guide.
+      </p>
+    </details>
+    <details className="p-4 rounded-xl bg-gray-50 dark:bg-gray-800">
+      <summary className="cursor-pointer font-semibold">Is Veritas free?</summary>
+      <p className="mt-2 mb-0 text-gray-600 dark:text-gray-400">
+        Registration is free! You only pay network gas fees for transactions. Copy trading has a 20% fee on profits (10% protocol, 10% leader).
+      </p>
+    </details>
+    <details className="p-4 rounded-xl bg-gray-50 dark:bg-gray-800">
+      <summary className="cursor-pointer font-semibold">How is my VeritasScore calculated?</summary>
+      <p className="mt-2 mb-0 text-gray-600 dark:text-gray-400">
+        VeritasScore = Win Rate × √(Volume). Your accuracy and trading volume both contribute, with accuracy having more impact.
+      </p>
+    </details>
+    <details className="p-4 rounded-xl bg-gray-50 dark:bg-gray-800">
+      <summary className="cursor-pointer font-semibold">Why is my score capped?</summary>
+      <p className="mt-2 mb-0 text-gray-600 dark:text-gray-400">
+        New accounts have a 50% score cap for 14 days, and scores scale with prediction count (reaching 100% at 50 predictions). These prevent gaming the system.
+      </p>
+    </details>
+    <details className="p-4 rounded-xl bg-gray-50 dark:bg-gray-800">
+      <summary className="cursor-pointer font-semibold">Can I transfer my NFT?</summary>
+      <p className="mt-2 mb-0 text-gray-600 dark:text-gray-400">
+        No. Your Reputation NFT is soulbound, meaning it's permanently attached to your wallet and cannot be transferred, sold, or given away.
+      </p>
+    </details>
+  </div>
+)
+
+<FAQAccordion />
+
+## Need More Help?
+
+export const MoreHelpGrid = () => (
+  <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mt-6">
+    <div className="p-4 rounded-xl border border-gray-200 dark:border-gray-700">
+      <h4 className="font-semibold m-0">Documentation</h4>
+      <p className="text-sm text-gray-600 dark:text-gray-400 mt-2 mb-0">
+        Browse the full documentation using the sidebar navigation.
+      </p>
+    </div>
+    <div className="p-4 rounded-xl border border-gray-200 dark:border-gray-700">
+      <h4 className="font-semibold m-0">Discord</h4>
+      <p className="text-sm text-gray-600 dark:text-gray-400 mt-2 mb-0">
+        Join our Discord community for real-time support.
+      </p>
+    </div>
+    <div className="p-4 rounded-xl border border-gray-200 dark:border-gray-700">
+      <h4 className="font-semibold m-0">Twitter</h4>
+      <p className="text-sm text-gray-600 dark:text-gray-400 mt-2 mb-0">
+        Follow us for updates and announcements.
+      </p>
+    </div>
+  </div>
+)
+
+<MoreHelpGrid />
+
+## Browse by Topic
+
+<Cards>
+  <Card title="Getting Started" href="/getting-started" />
+  <Card title="Platforms" href="/platforms" />
+  <Card title="Copy Trading" href="/copy-trading" />
+  <Card title="Reputation System" href="/reputation" />
+  <Card title="Strategies" href="/strategies" />
+</Cards>

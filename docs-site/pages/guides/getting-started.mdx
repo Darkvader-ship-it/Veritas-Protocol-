@@ -1,0 +1,267 @@
+import { Callout, Steps, Tabs, FileTree } from 'nextra/components'
+
+# Getting Started
+
+This guide will help you set up Veritas for local development.
+
+## Prerequisites
+
+<Callout type="info">
+  Before you begin, ensure you have the following installed:
+</Callout>
+
+| Tool | Version | Purpose |
+|------|---------|---------|
+| Node.js | v20+ | Runtime environment |
+| npm | v9+ | Package manager |
+| Git | Latest | Version control |
+| Foundry | Latest | Smart contract tooling |
+
+### Install Foundry
+
+<Tabs items={['macOS/Linux', 'Windows (WSL2)']}>
+  <Tabs.Tab>
+    ```bash
+    curl -L https://foundry.paradigm.xyz | bash
+    foundryup
+    ```
+  </Tabs.Tab>
+  <Tabs.Tab>
+    ```bash
+    # In WSL2 terminal
+    curl -L https://foundry.paradigm.xyz | bash
+    foundryup
+    ```
+  </Tabs.Tab>
+</Tabs>
+
+## Repository Setup
+
+### Clone the Repository
+
+```bash copy
+git clone https://github.com/Leihyn/Veritas.git
+cd Veritas
+```
+
+### Project Structure
+
+<FileTree>
+  <FileTree.Folder name="veritas-mvp" defaultOpen>
+    <FileTree.Folder name="contracts" defaultOpen>
+      <FileTree.Folder name="src">
+        <FileTree.Folder name="core">
+          <FileTree.File name="VeritasCore.sol" />
+          <FileTree.File name="ReputationNFT.sol" />
+          <FileTree.File name="ScoreCalculator.sol" />
+          <FileTree.File name="CopyTradingVault.sol" />
+        </FileTree.Folder>
+      </FileTree.Folder>
+      <FileTree.File name="foundry.toml" />
+    </FileTree.Folder>
+    <FileTree.Folder name="frontend" defaultOpen>
+      <FileTree.Folder name="app" />
+      <FileTree.Folder name="components" />
+      <FileTree.Folder name="hooks" />
+      <FileTree.Folder name="lib" />
+      <FileTree.File name="package.json" />
+    </FileTree.Folder>
+    <FileTree.Folder name="services">
+      <FileTree.Folder name="indexer" />
+    </FileTree.Folder>
+    <FileTree.Folder name="docs" />
+  </FileTree.Folder>
+</FileTree>
+
+## Frontend Setup
+
+<Steps>
+
+### Install Dependencies
+
+```bash copy
+cd frontend
+npm install
+```
+
+### Configure Environment
+
+```bash copy
+cp .env.example .env.local
+```
+
+Edit `.env.local` with your values:
+
+```env filename=".env.local"
+# WalletConnect Project ID (get from cloud.walletconnect.com)
+NEXT_PUBLIC_WALLETCONNECT_PROJECT_ID=your_project_id
+
+# Contract Addresses (Testnet - pre-configured)
+NEXT_PUBLIC_CORE_ADDRESS_TESTNET=0xd140eb173cbe6abf12a304095fa529d9b3f8ce6b
+NEXT_PUBLIC_NFT_ADDRESS_TESTNET=0xa216b13c0b27b00c23552c768088fe11004d4b37
+NEXT_PUBLIC_CALCULATOR_ADDRESS_TESTNET=0x1c5aa7eff8174e8fd3a5643d75af77f3f5f422b9
+NEXT_PUBLIC_REGISTRY_ADDRESS_TESTNET=0xbf378b0e69cf131bcc0b103ae8b32b5db03ddaa5
+NEXT_PUBLIC_COPY_VAULT_ADDRESS=0xBf5341E79bc0507a16807C244b5267Ad8333a6ed
+
+# Supabase (get from supabase.com)
+NEXT_PUBLIC_SUPABASE_URL=your_supabase_url
+NEXT_PUBLIC_SUPABASE_ANON_KEY=your_anon_key
+```
+
+### Start Development Server
+
+```bash copy
+npm run dev
+```
+
+Open [http://localhost:3000](http://localhost:3000) in your browser.
+
+</Steps>
+
+## Smart Contract Setup
+
+<Steps>
+
+### Install Dependencies
+
+```bash copy
+cd contracts
+forge install
+```
+
+### Configure Environment
+
+```bash copy
+cp .env.example .env
+```
+
+Edit `.env`:
+
+```env filename=".env"
+PRIVATE_KEY=your_private_key_for_deployment
+SomniaSCAN_API_KEY=your_somniascan_api_key
+```
+
+### Run Tests
+
+```bash copy
+forge test
+```
+
+### Build Contracts
+
+```bash copy
+forge build
+```
+
+### Deploy (Testnet)
+
+```bash copy
+forge script script/Deploy.s.sol:Deploy \
+  --rpc-url https://data-seed-presomnia-1-s1.somnia.org:8545 \
+  --broadcast \
+  --verify
+```
+
+</Steps>
+
+## Indexer Services Setup
+
+<Steps>
+
+### Install Dependencies
+
+```bash copy
+cd services
+npm install
+```
+
+### Configure Environment
+
+```bash copy
+cp .env.example .env
+```
+
+Edit `.env`:
+
+```env filename=".env"
+NEXT_PUBLIC_SUPABASE_URL=your_supabase_url
+NEXT_PUBLIC_SUPABASE_ANON_KEY=your_anon_key
+
+Somnia_RPC_URL=https://somnia-dataseed.somnia.org
+Somnia_TESTNET_RPC_URL=https://data-seed-presomnia-1-s1.somnia.org:8545
+NETWORK=testnet
+```
+
+### Run Indexer
+
+```bash copy
+# Development (testnet)
+npm run dev
+
+# Specific platform
+npm run index:dreamdex:testnet
+
+# All platforms
+npm run index:all
+```
+
+</Steps>
+
+## Testing Your Setup
+
+<Steps>
+
+### Connect Wallet
+
+1. Open [http://localhost:3000](http://localhost:3000)
+2. Click "Connect Wallet"
+3. Select your wallet and connect to STT Testnet
+
+### Get Testnet STT
+
+Get testnet STT from the [STT Faucet](https://testnet.sttchain.org/faucet-smart).
+
+### Register as User
+
+1. Navigate to Dashboard
+2. Click "Register"
+3. Confirm transaction (0.0005 STT fee)
+4. Your soulbound NFT will be minted
+
+### Import Predictions
+
+1. Click "Import Predictions"
+2. Select a platform (e.g., DreamDEX)
+3. Review your prediction summary
+4. Confirm import transaction
+
+</Steps>
+
+## Common Issues
+
+<Callout type="error" emoji="⚠️">
+  **"Transaction Failed"**
+  - Ensure you have enough STT for gas
+  - Check you're on the correct network (Testnet/Mainnet)
+</Callout>
+
+<Callout type="error" emoji="⚠️">
+  **"Contract Not Found"**
+  - Verify contract addresses in `.env.local`
+  - Ensure you're connected to the correct chain
+</Callout>
+
+<Callout type="error" emoji="⚠️">
+  **"Indexer Not Updating"**
+  - Check RPC URL is valid
+  - Verify Supabase credentials
+  - Check indexer logs for errors
+</Callout>
+
+## Next Steps
+
+- [User Guide](/guides/user-guide) - Learn how to use Veritas
+- [Developer Guide](/guides/developer-guide) - Build on Veritas
+- [Architecture Overview](/architecture) - Understand the system
+- [Smart Contracts](/contracts) - Contract documentation

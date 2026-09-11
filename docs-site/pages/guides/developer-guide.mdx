@@ -1,0 +1,470 @@
+import { Callout, Steps, Tabs, FileTree } from 'nextra/components'
+
+# Developer Guide
+
+This guide covers how to build on Veritas, integrate with the protocol, and contribute to development.
+
+## Development Environment
+
+### Prerequisites
+
+| Tool | Version | Installation |
+|------|---------|--------------|
+| Node.js | v20+ | [nodejs.org](https://nodejs.org) |
+| Foundry | Latest | `curl -L https://foundry.paradigm.xyz \| bash` |
+| Git | Latest | [git-scm.com](https://git-scm.com) |
+
+### Repository Setup
+
+```bash copy
+git clone https://github.com/Leihyn/Veritas.git
+cd Veritas
+```
+
+## Smart Contract Development
+
+### Building Contracts
+
+```bash copy
+cd contracts
+forge install      # Install dependencies
+forge build        # Compile contracts
+```
+
+### Running Tests
+
+<Tabs items={['All Tests', 'Specific Test', 'With Gas Report']}>
+  <Tabs.Tab>
+    ```bash copy
+    forge test
+    ```
+  </Tabs.Tab>
+  <Tabs.Tab>
+    ```bash copy
+    forge test --match-test testRegisterUser
+    ```
+  </Tabs.Tab>
+  <Tabs.Tab>
+    ```bash copy
+    forge test --gas-report
+    ```
+  </Tabs.Tab>
+</Tabs>
+
+### Writing Tests
+
+```solidity filename="test/VeritasCore.t.sol" copy
+pragma solidity ^0.8.28;
+
+import "forge-std/Test.sol";
+import "../src/core/VeritasCore.sol";
+
+contract VeritasCoreTest is Test {
+    VeritasCore core;
+
+    function setUp() public {
+        // Deploy contracts
+        core = new VeritasCore();
+    }
+
+    function testRegisterUser() public {
+        vm.deal(address(this), 1 ether);
+        core.registerUser{value: 0.0005 ether}();
+        assertTrue(core.isRegistered(address(this)));
+    }
+}
+```
+
+### Deploying Contracts
+
+<Tabs items={['Testnet', 'Mainnet']}>
+  <Tabs.Tab>
+    ```bash copy
+    forge script script/Deploy.s.sol:Deploy \
+      --rpc-url https://data-seed-presomnia-1-s1.somnia.org:8545 \
+      --broadcast \
+      --verify
+    ```
+  </Tabs.Tab>
+  <Tabs.Tab>
+    ```bash copy
+    forge script script/Deploy.s.sol:Deploy \
+      --rpc-url https://somnia-dataseed.somnia.org \
+      --broadcast \
+      --verify
+    ```
+  </Tabs.Tab>
+</Tabs>
+
+## Contract Integration
+
+### Using useVeritas Hook
+
+The main hook for contract interactions:
+
+```typescript filename="components/MyComponent.tsx" copy
+import { useVeritas } from '@/hooks/useVeritas';
+
+function MyComponent() {
+  const {
+    // Connection state
+    address,
+    isConnected,
+    chain,
+
+    // User state
+    isRegistered,
+    userProfile,
+    veritasScore,
+
+    // Actions
+    register,
+    importPredictions,
+    updateScore,
+
+    // Loading states
+    isRegistering,
+    isImporting,
+  } = useVeritas();
+
+  const handleRegister = async () => {
+    try {
+      const tx = await register();
+      await tx.wait();
+      console.log('Registered!');
+    } catch (error) {
+      console.error('Registration failed:', error);
+    }
+  };
+
+  return (
+    <button onClick={handleRegister} disabled={isRegistering}>
+      {isRegistering ? 'Registering...' : 'Register'}
+    </button>
+  );
+}
+```
+
+### Direct Contract Calls with viem
+
+```typescript filename="lib/contracts.ts" copy
+import { createPublicClient, http } from 'viem';
+import { somniaTestnet } from 'viem/chains';
+import { VERITAS_CORE_ABI, CORE_ADDRESS } from '@/lib/contracts';
+
+const client = createPublicClient({
+  chain: somniaTestnet,
+  transport: http(),
+});
+
+// Read user profile
+const profile = await client.readContract({
+  address: CORE_ADDRESS,
+  abi: VERITAS_CORE_ABI,
+  functionName: 'getUserProfile',
+  args: [userAddress],
+});
+
+// Check registration
+const isRegistered = await client.readContract({
+  address: CORE_ADDRESS,
+  abi: VERITAS_CORE_ABI,
+  functionName: 'isRegistered',
+  args: [userAddress],
+});
+```
+
+### Writing Transactions
+
+```typescript copy
+import { createWalletClient, custom } from 'viem';
+
+const walletClient = createWalletClient({
+  chain: somniaTestnet,
+  transport: custom(window.ethereum),
+});
+
+// Register user
+const hash = await walletClient.writeContract({
+  address: CORE_ADDRESS,
+  abi: VERITAS_CORE_ABI,
+  functionName: 'registerUser',
+  value: parseEther('0.0005'),
+});
+```
+
+## Adding a New Platform Adapter
+
+<Steps>
+
+### Create Adapter Contract
+
+```solidity filename="contracts/src/adapters/NewPlatformAdapter.sol" copy
+pragma solidity ^0.8.28;
+
+import "../interfaces/IPlatformAdapter.sol";
+
+contract NewPlatformAdapter is IPlatformAdapter {
+    address public immutable platform;
+
+    constructor(address _platform) {
+        platform = _platform;
+    }
+
+    function getUserBets(address user)
+        external
+        view
+        returns (Bet[] memory)
+    {
+        // Implement platform-specific logic
+    }
+
+    function getBetOutcome(bytes32 betId)
+        external
+        view
+        returns (bool won, uint256 payout)
+    {
+        // Implement outcome checking
+    }
+}
+```
+
+### Register Platform
+
+```solidity copy
+// In deployment script
+platformRegistry.registerPlatform(
+    "NewPlatform",
+    address(newPlatformAdapter),
+    "https://newplatform.com"
+);
+```
+
+### Create Frontend Integration
+
+```typescript filename="frontend/lib/newplatform.ts" copy
+export async function fetchUserBets(address: string) {
+  // Fetch bets from platform API or subgraph
+}
+
+export async function formatBetsForImport(bets: any[]) {
+  // Format bets for importPredictions call
+}
+```
+
+### Create Indexer
+
+```typescript filename="services/indexer/newplatform-indexer.ts" copy
+import { createPublicClient, http } from 'viem';
+
+async function indexNewPlatform() {
+  const client = createPublicClient({
+    chain: targetChain,
+    transport: http(RPC_URL),
+  });
+
+  // Watch for relevant events
+  client.watchContractEvent({
+    address: PLATFORM_ADDRESS,
+    abi: PLATFORM_ABI,
+    eventName: 'BetPlaced',
+    onLogs: async (logs) => {
+      for (const log of logs) {
+        await processBet(log);
+      }
+    },
+  });
+}
+```
+
+</Steps>
+
+## Creating API Routes
+
+### Basic API Route
+
+```typescript filename="frontend/app/api/example/route.ts" copy
+import { NextRequest, NextResponse } from 'next/server';
+import { supabase } from '@/lib/supabase';
+
+export async function GET(request: NextRequest) {
+  try {
+    const { searchParams } = new URL(request.url);
+    const address = searchParams.get('address');
+
+    if (!address) {
+      return NextResponse.json(
+        { success: false, error: 'Address required' },
+        { status: 400 }
+      );
+    }
+
+    const { data, error } = await supabase
+      .from('users')
+      .select('*')
+      .eq('wallet_address', address)
+      .single();
+
+    if (error) throw error;
+
+    return NextResponse.json({ success: true, data });
+  } catch (error) {
+    return NextResponse.json(
+      { success: false, error: 'Internal error' },
+      { status: 500 }
+    );
+  }
+}
+```
+
+## Database Operations
+
+### Supabase Client
+
+```typescript filename="frontend/lib/supabase.ts" copy
+import { createClient } from '@supabase/supabase-js';
+
+export const supabase = createClient(
+  process.env.NEXT_PUBLIC_SUPABASE_URL!,
+  process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!
+);
+```
+
+### Common Queries
+
+```typescript copy
+// Get user stats
+const { data: stats } = await supabase
+  .from('user_platform_stats')
+  .select('*')
+  .eq('user_id', userId);
+
+// Get leaderboard
+const { data: leaderboard } = await supabase
+  .from('users')
+  .select(`
+    wallet_address,
+    user_platform_stats (
+      wins,
+      total_bets,
+      volume,
+      score
+    )
+  `)
+  .order('score', { ascending: false })
+  .limit(100);
+
+// Insert bet record
+await supabase.from('bets').insert({
+  user_id: userId,
+  platform_id: platformId,
+  market_id: marketId,
+  position: 'BULL',
+  amount: amount,
+  tx_hash: txHash,
+});
+```
+
+## Running Indexers
+
+<Tabs items={['Development', 'Production (PM2)', 'Docker']}>
+  <Tabs.Tab>
+    ```bash copy
+    cd services
+    npm install
+    npm run dev                         # All indexers
+    npm run index:dreamdex:testnet   # Specific
+    ```
+  </Tabs.Tab>
+  <Tabs.Tab>
+    ```bash copy
+    # Install PM2
+    npm install -g pm2
+
+    # Start indexers
+    pm2 start npm --name "dreamdex-indexer" -- run index:dreamdex:mainnet
+    pm2 save
+    pm2 startup
+
+    # Check status
+    pm2 status
+    pm2 logs dreamdex-indexer
+    ```
+  </Tabs.Tab>
+  <Tabs.Tab>
+    ```dockerfile copy
+    FROM node:20-alpine
+    WORKDIR /app
+    COPY package*.json ./
+    RUN npm ci --production
+    COPY . .
+    CMD ["npm", "run", "index:all"]
+    ```
+  </Tabs.Tab>
+</Tabs>
+
+## Code Style
+
+### Commit Messages
+
+```
+feat: Add new platform adapter for X
+fix: Resolve score calculation overflow
+docs: Update API documentation
+test: Add tests for copy trading
+refactor: Simplify import logic
+```
+
+### Pull Request Process
+
+<Steps>
+
+### Fork Repository
+
+Fork the repository on GitHub
+
+### Create Branch
+
+```bash copy
+git checkout -b feature/my-feature
+```
+
+### Make Changes
+
+Make your changes and test thoroughly
+
+### Run Linters
+
+```bash copy
+npm run lint
+```
+
+### Commit and Push
+
+```bash copy
+git commit -m "feat: Add feature"
+git push origin feature/my-feature
+```
+
+### Create PR
+
+Open a Pull Request on GitHub
+
+</Steps>
+
+## Resources
+
+<Callout type="info">
+  **Useful Links:**
+  - [Solidity Docs](https://docs.soliditylang.org/)
+  - [Foundry Book](https://book.getfoundry.sh/)
+  - [Next.js Docs](https://nextjs.org/docs)
+  - [wagmi Docs](https://wagmi.sh/)
+  - [viem Docs](https://viem.sh/)
+</Callout>
+
+## Next Steps
+
+- [Architecture Overview](/architecture) - Understand the system
+- [Smart Contracts](/contracts) - Contract documentation
+- [API Reference](/api) - Backend endpoints

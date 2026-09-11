@@ -1,0 +1,334 @@
+import { Callout, Steps } from 'nextra/components'
+
+# Overtime Markets
+
+Overtime Markets (formerly Thales Sport Markets) is a decentralized sports betting protocol on Optimism. It's known for competitive odds and a smooth user experience.
+
+## Overview
+
+<div className="grid grid-cols-2 md:grid-cols-4 gap-4 mt-6">
+  <div className="p-4 rounded-xl bg-red-50 dark:bg-red-900/20 text-center">
+    <div className="text-2xl mb-2">🏈</div>
+    <div className="text-xs text-gray-500">Platform</div>
+    <div className="font-bold">Overtime</div>
+  </div>
+  <div className="p-4 rounded-xl bg-red-50 dark:bg-red-900/20 text-center">
+    <div className="text-2xl mb-2">⛓️</div>
+    <div className="text-xs text-gray-500">Chain</div>
+    <div className="font-bold">Optimism</div>
+  </div>
+  <div className="p-4 rounded-xl bg-red-50 dark:bg-red-900/20 text-center">
+    <div className="text-2xl mb-2">⏱️</div>
+    <div className="text-xs text-gray-500">Duration</div>
+    <div className="font-bold">Event-Based</div>
+  </div>
+  <div className="p-4 rounded-xl bg-red-50 dark:bg-red-900/20 text-center">
+    <div className="text-2xl mb-2">💰</div>
+    <div className="text-xs text-gray-500">Currency</div>
+    <div className="font-bold">sUSD / USDC</div>
+  </div>
+</div>
+
+## Supported Sports
+
+<div className="grid grid-cols-2 md:grid-cols-5 gap-3 mt-4">
+  <div className="p-3 rounded-lg bg-gray-50 dark:bg-gray-800 text-center">
+    <span className="text-2xl">🏈</span>
+    <div className="text-sm font-medium mt-1">NFL</div>
+  </div>
+  <div className="p-3 rounded-lg bg-gray-50 dark:bg-gray-800 text-center">
+    <span className="text-2xl">🏀</span>
+    <div className="text-sm font-medium mt-1">NBA</div>
+  </div>
+  <div className="p-3 rounded-lg bg-gray-50 dark:bg-gray-800 text-center">
+    <span className="text-2xl">⚾</span>
+    <div className="text-sm font-medium mt-1">MLB</div>
+  </div>
+  <div className="p-3 rounded-lg bg-gray-50 dark:bg-gray-800 text-center">
+    <span className="text-2xl">🏒</span>
+    <div className="text-sm font-medium mt-1">NHL</div>
+  </div>
+  <div className="p-3 rounded-lg bg-gray-50 dark:bg-gray-800 text-center">
+    <span className="text-2xl">⚽</span>
+    <div className="text-sm font-medium mt-1">Soccer</div>
+  </div>
+  <div className="p-3 rounded-lg bg-gray-50 dark:bg-gray-800 text-center">
+    <span className="text-2xl">🥊</span>
+    <div className="text-sm font-medium mt-1">MMA/UFC</div>
+  </div>
+  <div className="p-3 rounded-lg bg-gray-50 dark:bg-gray-800 text-center">
+    <span className="text-2xl">🏎️</span>
+    <div className="text-sm font-medium mt-1">F1</div>
+  </div>
+  <div className="p-3 rounded-lg bg-gray-50 dark:bg-gray-800 text-center">
+    <span className="text-2xl">🎾</span>
+    <div className="text-sm font-medium mt-1">Tennis</div>
+  </div>
+  <div className="p-3 rounded-lg bg-gray-50 dark:bg-gray-800 text-center">
+    <span className="text-2xl">🎮</span>
+    <div className="text-sm font-medium mt-1">Esports</div>
+  </div>
+  <div className="p-3 rounded-lg bg-gray-50 dark:bg-gray-800 text-center">
+    <span className="text-2xl">🏅</span>
+    <div className="text-sm font-medium mt-1">Olympics</div>
+  </div>
+</div>
+
+<Callout type="info">
+  Overtime is particularly strong for US sports (NFL, NBA, MLB, NHL) and has some of the best odds in DeFi sports betting.
+</Callout>
+
+## How Overtime Works
+
+<Steps>
+
+### Connect wallet to Optimism
+
+Overtime runs on Optimism L2. You'll need ETH for gas and sUSD or USDC for betting.
+
+### Browse upcoming games
+
+Find sports events you want to bet on. Overtime shows odds and available markets.
+
+### Choose your market
+
+Pick from:
+- **Moneyline** - Pick the winner
+- **Spread** - Pick winner with handicap
+- **Total** - Over/Under points
+
+### Place bet
+
+Specify amount and confirm. Your position is minted as an NFT.
+
+### Automatic settlement
+
+After the game ends, winning positions can be claimed. Overtime uses oracles for results.
+
+</Steps>
+
+## What Sets Overtime Apart
+
+<div className="grid grid-cols-1 md:grid-cols-3 gap-4 mt-4">
+  <div className="p-4 rounded-xl bg-blue-50 dark:bg-blue-900/20">
+    <h4 className="font-semibold m-0">⚡ Low Fees</h4>
+    <p className="text-sm text-gray-600 dark:text-gray-400 mt-2 mb-0">
+      Optimism L2 means gas costs are minimal. More of your money goes to bets.
+    </p>
+  </div>
+  <div className="p-4 rounded-xl bg-green-50 dark:bg-green-900/20">
+    <h4 className="font-semibold m-0">📈 Competitive Odds</h4>
+    <p className="text-sm text-gray-600 dark:text-gray-400 mt-2 mb-0">
+      AMM pricing means odds are often better than traditional books.
+    </p>
+  </div>
+  <div className="p-4 rounded-xl bg-purple-50 dark:bg-purple-900/20">
+    <h4 className="font-semibold m-0">🎯 Focus on US Sports</h4>
+    <p className="text-sm text-gray-600 dark:text-gray-400 mt-2 mb-0">
+      Deep liquidity for NFL, NBA, MLB, NHL - great for American sports fans.
+    </p>
+  </div>
+</div>
+
+## Importing to Veritas
+
+### What Gets Imported
+
+| Data | Description |
+|------|-------------|
+| **Game** | Teams, sport, date |
+| **Market** | Moneyline, spread, or total |
+| **Selection** | Your pick |
+| **Stake** | Amount bet (sUSD/USDC) |
+| **Odds** | Odds at time of bet |
+| **Result** | Win or Loss |
+| **Payout** | Amount won |
+
+### Import Process
+
+<Steps>
+
+### Go to Platforms
+
+Navigate to Dashboard → Platforms → Overtime
+
+### Switch to Optimism
+
+Make sure your wallet is connected to Optimism network
+
+### Click Import
+
+We'll scan your betting history on Overtime
+
+### Review
+
+See your imported bets and updated VeritasScore
+
+</Steps>
+
+<Callout type="warning">
+  Only resolved bets count! Open positions will be imported once games end.
+</Callout>
+
+## Understanding Overtime Markets
+
+### Moneyline
+
+Simply pick the winner:
+
+<div className="p-4 rounded-xl bg-gray-50 dark:bg-gray-800 mt-2">
+  **Lakers vs Celtics**
+  - Lakers: 2.10 (47.6% implied)
+  - Celtics: 1.80 (55.6% implied)
+
+  If you bet $10 on Lakers and they win → You get $21 ($11 profit)
+</div>
+
+### Spread (Point Spread)
+
+The favorite "gives" points to the underdog:
+
+<div className="p-4 rounded-xl bg-gray-50 dark:bg-gray-800 mt-2">
+  **Chiefs -7.5 vs Dolphins +7.5**
+  - Chiefs -7.5: Bet wins if Chiefs win by 8+
+  - Dolphins +7.5: Bet wins if Dolphins lose by 7 or less (or win)
+</div>
+
+### Totals (Over/Under)
+
+Bet on the combined score:
+
+<div className="p-4 rounded-xl bg-gray-50 dark:bg-gray-800 mt-2">
+  **Total: 45.5 points**
+  - Over 45.5: Bet wins if total points > 45
+  - Under 45.5: Bet wins if total points < 46
+</div>
+
+## Tips for Overtime
+
+### What Works
+
+<div className="p-4 rounded-xl bg-green-50 dark:bg-green-900/20 mt-4">
+  <ul className="space-y-2 mb-0">
+    <li>**Check injury reports** - Last-minute scratches affect odds significantly</li>
+    <li>**Follow line movements** - Sharp money moves lines</li>
+    <li>**Compare to Vegas** - Overtime odds sometimes better than centralized books</li>
+    <li>**Consider motivation** - Playoff implications, rivalries matter</li>
+    <li>**Track your picks** - Know your strengths and weaknesses</li>
+  </ul>
+</div>
+
+### What to Avoid
+
+<div className="p-4 rounded-xl bg-red-50 dark:bg-red-900/20 mt-4">
+  <ul className="space-y-2 mb-0">
+    <li>**Heavy favorites at low odds** - Little value, high risk</li>
+    <li>**Parlays** - Fun but mathematically tough to win</li>
+    <li>**Betting every game** - Be selective</li>
+    <li>**Emotional picks** - Don't bet on your team just because</li>
+    <li>**Ignoring public sentiment** - Fading the public can work</li>
+  </ul>
+</div>
+
+### League-Specific Tips
+
+<div className="grid grid-cols-1 md:grid-cols-2 gap-4 mt-4">
+  <div className="p-4 rounded-xl border border-gray-200 dark:border-gray-700">
+    <h4 className="font-semibold m-0">🏈 NFL</h4>
+    <ul className="text-sm mt-2 mb-0 space-y-1">
+      <li>Home field = ~3 points</li>
+      <li>Key numbers: 3, 7, 10, 14</li>
+      <li>Thursday games are weird</li>
+      <li>Weather impacts passing</li>
+    </ul>
+  </div>
+  <div className="p-4 rounded-xl border border-gray-200 dark:border-gray-700">
+    <h4 className="font-semibold m-0">🏀 NBA</h4>
+    <ul className="text-sm mt-2 mb-0 space-y-1">
+      <li>Rest matters (B2Bs, 3-in-4)</li>
+      <li>Home court = ~2-3 points</li>
+      <li>Blowouts are common</li>
+      <li>Stars resting = fade</li>
+    </ul>
+  </div>
+  <div className="p-4 rounded-xl border border-gray-200 dark:border-gray-700">
+    <h4 className="font-semibold m-0">⚾ MLB</h4>
+    <ul className="text-sm mt-2 mb-0 space-y-1">
+      <li>Starting pitcher is key</li>
+      <li>Run line (±1.5) adds value</li>
+      <li>Long season = streaks</li>
+      <li>Bullpen matters late</li>
+    </ul>
+  </div>
+  <div className="p-4 rounded-xl border border-gray-200 dark:border-gray-700">
+    <h4 className="font-semibold m-0">🏒 NHL</h4>
+    <ul className="text-sm mt-2 mb-0 space-y-1">
+      <li>Goalie = everything</li>
+      <li>Puck line (±1.5) exists</li>
+      <li>Road favorites often lose</li>
+      <li>Overtime is random</li>
+    </ul>
+  </div>
+</div>
+
+## Parlays on Overtime
+
+<Callout type="warning">
+  Parlays are available on Overtime but use with caution. Each leg reduces your chances of winning.
+</Callout>
+
+**Example 3-leg parlay:**
+- 60% chance × 60% × 60% = 21.6% chance of all 3 hitting
+
+For Veritas:
+- Each leg of a parlay is counted as a separate prediction
+- If 2 of 3 legs hit, that's 2 wins and 1 loss
+
+## Troubleshooting
+
+### "Can't find my bets"
+
+<div className="p-4 rounded-xl bg-amber-50 dark:bg-amber-900/20 mt-2">
+  **Possible causes:**
+  - Not on Optimism network
+  - Only have open positions (games not finished)
+  - Used a different wallet
+
+  **Solution:** Verify wallet address and switch to Optimism
+</div>
+
+### "Old bets missing"
+
+<div className="p-4 rounded-xl bg-amber-50 dark:bg-amber-900/20 mt-2">
+  **Cause:** Very old bets from legacy contracts may not import
+
+  **Solution:** Most recent Overtime activity should import fine. Legacy V1 bets may require manual support.
+</div>
+
+### "Wrong odds showing"
+
+<div className="p-4 rounded-xl bg-amber-50 dark:bg-amber-900/20 mt-2">
+  **Cause:** We show the odds at the time you placed the bet, which may differ from final line
+
+  **Solution:** This is expected behavior - your bet locked in at your entry odds
+</div>
+
+## FAQ
+
+**Does Overtime work in the US?**
+Overtime is accessible globally. Legal compliance is the user's responsibility.
+
+**What about sUSD vs USDC?**
+Both work. We convert to USD equivalent for VeritasScore calculations.
+
+**Can I bet live (in-play)?**
+Overtime recently added live betting. These bets are imported like regular bets.
+
+**How fast do results settle?**
+Usually within an hour of game end. Oracles verify results before settlement.
+
+## Related
+
+- [Azuro](/platforms/azuro) - Alternative sports platform
+- [Copy Trading](/copy-trading) - Follow sports experts
+- [Improving Score](/reputation/improving-score) - Boost your VeritasScore

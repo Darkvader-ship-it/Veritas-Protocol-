@@ -1,0 +1,22 @@
+<svg viewBox="0 0 100 110" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <!-- Outer shield outline -->
+  <path d="M50 3L6 20V48C6 76 24 96 50 108C76 96 94 76 94 48V20L50 3Z" stroke="currentColor" stroke-width="6" fill="none" stroke-linejoin="round"/>
+
+  <!-- Inner shield shape -->
+  <path d="M50 20L22 32V48C22 66 34 80 50 88C66 80 78 66 78 48V32L50 20Z" stroke="currentColor" stroke-width="6" fill="none" stroke-linejoin="round"/>
+
+  <!-- T crossbar - left part -->
+  <path d="M32 44H44" stroke="currentColor" stroke-width="6" stroke-linecap="round"/>
+
+  <!-- T crossbar - right part -->
+  <path d="M56 44H68" stroke="currentColor" stroke-width="6" stroke-linecap="round"/>
+
+  <!-- T vertical stem -->
+  <path d="M50 38V58" stroke="currentColor" stroke-width="6" stroke-linecap="round"/>
+
+  <!-- Bottom curved element (like 'b' bottom) -->
+  <path d="M50 58C50 68 42 74 32 74" stroke="currentColor" stroke-width="6" stroke-linecap="round" fill="none"/>
+
+  <!-- Small vertical line at bottom center -->
+  <path d="M50 74V82" stroke="currentColor" stroke-width="6" stroke-linecap="round"/>
+</svg>

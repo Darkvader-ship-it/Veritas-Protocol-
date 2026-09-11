@@ -1,0 +1,196 @@
+import { Callout } from 'nextra/components'
+
+# Tier System
+
+Your tier is a visual representation of your VeritasScore level. Each tier comes with distinct benefits and recognition.
+
+## The Five Tiers
+
+export const TierCards = () => (
+  <div className="space-y-4 mt-6">
+    <div className="p-4 rounded-xl border-2 border-amber-600 bg-gradient-to-r from-amber-50 to-orange-50 dark:from-amber-900/20 dark:to-orange-900/20">
+      <div className="flex items-center gap-3">
+        <img src="/images/tiers/bronze.svg" alt="Bronze" width={32} height={32} />
+        <div>
+          <h3 className="font-bold text-lg m-0 text-amber-800 dark:text-amber-200">Bronze</h3>
+          <p className="text-sm text-amber-700 dark:text-amber-300 m-0">Score: 0 - 499</p>
+        </div>
+      </div>
+      <div className="mt-3 text-sm">
+        <strong>Status:</strong> Just getting started<br/>
+        <strong>Benefits:</strong> Basic dashboard access, NFT ownership, can view leaderboard
+      </div>
+    </div>
+    <div className="p-4 rounded-xl border-2 border-gray-400 bg-gradient-to-r from-gray-50 to-slate-50 dark:from-gray-800/50 dark:to-slate-800/50">
+      <div className="flex items-center gap-3">
+        <img src="/images/tiers/silver.svg" alt="Silver" width={32} height={32} />
+        <div>
+          <h3 className="font-bold text-lg m-0 text-gray-700 dark:text-gray-200">Silver</h3>
+          <p className="text-sm text-gray-600 dark:text-gray-400 m-0">Score: 500 - 999</p>
+        </div>
+      </div>
+      <div className="mt-3 text-sm">
+        <strong>Status:</strong> Building a track record<br/>
+        <strong>Benefits:</strong> Full leaderboard visibility, profile customization, analytics access
+      </div>
+    </div>
+    <div className="p-4 rounded-xl border-2 border-yellow-500 bg-gradient-to-r from-yellow-50 to-amber-50 dark:from-yellow-900/20 dark:to-amber-900/20">
+      <div className="flex items-center gap-3">
+        <img src="/images/tiers/gold.svg" alt="Gold" width={32} height={32} />
+        <div>
+          <h3 className="font-bold text-lg m-0 text-yellow-700 dark:text-yellow-200">Gold</h3>
+          <p className="text-sm text-yellow-600 dark:text-yellow-300 m-0">Score: 1,000 - 1,999</p>
+        </div>
+      </div>
+      <div className="mt-3 text-sm">
+        <strong>Status:</strong> Proven predictor<br/>
+        <strong>Benefits:</strong> <span className="font-semibold">Can enable copy trading!</span> Featured on leaderboard, verified badge
+      </div>
+    </div>
+    <div className="p-4 rounded-xl border-2 border-cyan-500 bg-gradient-to-r from-cyan-50 to-teal-50 dark:from-cyan-900/20 dark:to-teal-900/20">
+      <div className="flex items-center gap-3">
+        <img src="/images/tiers/platinum.svg" alt="Platinum" width={32} height={32} />
+        <div>
+          <h3 className="font-bold text-lg m-0 text-cyan-700 dark:text-cyan-200">Platinum</h3>
+          <p className="text-sm text-cyan-600 dark:text-cyan-300 m-0">Score: 2,000 - 4,999</p>
+        </div>
+      </div>
+      <div className="mt-3 text-sm">
+        <strong>Status:</strong> Expert predictor<br/>
+        <strong>Benefits:</strong> Priority leaderboard placement, premium badge, advanced analytics
+      </div>
+    </div>
+    <div className="p-4 rounded-xl border-2 border-sky-400 bg-gradient-to-r from-sky-50 to-blue-50 dark:from-sky-900/20 dark:to-blue-900/20 shadow-lg">
+      <div className="flex items-center gap-3">
+        <img src="/images/tiers/diamond.svg" alt="Diamond" width={32} height={32} />
+        <div>
+          <h3 className="font-bold text-lg m-0 text-sky-700 dark:text-sky-200">Diamond</h3>
+          <p className="text-sm text-sky-600 dark:text-sky-300 m-0">Score: 5,000+</p>
+        </div>
+      </div>
+      <div className="mt-3 text-sm">
+        <strong>Status:</strong> Elite predictor<br/>
+        <strong>Benefits:</strong> Top of leaderboard section, exclusive badge, maximum visibility, all features unlocked
+      </div>
+    </div>
+  </div>
+)
+
+<TierCards />
+
+## Tier Benefits Comparison
+
+| Feature | Bronze | Silver | Gold | Platinum | Diamond |
+|---------|--------|--------|------|----------|---------|
+| Dashboard Access | Yes | Yes | Yes | Yes | Yes |
+| Import Predictions | Yes | Yes | Yes | Yes | Yes |
+| Leaderboard Visible | Yes | Yes | Yes | Yes | Yes |
+| Profile Customization | No | Yes | Yes | Yes | Yes |
+| Advanced Analytics | No | Yes | Yes | Yes | Yes |
+| **Copy Trading (Leader)** | No | No | Yes | Yes | Yes |
+| Featured Placement | No | No | Yes | Yes | Yes |
+| Verified Badge | No | No | Yes | Yes | Yes |
+| Priority Ranking | No | No | No | Yes | Yes |
+| Premium Badge | No | No | No | Yes | Yes |
+| Top Section | No | No | No | No | Yes |
+| Exclusive Badge | No | No | No | No | Yes |
+
+## How to Reach Each Tier
+
+### Bronze → Silver (Need: 500 points)
+
+export const BronzeToSilver = () => (
+  <div className="p-4 rounded-xl bg-gray-50 dark:bg-gray-800 mt-2">
+    <p className="m-0"><strong>Typical path:</strong></p>
+    <ul className="mt-2 mb-2">
+      <li>~100 predictions with 55% win rate and 5 STT volume</li>
+      <li>Or ~50 predictions with 60% win rate and 10 STT volume</li>
+    </ul>
+    <p className="m-0"><strong>Focus on:</strong> Building consistency and importing all your predictions</p>
+  </div>
+)
+
+<BronzeToSilver />
+
+### Silver → Gold (Need: 1,000 points)
+
+export const SilverToGold = () => (
+  <div className="p-4 rounded-xl bg-gray-50 dark:bg-gray-800 mt-2">
+    <p className="m-0"><strong>Typical path:</strong></p>
+    <ul className="mt-2 mb-2">
+      <li>~200 predictions with 60% win rate and 20 STT volume</li>
+      <li>Or ~150 predictions with 65% win rate and 15 STT volume</li>
+    </ul>
+    <p className="m-0"><strong>Focus on:</strong> Improving accuracy while maintaining volume</p>
+  </div>
+)
+
+<SilverToGold />
+
+### Gold → Platinum (Need: 2,000 points)
+
+export const GoldToPlatinum = () => (
+  <div className="p-4 rounded-xl bg-gray-50 dark:bg-gray-800 mt-2">
+    <p className="m-0"><strong>Typical path:</strong></p>
+    <ul className="mt-2 mb-2">
+      <li>~400 predictions with 65% win rate and 50 STT volume</li>
+      <li>Or ~300 predictions with 70% win rate and 40 STT volume</li>
+    </ul>
+    <p className="m-0"><strong>Focus on:</strong> Trading across multiple platforms, consistent high performance</p>
+  </div>
+)
+
+<GoldToPlatinum />
+
+### Platinum → Diamond (Need: 5,000 points)
+
+export const PlatinumToDiamond = () => (
+  <div className="p-4 rounded-xl bg-gray-50 dark:bg-gray-800 mt-2">
+    <p className="m-0"><strong>Typical path:</strong></p>
+    <ul className="mt-2 mb-2">
+      <li>~800 predictions with 70% win rate and 100 STT volume</li>
+      <li>Or ~600 predictions with 75% win rate and 80 STT volume</li>
+    </ul>
+    <p className="m-0"><strong>Focus on:</strong> Exceptional accuracy, significant experience, multiple platforms</p>
+  </div>
+)
+
+<PlatinumToDiamond />
+
+<Callout type="info">
+  **Pro tip:** Diamond tier is rare! Less than 1% of users reach it. Focus on sustainable growth rather than rushing.
+</Callout>
+
+## NFT Visual Changes
+
+Your Reputation NFT changes appearance with each tier:
+
+| Tier | Visual Style |
+|------|--------------|
+| Bronze | Simple bronze border, basic design |
+| Silver | Silver accents, slightly enhanced |
+| Gold | Golden glow, premium look |
+| Platinum | Cyan highlights, sleek design |
+| Diamond | Full sparkle effect, crown elements |
+
+The changes happen automatically when you cross a tier threshold!
+
+## Tier FAQ
+
+**Can I lose my tier?**
+Currently, no. Your tier can only go up. Future updates may introduce tier maintenance requirements.
+
+**How long does it take to reach Gold?**
+It varies! Some active traders reach Gold in a few weeks, while others take months. Quality matters more than speed.
+
+**Do higher tiers get more followers?**
+Yes! Followers tend to prefer Gold+ traders. The verified badge builds trust.
+
+**Is Diamond really achievable?**
+Yes, but it requires exceptional performance over time. Think of it as a long-term goal rather than a quick achievement.
+
+## Related Topics
+
+- [VeritasScore Calculation](/reputation/veritasscore) - How scores work
+- [Improving Your Score](/reputation/improving-score) - Tips to level up
+- [Becoming a Leader](/copy-trading/becoming-leader) - Using Gold tier benefits

@@ -1,0 +1,39 @@
+{
+  "index": {
+    "title": "Welcome",
+    "type": "page",
+    "display": "hidden"
+  },
+  "-- start": {
+    "type": "separator",
+    "title": "Getting Started"
+  },
+  "getting-started": "Getting Started",
+  "-- learn": {
+    "type": "separator",
+    "title": "Learn"
+  },
+  "reputation": "Your Reputation",
+  "platforms": "Prediction Platforms",
+  "copy-trading": "Copy Trading",
+  "-- improve": {
+    "type": "separator",
+    "title": "Improve"
+  },
+  "strategies": "Tips & Strategies",
+  "-- support": {
+    "type": "separator",
+    "title": "Support"
+  },
+  "help": "Help Center",
+  "-- links": {
+    "type": "separator",
+    "title": "Quick Links"
+  },
+  "app": {
+    "title": "Open App ↗",
+    "type": "page",
+    "href": "https://veritas.xyz",
+    "newWindow": true
+  }
+}

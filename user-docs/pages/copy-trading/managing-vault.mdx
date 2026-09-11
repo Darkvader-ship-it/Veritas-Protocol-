@@ -1,0 +1,297 @@
+import { Callout, Steps } from 'nextra/components'
+
+# Managing Your Vault
+
+Whether you're a follower managing your position or a leader running your vault, this guide covers day-to-day management.
+
+## For Followers
+
+### Viewing Your Positions
+
+Navigate to **Dashboard → Copy Trading** to see:
+
+<div className="grid grid-cols-2 md:grid-cols-4 gap-4 mt-4">
+  <div className="p-4 rounded-xl bg-gray-50 dark:bg-gray-800 text-center">
+    <div className="text-xs text-gray-500">Current Balance</div>
+    <div className="font-bold text-lg">1.25 STT</div>
+  </div>
+  <div className="p-4 rounded-xl bg-gray-50 dark:bg-gray-800 text-center">
+    <div className="text-xs text-gray-500">Initial Deposit</div>
+    <div className="font-bold text-lg">1.00 STT</div>
+  </div>
+  <div className="p-4 rounded-xl bg-gray-50 dark:bg-gray-800 text-center">
+    <div className="text-xs text-gray-500">Profit/Loss</div>
+    <div className="font-bold text-lg text-green-600">+0.25 STT</div>
+  </div>
+  <div className="p-4 rounded-xl bg-gray-50 dark:bg-gray-800 text-center">
+    <div className="text-xs text-gray-500">ROI</div>
+    <div className="font-bold text-lg text-green-600">+25%</div>
+  </div>
+</div>
+
+### Adding More Funds
+
+Want to increase your position?
+
+<Steps>
+
+### Go to the vault
+
+Click on the vault you're already in
+
+### Click "Add Funds"
+
+Enter additional amount
+
+### Confirm transaction
+
+Your position increases proportionally
+
+</Steps>
+
+### Partial Withdrawal
+
+<Steps>
+
+### Navigate to vault
+
+Find the vault in your Copy Trading dashboard
+
+### Click "Withdraw"
+
+Choose "Partial" withdrawal
+
+### Enter amount
+
+Specify how much to withdraw
+
+### Confirm
+
+Funds return to your wallet
+
+</Steps>
+
+<Callout type="warning">
+  **Locked funds:** If there are pending trades, a portion of your balance may be temporarily unavailable until those trades resolve.
+</Callout>
+
+### Full Withdrawal
+
+To exit a vault completely:
+
+1. Click "Withdraw All"
+2. Confirm transaction
+3. All available funds return to wallet
+4. You stop copying that leader
+
+### Viewing Trade History
+
+See every trade copied on your behalf:
+
+<div className="p-4 rounded-xl bg-gray-50 dark:bg-gray-800 mt-4">
+  **Trade History Shows:**
+  - Date/time of trade
+  - Platform (DreamDEX, Polymarket, etc.)
+  - Your proportional stake
+  - Result (win/loss/pending)
+  - Impact on balance
+</div>
+
+## For Leaders
+
+### Vault Dashboard
+
+Your leader dashboard shows comprehensive stats:
+
+<div className="grid grid-cols-1 md:grid-cols-3 gap-4 mt-4">
+  <div className="p-4 rounded-xl border border-gray-200 dark:border-gray-700">
+    <h4 className="font-semibold m-0">Vault Overview</h4>
+    <ul className="text-sm mt-2 mb-0 space-y-1">
+      <li>Total Value Locked (TVL)</li>
+      <li>Number of followers</li>
+      <li>Vault creation date</li>
+      <li>Active status</li>
+    </ul>
+  </div>
+  <div className="p-4 rounded-xl border border-gray-200 dark:border-gray-700">
+    <h4 className="font-semibold m-0">Performance</h4>
+    <ul className="text-sm mt-2 mb-0 space-y-1">
+      <li>All-time returns</li>
+      <li>Win rate</li>
+      <li>Recent trades</li>
+      <li>Monthly performance</li>
+    </ul>
+  </div>
+  <div className="p-4 rounded-xl border border-gray-200 dark:border-gray-700">
+    <h4 className="font-semibold m-0">Fees</h4>
+    <ul className="text-sm mt-2 mb-0 space-y-1">
+      <li>Pending fees</li>
+      <li>Claimed fees</li>
+      <li>Total earned</li>
+      <li>Claim button</li>
+    </ul>
+  </div>
+</div>
+
+### Claiming Your Fees
+
+<Steps>
+
+### Check pending fees
+
+View accumulated fees in your vault dashboard
+
+### Click "Claim Fees"
+
+Initiate the withdrawal
+
+### Confirm transaction
+
+Pay gas and confirm
+
+### Receive funds
+
+Fees sent directly to your wallet
+
+</Steps>
+
+<Callout type="info">
+  There's no schedule for claiming fees. Claim whenever you want - weekly, monthly, or let them accumulate.
+</Callout>
+
+### Updating Vault Settings
+
+You can modify:
+
+| Setting | How to Change |
+|---------|---------------|
+| Description | Edit text in vault settings |
+| Minimum Deposit | Increase or decrease floor |
+| Active Platforms | Toggle which platforms count |
+
+<Callout type="warning">
+  Major changes (like dramatically increasing minimum) may affect current followers.
+</Callout>
+
+### Pausing Your Vault
+
+Need a break? Pause your vault:
+
+1. Go to Vault Settings
+2. Toggle "Pause Trading"
+3. New trades won't be copied
+4. Existing positions remain active
+
+**When to pause:**
+- Taking time off
+- Market conditions too volatile
+- Testing new strategy
+- Personal circumstances
+
+### Resuming Trading
+
+Simply toggle off the pause:
+1. Go to Vault Settings
+2. Toggle off "Pause Trading"
+3. Future trades copy again
+
+## Monitoring Performance
+
+### Key Metrics to Watch
+
+<div className="grid grid-cols-1 md:grid-cols-2 gap-4 mt-4">
+  <div className="p-4 rounded-xl bg-blue-50 dark:bg-blue-900/20">
+    <h4 className="font-semibold m-0">For Followers</h4>
+    <ul className="text-sm mt-2 mb-0 space-y-1">
+      <li>Your personal ROI</li>
+      <li>Leader's recent performance</li>
+      <li>Win/loss streak</li>
+      <li>Compare to just holding</li>
+    </ul>
+  </div>
+  <div className="p-4 rounded-xl bg-amber-50 dark:bg-amber-900/20">
+    <h4 className="font-semibold m-0">For Leaders</h4>
+    <ul className="text-sm mt-2 mb-0 space-y-1">
+      <li>Follower growth/churn</li>
+      <li>TVL trends</li>
+      <li>Fee earnings</li>
+      <li>Win rate maintenance</li>
+    </ul>
+  </div>
+</div>
+
+### Setting Alerts (Coming Soon)
+
+Future features may include:
+- Performance alerts
+- Threshold notifications
+- Leader activity alerts
+- Fee accumulation notifications
+
+## Risk Management
+
+### For Followers
+
+<div className="p-4 rounded-xl bg-green-50 dark:bg-green-900/20 mt-4">
+  **Smart position sizing:**
+  - Never put all funds in one vault
+  - Diversify across 3-5 leaders
+  - Keep some funds liquid
+  - Set personal loss limits
+</div>
+
+### For Leaders
+
+<div className="p-4 rounded-xl bg-blue-50 dark:bg-blue-900/20 mt-4">
+  **Protect your reputation:**
+  - Maintain consistent bet sizing
+  - Avoid over-leveraging
+  - Don't chase losses
+  - Be extra careful with large vault
+</div>
+
+## Troubleshooting
+
+### "Withdraw unavailable"
+
+<div className="p-4 rounded-xl bg-amber-50 dark:bg-amber-900/20 mt-2">
+  **Cause:** Funds locked in pending trades
+
+  **Solution:** Wait for trades to resolve, then try again
+</div>
+
+### "Fee claim failed"
+
+<div className="p-4 rounded-xl bg-amber-50 dark:bg-amber-900/20 mt-2">
+  **Cause:** Not enough gas or no fees to claim
+
+  **Solution:** Check fee balance and gas in wallet
+</div>
+
+### "Balance doesn't match expected"
+
+<div className="p-4 rounded-xl bg-amber-50 dark:bg-amber-900/20 mt-2">
+  **Cause:** Pending trades or fees not yet calculated
+
+  **Solution:** Wait for pending items to resolve; balance updates accordingly
+</div>
+
+## FAQ
+
+**How often should I check my position?**
+For followers: Weekly is usually enough unless actively trading. For leaders: Daily or as often as you trade.
+
+**Can I add to a vault while trades are pending?**
+Yes! New deposits are separate from existing positions.
+
+**Do I lose fees if followers withdraw?**
+No. Your fee earnings are separate from follower balances.
+
+**What happens if gas prices spike?**
+You may need more ETH/STT for transactions, but the vault logic is unaffected.
+
+## Related
+
+- [Becoming a Follower](/copy-trading/becoming-follower) - Follower basics
+- [Becoming a Leader](/copy-trading/becoming-leader) - Leader basics
+- [Fees Explained](/copy-trading/fees-explained) - Detailed fee info

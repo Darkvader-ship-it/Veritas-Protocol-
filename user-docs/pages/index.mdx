@@ -1,0 +1,176 @@
+import { Callout, Cards, Card, Steps } from 'nextra/components'
+import Image from 'next/image'
+
+# Welcome to Veritas
+
+export const HeroBanner = () => (
+  <div className="mt-6 mb-8 p-6 bg-gradient-to-r from-blue-50 to-purple-50 dark:from-blue-900/20 dark:to-purple-900/20 rounded-2xl">
+    <div className="flex items-center gap-4">
+      <img src="/images/logo.png" alt="Veritas" width={64} height={64} className="dark:invert dark:brightness-200" />
+      <div>
+        <h2 className="text-2xl font-bold m-0">Build Your Prediction Market Reputation</h2>
+        <p className="text-gray-600 dark:text-gray-400 m-0 mt-2">
+          Aggregate your wins across platforms. Get recognized. Enable copy trading.
+        </p>
+      </div>
+    </div>
+  </div>
+)
+
+<HeroBanner />
+
+## What is Veritas?
+
+Veritas is a **reputation platform** for prediction market traders. If you trade on platforms like DreamDEX Event Contracts, Polymarket, or sports betting protocols, Veritas helps you:
+
+export const FeatureGrid = () => (
+  <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mt-6">
+    <div className="p-5 rounded-xl border border-gray-200 dark:border-gray-800 bg-white dark:bg-gray-900">
+      <h3 className="font-bold text-lg m-0">Prove Your Track Record</h3>
+      <p className="text-gray-600 dark:text-gray-400 mt-2 m-0">
+        Get a verified, on-chain reputation that proves your prediction accuracy
+      </p>
+    </div>
+    <div className="p-5 rounded-xl border border-gray-200 dark:border-gray-800 bg-white dark:bg-gray-900">
+      <h3 className="font-bold text-lg m-0">Climb the Leaderboard</h3>
+      <p className="text-gray-600 dark:text-gray-400 mt-2 m-0">
+        Compete globally and get recognized for your prediction skills
+      </p>
+    </div>
+    <div className="p-5 rounded-xl border border-gray-200 dark:border-gray-800 bg-white dark:bg-gray-900">
+      <h3 className="font-bold text-lg m-0">Enable Copy Trading</h3>
+      <p className="text-gray-600 dark:text-gray-400 mt-2 m-0">
+        Let others follow your trades and earn fees from your success
+      </p>
+    </div>
+    <div className="p-5 rounded-xl border border-gray-200 dark:border-gray-800 bg-white dark:bg-gray-900">
+      <h3 className="font-bold text-lg m-0">Own Your Identity</h3>
+      <p className="text-gray-600 dark:text-gray-400 mt-2 m-0">
+        Get a unique NFT that represents your reputation across all platforms
+      </p>
+    </div>
+  </div>
+)
+
+<FeatureGrid />
+
+## How It Works
+
+<Steps>
+
+### Connect Your Wallet
+
+Link your Web3 wallet (MetaMask, WalletConnect, etc.) to get started.
+
+### Register and Mint Your NFT
+
+Create your account and receive a unique reputation NFT tied to your wallet.
+
+### Import Your History
+
+Connect the prediction platforms you use and import your trading history.
+
+### Build Your Score
+
+Your VeritasScore grows based on your accuracy and trading volume.
+
+### Unlock Benefits
+
+Climb tiers, appear on leaderboards, and enable copy trading.
+
+</Steps>
+
+## Quick Start
+
+<Cards>
+  <Card
+    title="Get Started in 5 Minutes"
+    href="/getting-started"
+    arrow
+  />
+  <Card
+    title="Understand Your VeritasScore"
+    href="/reputation/veritasscore"
+    arrow
+  />
+  <Card
+    title="Learn About Copy Trading"
+    href="/copy-trading"
+    arrow
+  />
+  <Card
+    title="View FAQ"
+    href="/help/faq"
+    arrow
+  />
+</Cards>
+
+## Supported Platforms
+
+Import your prediction history from **12 platforms** across EVM, Solana, and off-chain:
+
+### On-Chain (EVM)
+| Platform | Chain | Type |
+|----------|-------|------|
+| **DreamDEX** | Somnia | Crypto price predictions |
+| **Polymarket** | Polygon | Event/politics predictions |
+| **Overtime** | Optimism | Sports betting |
+| **Speed Markets** | Optimism | Fast crypto predictions |
+| **Limitless** | Base | General prediction markets |
+| **Azuro** | Polygon | Sports betting protocol |
+| **SX Bet** | SX Network | Sports & esports |
+| **Gnosis/Omen** | Gnosis | Event predictions |
+
+### Solana & Hybrid
+| Platform | Chain | Type |
+|----------|-------|------|
+| **Drift** | Solana | Prediction markets |
+| **Kalshi** | Hybrid | Regulated event predictions |
+
+### Off-Chain (Play Money / Points)
+| Platform | Type | Currency |
+|----------|------|----------|
+| **Manifold** | Event predictions | Mana (play money) |
+| **Metaculus** | Forecasting | Points (reputation) |
+
+<Callout type="info">
+  All platforms contribute to your unified VeritasScore!
+</Callout>
+
+## Why Your Reputation Matters
+
+In prediction markets, your track record is everything. But right now:
+
+- Your history is scattered across different platforms
+- There's no way to prove your skills
+- New traders can't find trustworthy people to follow
+
+Veritas fixes this by creating a **unified reputation system** that:
+
+- Aggregates all your predictions in one place
+- Provides verifiable, on-chain proof of your skills
+- Lets successful traders monetize their expertise
+
+## Ready to Begin?
+
+export const CTAButtons = () => (
+  <div className="mt-8 flex flex-col sm:flex-row gap-4">
+    <a
+      href="/getting-started"
+      className="inline-flex items-center justify-center px-6 py-3 bg-blue-600 rounded-lg font-semibold hover:bg-blue-700 transition-colors no-underline"
+      style={{ color: 'white' }}
+    >
+      Start Your Journey
+    </a>
+    <a
+      href="https://veritas.xyz"
+      target="_blank"
+      rel="noreferrer"
+      className="inline-flex items-center justify-center px-6 py-3 border border-gray-300 dark:border-gray-700 rounded-lg font-semibold hover:bg-gray-50 dark:hover:bg-gray-800 transition-colors no-underline"
+    >
+      Launch App
+    </a>
+  </div>
+)
+
+<CTAButtons />

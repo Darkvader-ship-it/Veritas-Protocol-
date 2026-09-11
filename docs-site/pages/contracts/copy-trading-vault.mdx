@@ -1,0 +1,339 @@
+import { Callout, Steps, Tabs } from 'nextra/components'
+
+# Copy Trading Vault
+
+The CopyTradingVault contract enables followers to automatically mirror trades from top performers.
+
+## Overview
+
+Copy trading allows users to:
+- Deposit STT into a managed vault
+- Follow successful traders (leaders)
+- Automatically copy their predictions
+- Share profits with leaders and protocol
+
+**Address (Testnet):** `0xBf5341E79bc0507a16807C244b5267Ad8333a6ed`
+
+**Source:** `contracts/src/core/CopyTradingVault.sol`
+
+## Architecture
+
+```
+┌─────────────────────────────────────────────────────────────────┐
+│                     CopyTradingVault                            │
+├─────────────────────────────────────────────────────────────────┤
+│  Follower Balances                                              │
+│  ┌─────────────┐  ┌─────────────┐  ┌─────────────┐             │
+│  │ User A: 5 STT│ │ User B: 10 STT│ │ User C: 2 STT│            │
+│  └─────────────┘  └─────────────┘  └─────────────┘             │
+├─────────────────────────────────────────────────────────────────┤
+│  Follow Relationships                                           │
+│  User A → Leader X (50% allocation, 0.5 STT max)               │
+│  User A → Leader Y (30% allocation, 0.3 STT max)               │
+│  User B → Leader X (100% allocation, 1 STT max)                │
+├─────────────────────────────────────────────────────────────────┤
+│  When Leader X bets 1 STT:                                      │
+│  → User A copies 0.5 STT (50% of 1, capped at max)             │
+│  → User B copies 1 STT (100% of 1, at max)                     │
+└─────────────────────────────────────────────────────────────────┘
+```
+
+## Configuration
+
+| Parameter | Value |
+|-----------|-------|
+| Min Deposit | 0.01 STT |
+| Max Vault Size | 100 STT |
+| Max Allocation | 50% (5000 bps) |
+| Min Bet Size | 0.001 STT |
+| Withdrawal Lock | 1 hour |
+| Protocol Fee | 10% of profits |
+| Leader Fee | 10% of profits |
+
+## Core Functions
+
+### Deposits
+
+```solidity copy
+function deposit() external payable {
+    require(msg.value >= MIN_DEPOSIT, "Below minimum");
+    require(totalDeposits + msg.value <= MAX_VAULT_SIZE, "Vault full");
+
+    balances[msg.sender] += msg.value;
+    totalDeposits += msg.value;
+
+    emit Deposited(msg.sender, msg.value);
+}
+```
+
+### Withdrawals
+
+<Callout type="warning">
+  Withdrawals are **time-locked** for 1 hour for security.
+</Callout>
+
+<Steps>
+
+### Request Withdrawal
+
+```solidity copy
+function requestWithdrawal(uint256 amount) external {
+    require(balances[msg.sender] >= amount, "Insufficient balance");
+
+    pendingWithdrawals[msg.sender] = Withdrawal({
+        amount: amount,
+        requestTime: block.timestamp,
+        completed: false
+    });
+
+    emit WithdrawalRequested(msg.sender, amount);
+}
+```
+
+### Wait 1 Hour
+
+The withdrawal is locked for 1 hour after request.
+
+### Complete Withdrawal
+
+```solidity copy
+function completeWithdrawal() external {
+    Withdrawal storage w = pendingWithdrawals[msg.sender];
+    require(w.amount > 0, "No pending withdrawal");
+    require(!w.completed, "Already completed");
+    require(block.timestamp >= w.requestTime + WITHDRAWAL_LOCK, "Still locked");
+
+    w.completed = true;
+    balances[msg.sender] -= w.amount;
+    totalDeposits -= w.amount;
+
+    payable(msg.sender).transfer(w.amount);
+
+    emit WithdrawalCompleted(msg.sender, w.amount);
+}
+```
+
+</Steps>
+
+### Following Traders
+
+```solidity copy
+function createFollow(
+    address leader,
+    uint256 allocationBps,
+    uint256 maxBetSize
+) external {
+    require(isEligibleLeader(leader), "Leader not eligible");
+    require(allocationBps <= MAX_ALLOCATION_BPS, "Allocation too high");
+    require(allocationBps > 0, "Zero allocation");
+    require(maxBetSize >= MIN_BET_SIZE, "Max bet too low");
+
+    follows[msg.sender][leader] = FollowSettings({
+        leader: leader,
+        allocationBps: allocationBps,
+        maxBetSize: maxBetSize,
+        active: true,
+        createdAt: block.timestamp
+    });
+
+    emit FollowCreated(msg.sender, leader, allocationBps, maxBetSize);
+}
+```
+
+| Parameter | Constraint |
+|-----------|------------|
+| allocationBps | 1 - 5000 (0.01% - 50%) |
+| maxBetSize | ≥ 0.001 STT |
+| Leader eligibility | Gold tier+ |
+
+## Fee Structure
+
+### Fee Distribution
+
+| Fee | Percentage | Recipient |
+|-----|------------|-----------|
+| Protocol Fee | 10% | Treasury |
+| Leader Fee | 10% | Copied trader |
+| Follower | 80% | You |
+
+### Example Calculation
+
+```
+Scenario: Follower copies 0.5 STT bet, wins 0.45 STT profit
+
+Gross Payout:     0.95 STT (0.5 original + 0.45 profit)
+Protocol Fee:     0.045 STT (10% of 0.45)
+Leader Fee:       0.045 STT (10% of 0.45)
+Net to Follower:  0.86 STT (0.5 original + 0.36 profit)
+
+Effective ROI:    72% (vs 90% without fees)
+```
+
+## Copy Trade Execution
+
+### Flow Diagram
+
+```
+Leader places bet on DreamDEX
+        │
+        ▼
+Executor service detects bet event
+        │
+        ▼
+For each follower of leader:
+  ├── Calculate copy amount
+  ├── Check follower balance
+  └── Execute copy trade
+        │
+        ▼
+Record in copy trade history
+```
+
+### Execution Function
+
+```solidity copy
+function executeCopyTrade(
+    address follower,
+    address leader,
+    uint256 leaderBetAmount,
+    bool isBull,
+    uint256 epoch
+) external onlyExecutor {
+    FollowSettings storage settings = follows[follower][leader];
+    require(settings.active, "Follow not active");
+
+    // Calculate copy amount
+    uint256 copyAmount = (leaderBetAmount * settings.allocationBps) / 10000;
+
+    // Apply max bet cap
+    if (copyAmount > settings.maxBetSize) {
+        copyAmount = settings.maxBetSize;
+    }
+
+    // Check balance
+    require(balances[follower] >= copyAmount, "Insufficient balance");
+
+    // Deduct and execute
+    balances[follower] -= copyAmount;
+
+    if (isBull) {
+        dreamDEX.betBull{value: copyAmount}(epoch);
+    } else {
+        dreamDEX.betBear{value: copyAmount}(epoch);
+    }
+
+    emit CopyTradeExecuted(follower, leader, epoch, copyAmount, isBull);
+}
+```
+
+## Simulation Mode
+
+<Callout type="info">
+  Test copy trading without real funds using Simulation Mode.
+</Callout>
+
+```solidity copy
+function createSimulatedFollow(
+    address leader,
+    uint256 allocationBps,
+    uint256 maxBetSize,
+    uint256 virtualBalance
+) external {
+    simulatedFollows[msg.sender][leader] = SimulatedFollow({
+        leader: leader,
+        allocationBps: allocationBps,
+        maxBetSize: maxBetSize,
+        virtualBalance: virtualBalance,
+        active: true
+    });
+}
+```
+
+## Safety Mechanisms
+
+### Security Features
+
+1. **Time-locked Withdrawals** - Prevents flash loan attacks
+2. **Max Allocation Cap** - Limits exposure per leader (50%)
+3. **Executor Separation** - Copy execution isolated from user calls
+4. **Pausable** - Emergency stop mechanism
+5. **Balance Checks** - Pre-execution validation
+
+### Modifiers
+
+```solidity copy
+modifier nonReentrant() {
+    require(_status != 2, "Reentrant call");
+    _status = 2;
+    _;
+    _status = 1;
+}
+
+modifier whenNotPaused() {
+    require(!paused, "Paused");
+    _;
+}
+
+modifier onlyExecutor() {
+    require(msg.sender == executor, "Not executor");
+    _;
+}
+```
+
+## Events
+
+```solidity
+event Deposited(address indexed user, uint256 amount);
+event WithdrawalRequested(address indexed user, uint256 amount);
+event WithdrawalCompleted(address indexed user, uint256 amount);
+event FollowCreated(address indexed follower, address indexed leader, uint256 allocationBps, uint256 maxBetSize);
+event FollowRemoved(address indexed follower, address indexed leader);
+event CopyTradeExecuted(address indexed follower, address indexed leader, uint256 epoch, uint256 amount, bool isBull);
+event ProfitDistributed(address indexed follower, address indexed leader, uint256 profit, uint256 protocolFee, uint256 leaderFee);
+```
+
+## Integration Example
+
+```typescript copy
+import { useCopyTradingVault } from '@/hooks/useCopyTradingVault';
+
+function CopyTradingPanel() {
+  const {
+    balance,
+    follows,
+    deposit,
+    requestWithdrawal,
+    createFollow,
+    removeFollow,
+  } = useCopyTradingVault();
+
+  const handleDeposit = async (amount: string) => {
+    const tx = await deposit(parseEther(amount));
+    await tx.wait();
+  };
+
+  const handleFollow = async (leader: string) => {
+    const tx = await createFollow(
+      leader,
+      1000,  // 10% allocation
+      parseEther('0.5')  // 0.5 STT max
+    );
+    await tx.wait();
+  };
+
+  return (
+    <div>
+      <p>Balance: {formatEther(balance)} STT</p>
+      <button onClick={() => handleDeposit('1')}>
+        Deposit 1 STT
+      </button>
+    </div>
+  );
+}
+```
+
+## Related Documentation
+
+- [Smart Contracts Overview](/contracts)
+- [VeritasScore Algorithm](/contracts/score-calculator)
+- [User Guide - Copy Trading](/guides/user-guide#copy-trading)

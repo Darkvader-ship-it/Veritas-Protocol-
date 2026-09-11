@@ -1,0 +1,197 @@
+import { Cards, Card, Callout } from 'nextra/components'
+
+# Copy Trading
+
+Copy Trading lets you automatically follow top predictors or build a following of your own. It's the core social feature of Veritas.
+
+## What is Copy Trading?
+
+export const WhatIsCopyTrading = () => (
+  <div className="p-6 rounded-xl bg-gradient-to-br from-blue-50 to-purple-50 dark:from-blue-900/20 dark:to-purple-900/20 mt-6">
+    <p className="m-0"><strong>Copy Trading</strong> = Automatically replicating another trader's predictions</p>
+    <p className="mt-2 mb-0">When a trader you follow makes a bet, the same bet is made on your behalf (proportionally sized).</p>
+  </div>
+)
+
+<WhatIsCopyTrading />
+
+## Two Sides of Copy Trading
+
+export const TwoSidesGrid = () => (
+  <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mt-6">
+    <div className="p-6 rounded-xl border-2 border-blue-500 bg-blue-50 dark:bg-blue-900/20">
+      <h3 className="font-bold text-xl m-0">Be a Follower</h3>
+      <p className="text-gray-600 dark:text-gray-400 mt-2 mb-4">
+        Find successful traders and automatically copy their predictions. Great if you want passive exposure to prediction markets.
+      </p>
+      <ul className="text-sm space-y-1 mb-0">
+        <li>No Gold tier required</li>
+        <li>Start with any amount</li>
+        <li>Choose who to follow</li>
+        <li>Stop anytime</li>
+      </ul>
+    </div>
+    <div className="p-6 rounded-xl border-2 border-amber-500 bg-amber-50 dark:bg-amber-900/20">
+      <h3 className="font-bold text-xl m-0">Be a Leader</h3>
+      <p className="text-gray-600 dark:text-gray-400 mt-2 mb-4">
+        Build a following and earn fees when others copy your trades. Great if you're a skilled predictor.
+      </p>
+      <ul className="text-sm space-y-1 mb-0">
+        <li>Requires Gold+ tier</li>
+        <li>Earn 10% of follower profits</li>
+        <li>Build your reputation</li>
+        <li>Grow your influence</li>
+      </ul>
+    </div>
+  </div>
+)
+
+<TwoSidesGrid />
+
+## How It Works
+
+### The Flow
+
+```
+Leader places bet → Vault detects → Followers' funds copy → Results distribute profits
+```
+
+### In Detail
+
+1. **You deposit** into a leader's vault
+2. **Leader trades** on their connected platforms
+3. **Vault copies** the trade proportionally for all followers
+4. **Profits/losses** are distributed based on deposits
+5. **Fees** are collected (10% protocol, 10% leader on profits)
+
+<Callout type="info">
+  You always maintain control. You can withdraw from a vault anytime (subject to pending trades settling).
+</Callout>
+
+## Fee Structure
+
+| Fee Type | Amount | When | Goes To |
+|----------|--------|------|---------|
+| Protocol Fee | 10% | On profits only | Veritas |
+| Leader Fee | 10% | On profits only | The trader you follow |
+
+export const FeeExample = () => (
+  <div className="p-4 rounded-xl bg-green-50 dark:bg-green-900/20 mt-4">
+    <p className="m-0"><strong>Example:</strong></p>
+    <ul className="mt-2 mb-0">
+      <li>You deposit 1 STT</li>
+      <li>After trading, you're up 0.5 STT (50% gain)</li>
+      <li>Fees: 0.05 STT (protocol) + 0.05 STT (leader) = 0.1 STT</li>
+      <li>Your take: 0.4 STT profit</li>
+      <li>Total balance: 1.4 STT</li>
+    </ul>
+  </div>
+)
+
+<FeeExample />
+
+<Callout type="warning">
+  **No fees on losses!** You only pay fees when you profit.
+</Callout>
+
+## Requirements
+
+### To Follow (Be a Follower)
+
+| Requirement | Details |
+|-------------|---------|
+| Tier | Any tier (Bronze+) |
+| Wallet | Connected wallet with funds |
+| Minimum | Varies by vault |
+
+### To Lead (Be a Leader)
+
+| Requirement | Details |
+|-------------|---------|
+| Tier | **Gold or higher** |
+| Track Record | Proven prediction history |
+| Vault Setup | Create and configure vault |
+
+## Simulation Mode
+
+export const SimulationModeInfo = () => (
+  <div className="p-4 rounded-xl bg-purple-50 dark:bg-purple-900/20 mt-4">
+    <p className="m-0"><strong>Not ready to use real funds?</strong></p>
+    <p className="mt-2 mb-0">Veritas offers <strong>Simulation Mode</strong> where you can:</p>
+    <ul className="mt-2 mb-0">
+      <li>Follow traders with virtual funds</li>
+      <li>Test your copy trading strategy</li>
+      <li>See potential results risk-free</li>
+      <li>Graduate to real trading when ready</li>
+    </ul>
+  </div>
+)
+
+<SimulationModeInfo />
+
+## Choose Your Path
+
+<Cards>
+  <Card title="I want to follow traders" href="/copy-trading/becoming-follower" />
+  <Card title="I want to lead a vault" href="/copy-trading/becoming-leader" />
+  <Card title="Understand fees" href="/copy-trading/fees-explained" />
+  <Card title="Try simulation first" href="/copy-trading/simulation-mode" />
+</Cards>
+
+## Quick Comparison
+
+| Aspect | Follower | Leader |
+|--------|----------|--------|
+| Tier Required | Any | Gold+ |
+| Effort | Low (passive) | High (active trading) |
+| Risk | Depends on leader | Your own decisions |
+| Profit Source | Following good traders | Trading + leader fees |
+| Control | Choose who to follow | Full trading control |
+
+## Safety & Trust
+
+export const SafetyGrid = () => (
+  <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mt-6">
+    <div className="p-4 rounded-xl bg-gray-50 dark:bg-gray-800">
+      <h4 className="font-semibold m-0">Non-Custodial</h4>
+      <p className="text-sm text-gray-600 dark:text-gray-400 mt-2 mb-0">
+        Smart contracts hold funds, not leaders. Nobody can run off with your money.
+      </p>
+    </div>
+    <div className="p-4 rounded-xl bg-gray-50 dark:bg-gray-800">
+      <h4 className="font-semibold m-0">Verified Stats</h4>
+      <p className="text-sm text-gray-600 dark:text-gray-400 mt-2 mb-0">
+        All leader stats are blockchain-verified. No fake win rates or inflated records.
+      </p>
+    </div>
+    <div className="p-4 rounded-xl bg-gray-50 dark:bg-gray-800">
+      <h4 className="font-semibold m-0">Transparent</h4>
+      <p className="text-sm text-gray-600 dark:text-gray-400 mt-2 mb-0">
+        All trades, fees, and performance are on-chain and auditable.
+      </p>
+    </div>
+  </div>
+)
+
+<SafetyGrid />
+
+## Common Questions
+
+**Can I copy multiple leaders?**
+Yes! You can deposit into multiple vaults to diversify.
+
+**What if a leader goes on a losing streak?**
+You can withdraw anytime. Consider spreading across multiple leaders.
+
+**Do leaders know who follows them?**
+Leaders can see aggregated vault stats but not individual follower identities.
+
+**Is there a minimum to follow?**
+Each vault sets its own minimum. Some may be as low as 0.01 STT.
+
+## Related Topics
+
+- [Becoming a Follower](/copy-trading/becoming-follower) - Full follower guide
+- [Becoming a Leader](/copy-trading/becoming-leader) - Start your own vault
+- [Fees Explained](/copy-trading/fees-explained) - Detailed fee breakdown
+- [Simulation Mode](/copy-trading/simulation-mode) - Try before you commit

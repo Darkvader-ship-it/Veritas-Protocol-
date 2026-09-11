@@ -1,0 +1,125 @@
+import { Callout, Cards, Card } from 'nextra/components'
+
+# Understanding Your Reputation
+
+Your reputation on Veritas is what sets you apart. It's a verified, on-chain proof of your prediction skills that follows you everywhere.
+
+## Why Reputation Matters
+
+In prediction markets, your track record is everything:
+
+export const WhyReputationGrid = () => (
+  <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mt-6">
+    <div className="p-5 rounded-xl bg-gradient-to-br from-blue-50 to-blue-100 dark:from-blue-900/20 dark:to-blue-800/20">
+      <h4 className="font-bold m-0">Prove Your Skills</h4>
+      <p className="text-gray-600 dark:text-gray-400 mt-2 mb-0 text-sm">
+        Anyone can claim to be good at predictions. Your VeritasScore proves it.
+      </p>
+    </div>
+    <div className="p-5 rounded-xl bg-gradient-to-br from-green-50 to-green-100 dark:from-green-900/20 dark:to-green-800/20">
+      <h4 className="font-bold m-0">Earn From Your Success</h4>
+      <p className="text-gray-600 dark:text-gray-400 mt-2 mb-0 text-sm">
+        High reputation unlocks copy trading, letting you earn from followers.
+      </p>
+    </div>
+    <div className="p-5 rounded-xl bg-gradient-to-br from-purple-50 to-purple-100 dark:from-purple-900/20 dark:to-purple-800/20">
+      <h4 className="font-bold m-0">Stand Out</h4>
+      <p className="text-gray-600 dark:text-gray-400 mt-2 mb-0 text-sm">
+        Climb the leaderboard and become a recognized predictor.
+      </p>
+    </div>
+  </div>
+)
+
+<WhyReputationGrid />
+
+## Components of Your Reputation
+
+Your Veritas reputation consists of three interconnected elements:
+
+### 1. VeritasScore
+
+A single number that represents your overall prediction ability. It's calculated from:
+- **Accuracy:** How often you win
+- **Volume:** How much you've wagered
+- **Consistency:** Performance over time
+
+[Learn more about VeritasScore →](/reputation/veritasscore)
+
+### 2. Tier System
+
+Your tier is a visual representation of your score level:
+
+| Tier | Score Required | What It Means |
+|------|----------------|---------------|
+| Bronze | 0 - 499 | Just starting out |
+| Silver | 500 - 999 | Building a track record |
+| Gold | 1,000 - 1,999 | Proven predictor |
+| Platinum | 2,000 - 4,999 | Expert level |
+| Diamond | 5,000+ | Elite status |
+
+[See all tier benefits →](/reputation/tiers)
+
+### 3. Reputation NFT
+
+A unique, soulbound token that proves your identity. It:
+- Cannot be transferred or sold
+- Updates automatically with your score
+- Visually evolves as you level up
+
+[Learn about your NFT →](/reputation/nft)
+
+## How Reputation is Built
+
+export const ReputationFormula = () => (
+  <div className="p-6 rounded-xl bg-gray-50 dark:bg-gray-800 mt-6">
+    <h4 className="font-bold m-0">The Reputation Formula</h4>
+    <div className="mt-4 p-4 bg-white dark:bg-gray-900 rounded-lg font-mono text-center">
+      Reputation = Accuracy × Volume × Time
+    </div>
+    <p className="text-gray-600 dark:text-gray-400 mt-4 mb-0 text-sm">
+      This means you need both skill (accuracy) and experience (volume) to build a strong reputation. You can't game it with just one.
+    </p>
+  </div>
+)
+
+<ReputationFormula />
+
+## The Journey from Bronze to Diamond
+
+```
+Bronze (0-499)
+    │  Just registered, starting to import predictions
+    ▼
+Silver (500-999)
+    │  Building a track record, gaining visibility
+    ▼
+Gold (1000-1999)
+    │  Proven predictor, can enable copy trading
+    ▼
+Platinum (2000-4999)
+    │  Expert level, priority on leaderboards
+    ▼
+Diamond (5000+)
+    │  Elite status, maximum benefits
+```
+
+## Quick Stats
+
+<Callout type="info">
+  **Your reputation is:**
+  - **Verifiable** - Anyone can check it on-chain
+  - **Portable** - Works across all supported platforms
+  - **Permanent** - Tied to your wallet forever
+  - **Fair** - Based on actual performance, not money spent
+</Callout>
+
+## Explore Reputation Topics
+
+<Cards>
+  <Card title="Your VeritasScore" href="/reputation/veritasscore" />
+  <Card title="Tier System" href="/reputation/tiers" />
+  <Card title="Your NFT" href="/reputation/nft" />
+  <Card title="The Leaderboard" href="/reputation/leaderboard" />
+  <Card title="Improving Your Score" href="/reputation/improving-score" />
+</Cards>

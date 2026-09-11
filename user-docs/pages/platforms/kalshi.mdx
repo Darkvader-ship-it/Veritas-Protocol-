@@ -1,0 +1,134 @@
+import { Callout, Steps } from 'nextra/components'
+
+# Kalshi
+
+Kalshi is the first CFTC-regulated prediction market exchange in the United States. It offers real-money event contracts on a wide range of topics.
+
+## Overview
+
+<div className="grid grid-cols-2 md:grid-cols-4 gap-4 mt-6">
+  <div className="p-4 rounded-xl bg-slate-50 dark:bg-slate-900/20 text-center">
+    <div className="text-2xl mb-2">📊</div>
+    <div className="text-xs text-gray-500">Platform</div>
+    <div className="font-bold">Kalshi</div>
+  </div>
+  <div className="p-4 rounded-xl bg-slate-50 dark:bg-slate-900/20 text-center">
+    <div className="text-2xl mb-2">🏛️</div>
+    <div className="text-xs text-gray-500">Type</div>
+    <div className="font-bold">Regulated</div>
+  </div>
+  <div className="p-4 rounded-xl bg-slate-50 dark:bg-slate-900/20 text-center">
+    <div className="text-2xl mb-2">⏱️</div>
+    <div className="text-xs text-gray-500">Duration</div>
+    <div className="font-bold">Varies</div>
+  </div>
+  <div className="p-4 rounded-xl bg-slate-50 dark:bg-slate-900/20 text-center">
+    <div className="text-2xl mb-2">💰</div>
+    <div className="text-xs text-gray-500">Currency</div>
+    <div className="font-bold">USD</div>
+  </div>
+</div>
+
+## Market Categories
+
+Kalshi offers a wide variety of event contracts:
+
+<div className="grid grid-cols-2 md:grid-cols-3 gap-3 mt-4">
+  <div className="p-3 rounded-lg bg-gray-50 dark:bg-gray-800 text-center">
+    <span className="text-2xl">🗳️</span>
+    <div className="text-sm font-medium mt-1">Politics</div>
+  </div>
+  <div className="p-3 rounded-lg bg-gray-50 dark:bg-gray-800 text-center">
+    <span className="text-2xl">📈</span>
+    <div className="text-sm font-medium mt-1">Economics</div>
+  </div>
+  <div className="p-3 rounded-lg bg-gray-50 dark:bg-gray-800 text-center">
+    <span className="text-2xl">🌡️</span>
+    <div className="text-sm font-medium mt-1">Weather</div>
+  </div>
+  <div className="p-3 rounded-lg bg-gray-50 dark:bg-gray-800 text-center">
+    <span className="text-2xl">💹</span>
+    <div className="text-sm font-medium mt-1">Finance</div>
+  </div>
+  <div className="p-3 rounded-lg bg-gray-50 dark:bg-gray-800 text-center">
+    <span className="text-2xl">🎬</span>
+    <div className="text-sm font-medium mt-1">Entertainment</div>
+  </div>
+  <div className="p-3 rounded-lg bg-gray-50 dark:bg-gray-800 text-center">
+    <span className="text-2xl">🔬</span>
+    <div className="text-sm font-medium mt-1">Science</div>
+  </div>
+</div>
+
+## How Kalshi Works
+
+<Steps>
+
+### Create an account
+
+Sign up and complete KYC verification (US residents only).
+
+### Fund your account
+
+Deposit USD via bank transfer or wire.
+
+### Browse markets
+
+Find event contracts that interest you.
+
+### Buy contracts
+
+Purchase YES or NO contracts at market prices.
+
+### Settlement
+
+Contracts pay out $1 if correct, $0 if incorrect.
+
+</Steps>
+
+## Why Kalshi?
+
+<div className="p-4 rounded-xl bg-slate-50 dark:bg-slate-900/20 mt-4">
+  <ul className="space-y-2 mb-0">
+    <li>**Regulated** - CFTC-regulated exchange, legal in the US</li>
+    <li>**Real USD** - No crypto required, trade in dollars</li>
+    <li>**High Liquidity** - One of the largest prediction markets</li>
+    <li>**Diverse Markets** - Politics, economics, weather, and more</li>
+  </ul>
+</div>
+
+<Callout type="warning">
+  Kalshi is only available to US residents. Copy trading is not supported due to regulatory requirements.
+</Callout>
+
+## Importing to Veritas
+
+<Callout type="info">
+  Kalshi is a hybrid platform. Veritas imports your trading history via the Kalshi API with your permission.
+</Callout>
+
+### What Gets Imported
+
+| Data | Description |
+|------|-------------|
+| **Event** | Market question |
+| **Position** | YES or NO |
+| **Amount** | USD wagered |
+| **Price** | Price paid per contract |
+| **Result** | Win or Loss |
+| **Payout** | Amount received |
+
+## Limitations
+
+<div className="p-4 rounded-xl bg-amber-50 dark:bg-amber-900/20 mt-4">
+  <ul className="space-y-2 mb-0">
+    <li>**No Copy Trading** - Kalshi's regulations prohibit copy trading features</li>
+    <li>**US Only** - Available only to US residents</li>
+    <li>**KYC Required** - Full identity verification needed</li>
+  </ul>
+</div>
+
+## Related
+
+- [Polymarket](/platforms/polymarket) - Decentralized alternative
+- [Manifold](/platforms/manifold) - Play money predictions

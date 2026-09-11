@@ -1,0 +1,145 @@
+import { Callout, Cards, Card, Steps, Tabs } from 'nextra/components'
+
+# Veritas Documentation
+
+<Callout type="info" emoji="🎯">
+  **Decentralized Reputation Protocol for Prediction Markets**
+
+  Veritas aggregates prediction market performance across multiple platforms into a unified, soulbound NFT-based identity.
+</Callout>
+
+## What is Veritas?
+
+Veritas solves **reputation fragmentation** in prediction markets. Traders build track records across multiple platforms (DreamDEX, Polymarket, Azuro, etc.), but this history is siloed and non-portable.
+
+### The Solution
+
+<Cards>
+  <Card title="Unified Identity" href="/guides/user-guide#registration">
+    One soulbound NFT aggregates performance across all platforms
+  </Card>
+  <Card title="VeritasScore" href="/contracts/score-calculator">
+    Algorithmic reputation based on accuracy and volume
+  </Card>
+  <Card title="Copy Trading" href="/contracts/copy-trading-vault">
+    Automatically mirror top performers' trades
+  </Card>
+  <Card title="On-Chain Verification" href="/contracts">
+    All reputation data is verifiable and tamper-proof
+  </Card>
+</Cards>
+
+## Quick Start
+
+<Steps>
+
+### Connect Your Wallet
+
+Visit [Veritas](https://veritas.xyz) and connect your Web3 wallet (MetaMask, WalletConnect, etc.)
+
+### Register & Mint NFT
+
+Pay a small fee (0.0005 STT) to mint your soulbound Reputation NFT
+
+### Import Predictions
+
+Connect platforms and import your prediction history to build your VeritasScore
+
+### Climb the Leaderboard
+
+Compete globally and enable copy trading when you reach Gold tier
+
+</Steps>
+
+## Supported Platforms
+
+| Platform | Network | Type | Status |
+|----------|---------|------|--------|
+| DreamDEX Event Contracts | Somnia | 5-min Binary | ✅ Live |
+| Polymarket | Polygon | Event-based | ✅ Live |
+| Azuro Protocol | Polygon | Sports/Events | ✅ Live |
+| Overtime | Multi-chain | Sports | ✅ Live |
+| Limitless | Multi-chain | Prediction | ✅ Live |
+| Speed Markets | Multi-chain | Binary | ✅ Live |
+| SXBet | Multi-chain | Sports | ✅ Live |
+
+## Architecture Overview
+
+```
+┌─────────────────────────────────────────────────────────────────┐
+│                         Frontend (Next.js)                       │
+│  ┌─────────────┐  ┌─────────────┐  ┌─────────────────────────┐  │
+│  │  Dashboard  │  │ Leaderboard │  │     Copy Trading UI     │  │
+│  └─────────────┘  └─────────────┘  └─────────────────────────┘  │
+└─────────────────────────────────────────────────────────────────┘
+                              │
+                    ┌─────────┴─────────┐
+                    ▼                   ▼
+┌───────────────────────┐   ┌───────────────────────────────────┐
+│   Smart Contracts     │   │         Backend Services          │
+│   (Somnia)         │   │                                   │
+│  ┌─────────────────┐  │   │  ┌─────────────┐  ┌───────────┐  │
+│  │ VeritasCore │  │   │  │  Indexers   │  │  Supabase │  │
+│  │ ReputationNFT   │  │   │  │  (viem)     │  │    (DB)   │  │
+│  │ ScoreCalculator │  │   │  └─────────────┘  └───────────┘  │
+│  │ CopyTradingVault│  │   │                                   │
+│  └─────────────────┘  │   └───────────────────────────────────┘
+└───────────────────────┘
+```
+
+## Deployed Contracts (STT Testnet)
+
+<Callout type="warning">
+  These are **testnet** addresses. Mainnet deployment coming soon.
+</Callout>
+
+| Contract | Address |
+|----------|---------|
+| VeritasCore | `0xd140eb173cbe6abf12a304095fa529d9b3f8ce6b` |
+| ReputationNFT | `0xa216b13c0b27b00c23552c768088fe11004d4b37` |
+| ScoreCalculator | `0x1c5aa7eff8174e8fd3a5643d75af77f3f5f422b9` |
+| PlatformRegistry | `0xbf378b0e69cf131bcc0b103ae8b32b5db03ddaa5` |
+| CopyTradingVault | `0xBf5341E79bc0507a16807C244b5267Ad8333a6ed` |
+
+## Tech Stack
+
+<Tabs items={['Frontend', 'Smart Contracts', 'Backend']}>
+  <Tabs.Tab>
+    - **Framework:** Next.js 14 (App Router)
+    - **Language:** TypeScript
+    - **Styling:** Tailwind CSS
+    - **Web3:** wagmi v2, viem, RainbowKit
+    - **UI:** Radix UI, shadcn/ui
+    - **Animations:** GSAP, Framer Motion
+  </Tabs.Tab>
+  <Tabs.Tab>
+    - **Language:** Solidity 0.8.28
+    - **Framework:** Foundry
+    - **Libraries:** OpenZeppelin
+    - **Network:** STT Smart Chain
+    - **Standard:** ERC-721 (Soulbound)
+  </Tabs.Tab>
+  <Tabs.Tab>
+    - **Database:** Supabase (PostgreSQL)
+    - **Indexing:** Custom viem indexers
+    - **Runtime:** Node.js v22+
+    - **Hosting:** Vercel
+  </Tabs.Tab>
+</Tabs>
+
+## Next Steps
+
+<Cards>
+  <Card title="Quick Start Guide" href="/guides/getting-started" arrow>
+    Set up your development environment
+  </Card>
+  <Card title="User Guide" href="/guides/user-guide" arrow>
+    Learn how to use Veritas
+  </Card>
+  <Card title="Developer Guide" href="/guides/developer-guide" arrow>
+    Build on the protocol
+  </Card>
+  <Card title="Smart Contracts" href="/contracts" arrow>
+    Explore the on-chain protocol
+  </Card>
+</Cards>

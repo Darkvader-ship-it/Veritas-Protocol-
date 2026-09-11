@@ -1,0 +1,279 @@
+import { Cards, Card, Callout } from 'nextra/components'
+
+# Supported Platforms
+
+Veritas aggregates your prediction history from multiple platforms. The more platforms you use, the more complete your reputation becomes!
+
+## Why Multi-Platform Matters
+
+export const BenefitsGrid = () => (
+  <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mt-6">
+    <div className="p-4 rounded-xl bg-blue-50 dark:bg-blue-900/20 text-center">
+      <h4 className="font-semibold m-0">More Volume</h4>
+      <p className="text-sm text-gray-600 dark:text-gray-400 mt-1 mb-0">Each platform adds to your total trading volume</p>
+    </div>
+    <div className="p-4 rounded-xl bg-green-50 dark:bg-green-900/20 text-center">
+      <h4 className="font-semibold m-0">Better Stats</h4>
+      <p className="text-sm text-gray-600 dark:text-gray-400 mt-1 mb-0">More predictions = more statistical confidence</p>
+    </div>
+    <div className="p-4 rounded-xl bg-purple-50 dark:bg-purple-900/20 text-center">
+      <h4 className="font-semibold m-0">Diversification</h4>
+      <p className="text-sm text-gray-600 dark:text-gray-400 mt-1 mb-0">Shows you're skilled across different prediction types</p>
+    </div>
+  </div>
+)
+
+<BenefitsGrid />
+
+## Available Platforms
+
+### Crypto Price Predictions
+
+export const CryptoPlatforms = () => (
+  <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mt-4">
+    <a href="/platforms/dreamdex" className="block p-5 rounded-xl border border-gray-200 dark:border-gray-700 hover:border-blue-400 dark:hover:border-blue-500 transition-colors no-underline">
+      <div className="flex items-center gap-3">
+        <img src="https://dreamdex.finance/favicon.ico" alt="DreamDEX" width={32} height={32} className="rounded" />
+        <div>
+          <h4 className="font-bold m-0 text-gray-900 dark:text-white">DreamDEX Event Contracts</h4>
+          <p className="text-sm text-gray-500 dark:text-gray-400 m-0">STT price predictions every 5 minutes</p>
+        </div>
+      </div>
+      <div className="mt-3 flex gap-2">
+        <span className="px-2 py-1 rounded text-xs bg-yellow-100 dark:bg-yellow-900/30 text-yellow-800 dark:text-yellow-200">Somnia</span>
+        <span className="px-2 py-1 rounded text-xs bg-green-100 dark:bg-green-900/30 text-green-800 dark:text-green-200">High Volume</span>
+      </div>
+    </a>
+    <a href="/platforms/speedmarkets" className="block p-5 rounded-xl border border-gray-200 dark:border-gray-700 hover:border-blue-400 dark:hover:border-blue-500 transition-colors no-underline">
+      <div className="flex items-center gap-3">
+        <div className="w-8 h-8 rounded bg-gradient-to-br from-purple-500 to-blue-500 flex items-center justify-center text-white font-bold text-sm">SM</div>
+        <div>
+          <h4 className="font-bold m-0 text-gray-900 dark:text-white">SpeedMarkets</h4>
+          <p className="text-sm text-gray-500 dark:text-gray-400 m-0">Fast crypto price predictions</p>
+        </div>
+      </div>
+      <div className="mt-3 flex gap-2">
+        <span className="px-2 py-1 rounded text-xs bg-purple-100 dark:bg-purple-900/30 text-purple-800 dark:text-purple-200">Multi-Chain</span>
+        <span className="px-2 py-1 rounded text-xs bg-blue-100 dark:bg-blue-900/30 text-blue-800 dark:text-blue-200">Quick Rounds</span>
+      </div>
+    </a>
+  </div>
+)
+
+<CryptoPlatforms />
+
+### Event Predictions
+
+export const EventPlatforms = () => (
+  <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mt-4">
+    <a href="/platforms/polymarket" className="block p-5 rounded-xl border border-gray-200 dark:border-gray-700 hover:border-blue-400 dark:hover:border-blue-500 transition-colors no-underline">
+      <div className="flex items-center gap-3">
+        <img src="https://polymarket.com/favicon.ico" alt="Polymarket" width={32} height={32} className="rounded" />
+        <div>
+          <h4 className="font-bold m-0 text-gray-900 dark:text-white">Polymarket</h4>
+          <p className="text-sm text-gray-500 dark:text-gray-400 m-0">News, politics, and current events</p>
+        </div>
+      </div>
+      <div className="mt-3 flex gap-2">
+        <span className="px-2 py-1 rounded text-xs bg-indigo-100 dark:bg-indigo-900/30 text-indigo-800 dark:text-indigo-200">Polygon</span>
+        <span className="px-2 py-1 rounded text-xs bg-orange-100 dark:bg-orange-900/30 text-orange-800 dark:text-orange-200">Popular</span>
+      </div>
+    </a>
+    <a href="/platforms/limitless" className="block p-5 rounded-xl border border-gray-200 dark:border-gray-700 hover:border-blue-400 dark:hover:border-blue-500 transition-colors no-underline">
+      <div className="flex items-center gap-3">
+        <div className="w-8 h-8 rounded bg-gradient-to-br from-cyan-500 to-teal-500 flex items-center justify-center text-white font-bold text-sm">L</div>
+        <div>
+          <h4 className="font-bold m-0 text-gray-900 dark:text-white">Limitless</h4>
+          <p className="text-sm text-gray-500 dark:text-gray-400 m-0">Diverse prediction markets</p>
+        </div>
+      </div>
+      <div className="mt-3 flex gap-2">
+        <span className="px-2 py-1 rounded text-xs bg-cyan-100 dark:bg-cyan-900/30 text-cyan-800 dark:text-cyan-200">Base</span>
+        <span className="px-2 py-1 rounded text-xs bg-pink-100 dark:bg-pink-900/30 text-pink-800 dark:text-pink-200">Growing</span>
+      </div>
+    </a>
+  </div>
+)
+
+<EventPlatforms />
+
+### Sports Predictions
+
+export const SportsPlatforms = () => (
+  <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mt-4">
+    <a href="/platforms/azuro" className="block p-5 rounded-xl border border-gray-200 dark:border-gray-700 hover:border-blue-400 dark:hover:border-blue-500 transition-colors no-underline">
+      <div className="flex items-center gap-3">
+        <img src="https://azuro.org/favicon.ico" alt="Azuro" width={32} height={32} className="rounded" />
+        <div>
+          <h4 className="font-bold m-0 text-gray-900 dark:text-white">Azuro</h4>
+          <p className="text-sm text-gray-500 dark:text-gray-400 m-0">Decentralized sports betting protocol</p>
+        </div>
+      </div>
+      <div className="mt-3 flex gap-2">
+        <span className="px-2 py-1 rounded text-xs bg-violet-100 dark:bg-violet-900/30 text-violet-800 dark:text-violet-200">Multi-Chain</span>
+        <span className="px-2 py-1 rounded text-xs bg-emerald-100 dark:bg-emerald-900/30 text-emerald-800 dark:text-emerald-200">All Sports</span>
+      </div>
+    </a>
+    <a href="/platforms/overtime" className="block p-5 rounded-xl border border-gray-200 dark:border-gray-700 hover:border-blue-400 dark:hover:border-blue-500 transition-colors no-underline">
+      <div className="flex items-center gap-3">
+        <img src="https://overtimemarkets.xyz/favicon.ico" alt="Overtime" width={32} height={32} className="rounded" />
+        <div>
+          <h4 className="font-bold m-0 text-gray-900 dark:text-white">Overtime Markets</h4>
+          <p className="text-sm text-gray-500 dark:text-gray-400 m-0">Sports betting on Optimism</p>
+        </div>
+      </div>
+      <div className="mt-3 flex gap-2">
+        <span className="px-2 py-1 rounded text-xs bg-red-100 dark:bg-red-900/30 text-red-800 dark:text-red-200">Optimism</span>
+        <span className="px-2 py-1 rounded text-xs bg-blue-100 dark:bg-blue-900/30 text-blue-800 dark:text-blue-200">US Sports</span>
+      </div>
+    </a>
+    <a href="/platforms/sxbet" className="block p-5 rounded-xl border border-gray-200 dark:border-gray-700 hover:border-blue-400 dark:hover:border-blue-500 transition-colors no-underline">
+      <div className="flex items-center gap-3">
+        <div className="w-8 h-8 rounded bg-gradient-to-br from-green-500 to-emerald-500 flex items-center justify-center text-white font-bold text-sm">SX</div>
+        <div>
+          <h4 className="font-bold m-0 text-gray-900 dark:text-white">SX Bet</h4>
+          <p className="text-sm text-gray-500 dark:text-gray-400 m-0">Sports and esports betting</p>
+        </div>
+      </div>
+      <div className="mt-3 flex gap-2">
+        <span className="px-2 py-1 rounded text-xs bg-green-100 dark:bg-green-900/30 text-green-800 dark:text-green-200">SX Network</span>
+        <span className="px-2 py-1 rounded text-xs bg-teal-100 dark:bg-teal-900/30 text-teal-800 dark:text-teal-200">Esports</span>
+      </div>
+    </a>
+  </div>
+)
+
+<SportsPlatforms />
+
+### Solana & Hybrid
+
+export const OtherPlatforms = () => (
+  <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mt-4">
+    <a href="/platforms/drift" className="block p-5 rounded-xl border border-gray-200 dark:border-gray-700 hover:border-blue-400 dark:hover:border-blue-500 transition-colors no-underline">
+      <div className="flex items-center gap-3">
+        <div className="w-8 h-8 rounded bg-gradient-to-br from-violet-500 to-purple-600 flex items-center justify-center text-white font-bold text-sm">D</div>
+        <div>
+          <h4 className="font-bold m-0 text-gray-900 dark:text-white">Drift BET</h4>
+          <p className="text-sm text-gray-500 dark:text-gray-400 m-0">Prediction markets on Solana</p>
+        </div>
+      </div>
+      <div className="mt-3 flex gap-2">
+        <span className="px-2 py-1 rounded text-xs bg-violet-100 dark:bg-violet-900/30 text-violet-800 dark:text-violet-200">Solana</span>
+        <span className="px-2 py-1 rounded text-xs bg-purple-100 dark:bg-purple-900/30 text-purple-800 dark:text-purple-200">DeFi Native</span>
+      </div>
+    </a>
+    <a href="/platforms/kalshi" className="block p-5 rounded-xl border border-gray-200 dark:border-gray-700 hover:border-blue-400 dark:hover:border-blue-500 transition-colors no-underline">
+      <div className="flex items-center gap-3">
+        <div className="w-8 h-8 rounded bg-gradient-to-br from-slate-500 to-gray-600 flex items-center justify-center text-white font-bold text-sm">K</div>
+        <div>
+          <h4 className="font-bold m-0 text-gray-900 dark:text-white">Kalshi</h4>
+          <p className="text-sm text-gray-500 dark:text-gray-400 m-0">CFTC-regulated event contracts</p>
+        </div>
+      </div>
+      <div className="mt-3 flex gap-2">
+        <span className="px-2 py-1 rounded text-xs bg-slate-100 dark:bg-slate-900/30 text-slate-800 dark:text-slate-200">Regulated</span>
+        <span className="px-2 py-1 rounded text-xs bg-gray-100 dark:bg-gray-900/30 text-gray-800 dark:text-gray-200">USD</span>
+      </div>
+    </a>
+    <a href="/platforms/gnosis" className="block p-5 rounded-xl border border-gray-200 dark:border-gray-700 hover:border-blue-400 dark:hover:border-blue-500 transition-colors no-underline">
+      <div className="flex items-center gap-3">
+        <div className="w-8 h-8 rounded bg-gradient-to-br from-emerald-500 to-green-600 flex items-center justify-center text-white font-bold text-sm">🦉</div>
+        <div>
+          <h4 className="font-bold m-0 text-gray-900 dark:text-white">Gnosis/Omen</h4>
+          <p className="text-sm text-gray-500 dark:text-gray-400 m-0">Decentralized prediction markets</p>
+        </div>
+      </div>
+      <div className="mt-3 flex gap-2">
+        <span className="px-2 py-1 rounded text-xs bg-emerald-100 dark:bg-emerald-900/30 text-emerald-800 dark:text-emerald-200">Gnosis Chain</span>
+        <span className="px-2 py-1 rounded text-xs bg-green-100 dark:bg-green-900/30 text-green-800 dark:text-green-200">xDAI</span>
+      </div>
+    </a>
+  </div>
+)
+
+<OtherPlatforms />
+
+### Off-Chain (Play Money / Forecasting)
+
+export const OffchainPlatforms = () => (
+  <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mt-4">
+    <a href="/platforms/manifold" className="block p-5 rounded-xl border border-gray-200 dark:border-gray-700 hover:border-blue-400 dark:hover:border-blue-500 transition-colors no-underline">
+      <div className="flex items-center gap-3">
+        <div className="w-8 h-8 rounded bg-gradient-to-br from-indigo-500 to-blue-600 flex items-center justify-center text-white font-bold text-sm">M</div>
+        <div>
+          <h4 className="font-bold m-0 text-gray-900 dark:text-white">Manifold Markets</h4>
+          <p className="text-sm text-gray-500 dark:text-gray-400 m-0">Play money prediction markets</p>
+        </div>
+      </div>
+      <div className="mt-3 flex gap-2">
+        <span className="px-2 py-1 rounded text-xs bg-indigo-100 dark:bg-indigo-900/30 text-indigo-800 dark:text-indigo-200">Off-chain</span>
+        <span className="px-2 py-1 rounded text-xs bg-blue-100 dark:bg-blue-900/30 text-blue-800 dark:text-blue-200">Mana</span>
+      </div>
+    </a>
+    <a href="/platforms/metaculus" className="block p-5 rounded-xl border border-gray-200 dark:border-gray-700 hover:border-blue-400 dark:hover:border-blue-500 transition-colors no-underline">
+      <div className="flex items-center gap-3">
+        <div className="w-8 h-8 rounded bg-gradient-to-br from-teal-500 to-cyan-600 flex items-center justify-center text-white font-bold text-sm">🔬</div>
+        <div>
+          <h4 className="font-bold m-0 text-gray-900 dark:text-white">Metaculus</h4>
+          <p className="text-sm text-gray-500 dark:text-gray-400 m-0">Scientific forecasting platform</p>
+        </div>
+      </div>
+      <div className="mt-3 flex gap-2">
+        <span className="px-2 py-1 rounded text-xs bg-teal-100 dark:bg-teal-900/30 text-teal-800 dark:text-teal-200">Forecasting</span>
+        <span className="px-2 py-1 rounded text-xs bg-cyan-100 dark:bg-cyan-900/30 text-cyan-800 dark:text-cyan-200">Reputation</span>
+      </div>
+    </a>
+  </div>
+)
+
+<OffchainPlatforms />
+
+## Platform Comparison
+
+| Platform | Type | Chain | Currency | Best For |
+|----------|------|-------|----------|----------|
+| DreamDEX | Crypto | STT | STT | Quick traders |
+| Polymarket | Events | Polygon | USDC | Researchers |
+| Azuro | Sports | Polygon | USDC | Sports fans |
+| Overtime | Sports | Optimism | ETH | US sports |
+| Limitless | Mixed | Base | USDC | Explorers |
+| SpeedMarkets | Crypto | Optimism | ETH | Fast traders |
+| SX Bet | Sports | SX Network | USDC | Esports |
+| Gnosis/Omen | Events | Gnosis | xDAI | DeFi natives |
+| Drift | Events | Solana | USDC | Solana users |
+| Kalshi | Events | Hybrid | USD | Regulated markets |
+| Manifold | Events | Off-chain | Mana | Casual forecasters |
+| Metaculus | Forecasting | Off-chain | Points | Scientific minds |
+
+## Import Cooldowns
+
+<Callout type="warning">
+  Each platform has a **24-hour cooldown** between imports. This prevents spam and ensures data quality.
+</Callout>
+
+Plan your imports accordingly - you can import from different platforms at the same time, but need to wait 24 hours to re-import from the same platform.
+
+## Coming Soon
+
+We're actively working on adding more platforms:
+
+- **Thales** - Binary options
+- **CEX integrations** - Somnia futures, etc.
+- **More Solana protocols**
+
+<Callout type="info">
+  Want to suggest a platform? Let us know on [Discord](https://discord.gg/veritas)!
+</Callout>
+
+## Next Steps
+
+Choose a platform guide to learn the specific import process:
+
+<Cards>
+  <Card title="DreamDEX" href="/platforms/dreamdex" />
+  <Card title="Polymarket" href="/platforms/polymarket" />
+  <Card title="Azuro" href="/platforms/azuro" />
+  <Card title="Overtime" href="/platforms/overtime" />
+  <Card title="SX Bet" href="/platforms/sxbet" />
+  <Card title="Drift" href="/platforms/drift" />
+</Cards>

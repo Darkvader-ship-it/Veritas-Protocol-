@@ -1,0 +1,46 @@
+{
+  "name": "@veritas/reputation-sdk",
+  "version": "0.1.0",
+  "description": "Decentralized reputation SDK for prediction markets - index any protocol, unified VeritasScore",
+  "type": "module",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "exports": {
+    ".": {
+      "import": "./dist/index.js",
+      "types": "./dist/index.d.ts"
+    },
+    "./adapters/dreamdex": {
+      "import": "./dist/adapters/dreamdex.js",
+      "types": "./dist/adapters/dreamdex.d.ts"
+    },
+    "./adapters/polymarket": {
+      "import": "./dist/adapters/polymarket.js",
+      "types": "./dist/adapters/polymarket.d.ts"
+    }
+  },
+  "scripts": {
+    "build": "tsc",
+    "dev": "tsc --watch",
+    "test": "node --test",
+    "example": "node examples/basic-usage.js"
+  },
+  "dependencies": {
+    "ethers": "^6.9.0"
+  },
+  "devDependencies": {
+    "@types/node": "^20.10.0",
+    "typescript": "^5.3.0"
+  },
+  "keywords": [
+    "prediction-markets",
+    "reputation",
+    "blockchain",
+    "sdk",
+    "dreamdex",
+    "polymarket",
+    "defi"
+  ],
+  "author": "Veritas",
+  "license": "MIT"
+}

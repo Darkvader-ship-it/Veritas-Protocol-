@@ -1,0 +1,257 @@
+import { Callout, Tabs } from 'nextra/components'
+
+# VeritasCore Contract
+
+The main protocol coordinator that orchestrates user registration, platform connections, and prediction imports.
+
+## Overview
+
+VeritasCore is the central contract that:
+- Registers users and mints their Reputation NFTs
+- Manages platform connections
+- Processes prediction imports
+- Triggers score calculations
+
+**Address (Testnet):** `0xd140eb173cbe6abf12a304095fa529d9b3f8ce6b`
+
+**Source:** `contracts/src/core/VeritasCore.sol`
+
+## Contract State
+
+### Storage Variables
+
+```solidity
+// Core contract references
+IReputationNFT public immutable reputationNFT;
+IScoreCalculator public immutable scoreCalculator;
+IPlatformRegistry public immutable platformRegistry;
+
+// User data
+mapping(address => UserProfile) public userProfiles;
+mapping(address => bool) public isRegistered;
+mapping(address => mapping(uint256 => bool)) public connectedPlatforms;
+mapping(address => mapping(bytes32 => bool)) public importedBatches;
+mapping(address => uint256) public lastImportTime;
+
+// Configuration
+uint256 public mintingFee = 0.0005 ether;
+uint256 public importCooldown = 1 hours;
+address public owner;
+bool public paused;
+```
+
+### UserProfile Struct
+
+```solidity
+struct UserProfile {
+    uint256 tokenId;
+    uint256 veritasScore;
+    uint256 totalBets;
+    uint256 totalWins;
+    uint256 totalVolume;
+    uint256 registeredAt;
+    uint256 lastUpdated;
+}
+```
+
+## Functions
+
+### registerUser
+
+Registers a new user and mints their soulbound NFT.
+
+```solidity copy
+function registerUser() external payable whenNotPaused {
+    require(!isRegistered[msg.sender], "Already registered");
+    require(msg.value >= mintingFee, "Insufficient fee");
+
+    // Mint NFT
+    uint256 tokenId = reputationNFT.mint(msg.sender);
+
+    // Create profile
+    userProfiles[msg.sender] = UserProfile({
+        tokenId: tokenId,
+        veritasScore: 0,
+        totalBets: 0,
+        totalWins: 0,
+        totalVolume: 0,
+        registeredAt: block.timestamp,
+        lastUpdated: block.timestamp
+    });
+
+    isRegistered[msg.sender] = true;
+
+    emit UserRegistered(msg.sender, tokenId);
+}
+```
+
+| Parameter | Type | Description |
+|-----------|------|-------------|
+| (payable) | - | Must send >= 0.0005 STT |
+
+**Requirements:**
+- User not already registered
+- Value >= minting fee (0.0005 STT)
+- Contract not paused
+
+### connectPlatform
+
+Connects user to a prediction market platform.
+
+```solidity copy
+function connectPlatform(uint256 platformId) external whenNotPaused {
+    require(isRegistered[msg.sender], "Not registered");
+    require(!connectedPlatforms[msg.sender][platformId], "Already connected");
+    require(platformRegistry.isPlatformActive(platformId), "Platform inactive");
+
+    connectedPlatforms[msg.sender][platformId] = true;
+
+    emit PlatformConnected(msg.sender, platformId);
+}
+```
+
+| Parameter | Type | Description |
+|-----------|------|-------------|
+| platformId | uint256 | Platform registry ID |
+
+### importPredictions
+
+Imports prediction history from a platform.
+
+```solidity copy
+function importPredictions(
+    uint256 platformId,
+    uint256 wins,
+    uint256 total,
+    uint256 volume,
+    bytes32 batchHash
+) external whenNotPaused {
+    require(isRegistered[msg.sender], "Not registered");
+    require(connectedPlatforms[msg.sender][platformId], "Platform not connected");
+    require(block.timestamp >= lastImportTime[msg.sender] + importCooldown, "Cooldown active");
+    require(!importedBatches[msg.sender][batchHash], "Batch already imported");
+    require(total > 0, "No predictions");
+    require(wins <= total, "Invalid win count");
+
+    // Mark batch as imported
+    importedBatches[msg.sender][batchHash] = true;
+    lastImportTime[msg.sender] = block.timestamp;
+
+    // Update profile
+    UserProfile storage profile = userProfiles[msg.sender];
+    profile.totalBets += total;
+    profile.totalWins += wins;
+    profile.totalVolume += volume;
+    profile.lastUpdated = block.timestamp;
+
+    // Calculate new score
+    uint256 newScore = scoreCalculator.calculateScore(
+        profile.totalWins,
+        profile.totalBets,
+        profile.totalVolume,
+        block.timestamp - profile.registeredAt
+    );
+
+    profile.veritasScore = newScore;
+
+    // Update NFT metadata
+    reputationNFT.updateScore(msg.sender, newScore);
+
+    emit PredictionsImported(msg.sender, platformId, wins, total);
+    emit VeritasScoreUpdated(msg.sender, newScore);
+}
+```
+
+| Parameter | Type | Description |
+|-----------|------|-------------|
+| platformId | uint256 | Platform ID |
+| wins | uint256 | Number of winning predictions |
+| total | uint256 | Total number of predictions |
+| volume | uint256 | Total volume in wei |
+| batchHash | bytes32 | Hash of import batch |
+
+### View Functions
+
+```solidity copy
+// Get user's current score
+function getUserScore(address user) external view returns (uint256);
+
+// Get full user profile
+function getUserProfile(address user) external view returns (UserProfile memory);
+
+// Check if platform is connected
+function isPlatformConnected(address user, uint256 platformId) external view returns (bool);
+
+// Check registration status
+function isUserRegistered(address user) external view returns (bool);
+```
+
+## Events
+
+```solidity
+event UserRegistered(address indexed user, uint256 tokenId);
+event PlatformConnected(address indexed user, uint256 indexed platformId);
+event PredictionsImported(address indexed user, uint256 platformId, uint256 wins, uint256 total);
+event VeritasScoreUpdated(address indexed user, uint256 newScore);
+```
+
+## Integration Example
+
+### Frontend Integration
+
+```typescript copy
+import { useContractWrite, useContractRead } from 'wagmi';
+import { VERITAS_CORE_ABI, CORE_ADDRESS } from '@/lib/contracts';
+import { parseEther } from 'viem';
+
+// Register user
+const { write: register } = useContractWrite({
+  address: CORE_ADDRESS,
+  abi: VERITAS_CORE_ABI,
+  functionName: 'registerUser',
+  value: parseEther('0.0005'),
+});
+
+// Check registration
+const { data: isRegistered } = useContractRead({
+  address: CORE_ADDRESS,
+  abi: VERITAS_CORE_ABI,
+  functionName: 'isUserRegistered',
+  args: [userAddress],
+});
+```
+
+### Batch Hash Generation
+
+```typescript copy
+import { keccak256, encodePacked } from 'viem';
+
+function generateBatchHash(
+  user: string,
+  platformId: number,
+  bets: { txHash: string }[]
+): `0x${string}` {
+  const txHashes = bets.map(b => b.txHash).sort().join('');
+  return keccak256(
+    encodePacked(
+      ['address', 'uint256', 'string'],
+      [user, BigInt(platformId), txHashes]
+    )
+  );
+}
+```
+
+## Gas Costs
+
+| Function | Approximate Gas |
+|----------|-----------------|
+| registerUser | ~150,000 |
+| connectPlatform | ~50,000 |
+| importPredictions | ~100,000 |
+| updateVeritasScore | ~80,000 |
+
+## Related Documentation
+
+- [ReputationNFT](/contracts/reputation-nft)
+- [ScoreCalculator](/contracts/score-calculator)
+- [Developer Guide](/guides/developer-guide)

@@ -1,0 +1,163 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --nextra-primary-hue: 217deg;
+  --nextra-primary-saturation: 91%;
+}
+
+/* Custom styling for user-friendly docs */
+.nextra-content {
+  @apply text-base leading-relaxed;
+}
+
+/* Larger, more readable text */
+.nextra-content p {
+  @apply text-base md:text-lg leading-7 md:leading-8;
+}
+
+/* Better callout styling */
+.nextra-callout {
+  @apply rounded-xl shadow-sm;
+}
+
+/* Card hover effects */
+.nextra-card {
+  @apply transition-all duration-300 hover:shadow-xl;
+  transform: translateY(0);
+}
+
+.nextra-card:hover {
+  transform: translateY(-4px);
+}
+
+/* Tier badge styles */
+.tier-badge {
+  @apply inline-flex items-center px-3 py-1 rounded-full text-sm font-semibold;
+}
+
+.tier-bronze { @apply bg-amber-100 text-amber-800; }
+.tier-silver { @apply bg-gray-100 text-gray-700; }
+.tier-gold { @apply bg-yellow-100 text-yellow-800; }
+.tier-platinum { @apply bg-cyan-100 text-cyan-800; }
+.tier-diamond { @apply bg-sky-100 text-sky-800; }
+
+/* Step indicators */
+.step-number {
+  @apply flex items-center justify-center w-10 h-10 rounded-full bg-blue-500 text-white font-bold text-lg;
+}
+
+/* Feature boxes */
+.feature-box {
+  @apply p-6 rounded-2xl border border-gray-200 dark:border-gray-800 bg-gradient-to-br from-white to-gray-50 dark:from-gray-900 dark:to-gray-800;
+}
+
+/* Warning/tip boxes */
+.warning-box {
+  @apply p-4 rounded-xl bg-amber-50 dark:bg-amber-900/20 border-l-4 border-amber-500;
+}
+
+.tip-box {
+  @apply p-4 rounded-xl bg-green-50 dark:bg-green-900/20 border-l-4 border-green-500;
+}
+
+/* Smooth scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #CBD5E1;
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #94A3B8;
+}
+
+/* Table styling */
+table {
+  @apply w-full rounded-lg overflow-hidden;
+}
+
+th {
+  @apply text-left font-semibold bg-gray-100 dark:bg-gray-800 p-3;
+}
+
+td {
+  @apply p-3 border-t border-gray-100 dark:border-gray-800;
+}
+
+/* Animation for page elements */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.nextra-content > * {
+  animation: fadeInUp 0.4s ease-out;
+}
+
+/* Better code styling */
+code {
+  @apply px-2 py-1 rounded-md bg-gray-100 dark:bg-gray-800 text-sm;
+}
+
+/* Progress indicator for guides */
+.progress-bar {
+  @apply h-2 bg-blue-500 rounded-full transition-all duration-500;
+}
+
+/* Platform logos container */
+.platform-grid {
+  @apply grid grid-cols-2 md:grid-cols-4 gap-4;
+}
+
+.platform-card {
+  @apply flex flex-col items-center p-4 rounded-xl bg-white dark:bg-gray-900 border border-gray-200 dark:border-gray-700 hover:border-blue-500 transition-colors cursor-pointer;
+}
+
+/* Stats display */
+.stat-card {
+  @apply text-center p-4;
+}
+
+.stat-value {
+  @apply text-3xl font-bold text-blue-600;
+}
+
+.stat-label {
+  @apply text-sm text-gray-500;
+}
+
+/* Video placeholder */
+.video-placeholder {
+  @apply aspect-video bg-gray-900 rounded-xl flex items-center justify-center text-white;
+}
+
+/* Screenshot styling */
+.screenshot {
+  @apply rounded-xl shadow-2xl border border-gray-200 dark:border-gray-700;
+}
+
+/* Emoji sizing */
+.emoji-large {
+  font-size: 2rem;
+}
+
+/* Better banner */
+.nextra-banner {
+  @apply bg-gradient-to-r from-blue-600 via-blue-500 to-purple-600;
+}

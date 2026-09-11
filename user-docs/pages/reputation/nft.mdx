@@ -1,0 +1,191 @@
+import { Callout } from 'nextra/components'
+
+# Your Reputation NFT
+
+When you register on Veritas, you receive a unique Reputation NFT. This isn't just a collectible - it's your on-chain identity and proof of your prediction skills.
+
+## What Makes It Special
+
+<div className="grid grid-cols-1 md:grid-cols-2 gap-4 mt-6">
+  <div className="p-5 rounded-xl bg-purple-50 dark:bg-purple-900/20 border border-purple-200 dark:border-purple-800">
+    <div className="text-3xl mb-3">🔗</div>
+    <h4 className="font-bold m-0">Soulbound</h4>
+    <p className="text-sm text-gray-600 dark:text-gray-400 mt-2 mb-0">
+      Permanently attached to your wallet. Cannot be transferred, sold, or given away. Your reputation is truly yours.
+    </p>
+  </div>
+  <div className="p-5 rounded-xl bg-blue-50 dark:bg-blue-900/20 border border-blue-200 dark:border-blue-800">
+    <div className="text-3xl mb-3">🔄</div>
+    <h4 className="font-bold m-0">Dynamic</h4>
+    <p className="text-sm text-gray-600 dark:text-gray-400 mt-2 mb-0">
+      Updates automatically as your score changes. The image and metadata evolve with your reputation.
+    </p>
+  </div>
+  <div className="p-5 rounded-xl bg-green-50 dark:bg-green-900/20 border border-green-200 dark:border-green-800">
+    <div className="text-3xl mb-3">✅</div>
+    <h4 className="font-bold m-0">Verifiable</h4>
+    <p className="text-sm text-gray-600 dark:text-gray-400 mt-2 mb-0">
+      Anyone can verify your reputation by checking your NFT on the blockchain. It's trustless proof.
+    </p>
+  </div>
+  <div className="p-5 rounded-xl bg-amber-50 dark:bg-amber-900/20 border border-amber-200 dark:border-amber-800">
+    <div className="text-3xl mb-3">🎨</div>
+    <h4 className="font-bold m-0">On-Chain Art</h4>
+    <p className="text-sm text-gray-600 dark:text-gray-400 mt-2 mb-0">
+      The image is generated entirely on-chain as SVG, not stored on external servers. It's permanent.
+    </p>
+  </div>
+</div>
+
+## What Your NFT Shows
+
+Your Reputation NFT displays:
+
+| Element | Description |
+|---------|-------------|
+| **VeritasScore** | Your current score, prominently displayed |
+| **Tier Badge** | Bronze, Silver, Gold, Platinum, or Diamond |
+| **Token ID** | Your unique identifier (e.g., #1234) |
+| **Visual Design** | Changes based on your tier |
+
+## NFT Visual Evolution
+
+As you climb tiers, your NFT transforms:
+
+### 🥉 Bronze Tier
+```
+┌────────────────────────┐
+│      Veritas       │
+│                        │
+│         150            │
+│      VeritasScore        │
+│                        │
+│    [ BRONZE ]          │
+│                        │
+│        #1234           │
+└────────────────────────┘
+Simple bronze border
+```
+
+### 🥇 Gold Tier
+```
+┌────────────────────────┐
+│  ✦   Veritas   ✦   │
+│                        │
+│        1,250           │
+│      VeritasScore        │
+│                        │
+│    [  GOLD  ]          │
+│                        │
+│        #1234           │
+└────────────────────────┘
+Golden glow effects
+```
+
+### 👑 Diamond Tier
+```
+┌────────────────────────┐
+│ ✦ ✦  Veritas  ✦ ✦  │
+│         👑              │
+│        5,500           │
+│      VeritasScore        │
+│                        │
+│   [ DIAMOND ]          │
+│                        │
+│        #1234           │
+└────────────────────────┘
+Full sparkle, crown
+```
+
+<Callout type="info">
+  The actual NFT uses beautiful SVG graphics generated on-chain. The examples above are simplified representations.
+</Callout>
+
+## Understanding "Soulbound"
+
+### What It Means
+
+<div className="p-4 rounded-xl bg-gray-50 dark:bg-gray-800 mt-4">
+  **Soulbound** is a term for NFTs that cannot leave your wallet. It's like a tattoo for your blockchain identity.
+
+  This ensures:
+  - 🎯 Your reputation can't be bought
+  - 🛡️ Your identity can't be stolen
+  - ✅ Everyone's credentials are earned
+</div>
+
+### What You CAN'T Do
+
+- ❌ Transfer it to another wallet
+- ❌ Sell it on OpenSea or other marketplaces
+- ❌ Give it to a friend
+- ❌ Burn it (it's permanent)
+
+### What You CAN Do
+
+- ✅ View it in your wallet
+- ✅ Share your profile link
+- ✅ Use it as proof of reputation
+- ✅ Watch it evolve as you grow
+
+## Viewing Your NFT
+
+### On Veritas
+
+Your NFT is displayed prominently on your Dashboard. You'll see the current image with your score and tier.
+
+### In Your Wallet
+
+#### MetaMask
+1. Open MetaMask
+2. Go to "NFTs" tab
+3. Look for "Veritas Reputation"
+4. Click to see details
+
+#### Other Wallets
+Most wallets that support NFTs will show your Veritas NFT. Look for it under "Collectibles" or "NFTs".
+
+### On Block Explorers
+
+You can view the raw NFT data on SomniaScan:
+1. Go to [somniascan.com](https://somniascan.com)
+2. Search for the contract: `0xa216b13c0b27b00c23552c768088fe11004d4b37`
+3. Go to "Read Contract"
+4. Call `tokenURI` with your token ID
+
+## NFT Metadata
+
+Your NFT includes metadata that apps can read:
+
+```json
+{
+  "name": "Veritas Reputation #1234",
+  "description": "Soulbound reputation NFT for Veritas",
+  "image": "data:image/svg+xml;base64,...",
+  "attributes": [
+    { "trait_type": "VeritasScore", "value": 1250 },
+    { "trait_type": "Tier", "value": "Gold" },
+    { "trait_type": "Minted", "value": "2024-01-15" }
+  ]
+}
+```
+
+## FAQ
+
+**What happens if I lose access to my wallet?**
+Unfortunately, if you lose your wallet, you lose your reputation. This is why it's crucial to keep your recovery phrase safe. There's no way to recover or transfer a soulbound NFT.
+
+**Can I have multiple reputation NFTs?**
+No, each wallet can only have one Veritas NFT. This is enforced by the smart contract.
+
+**Does the NFT cost gas to update?**
+No! The NFT metadata is generated dynamically on-chain. When your score changes, the NFT automatically reflects the new value without any transaction.
+
+**Will my NFT work on other chains?**
+Currently, the NFT exists only on Somnia. Cross-chain reputation is being explored for future updates.
+
+## Related Topics
+
+- [VeritasScore Calculation](/reputation/veritasscore) - How your score is determined
+- [Tier System](/reputation/tiers) - What each tier unlocks
+- [Registration](/getting-started/registration) - How to get your NFT

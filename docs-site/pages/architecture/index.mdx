@@ -1,0 +1,251 @@
+import { Callout, Cards, Card, Tabs } from 'nextra/components'
+
+# Architecture Overview
+
+Veritas is a multi-layer decentralized application combining on-chain smart contracts with off-chain services.
+
+## System Architecture
+
+```
+┌─────────────────────────────────────────────────────────────────────────┐
+│                              Users                                       │
+│                    (Traders & Followers)                                │
+└───────────────────────────────┬─────────────────────────────────────────┘
+                                │
+                                ▼
+┌─────────────────────────────────────────────────────────────────────────┐
+│                        Frontend Layer                                    │
+│                       (Next.js 14 + wagmi)                              │
+│  ┌─────────────┐  ┌─────────────┐  ┌───────────┐  ┌─────────────────┐  │
+│  │  Dashboard  │  │ Leaderboard │  │  Markets  │  │  Copy Trading   │  │
+│  └─────────────┘  └─────────────┘  └───────────┘  └─────────────────┘  │
+└───────────────────────────────┬─────────────────────────────────────────┘
+                                │
+              ┌─────────────────┼─────────────────┐
+              ▼                 ▼                 ▼
+┌───────────────────┐  ┌───────────────┐  ┌───────────────────────────────┐
+│  Smart Contracts  │  │   API Layer   │  │     External Platforms        │
+│    (Somnia)    │  │  (Next.js)    │  │                               │
+│                   │  │               │  │  ┌───────────┐  ┌──────────┐  │
+│  ┌─────────────┐  │  │  /api/        │  │  │DreamDEX│  │Polymarket│  │
+│  │Veritas  │  │  │  leaderboard  │  │  └───────────┘  └──────────┘  │
+│  │   Core      │  │  │  markets      │  │  ┌───────────┐  ┌──────────┐  │
+│  └─────────────┘  │  │  copy-trade   │  │  │   Azuro   │  │ Overtime │  │
+│  ┌─────────────┐  │  │  analytics    │  │  └───────────┘  └──────────┘  │
+│  │Reputation   │  │  │               │  │                               │
+│  │   NFT       │  │  └───────────────┘  └───────────────────────────────┘
+│  └─────────────┘  │          │
+│  ┌─────────────┐  │          ▼
+│  │CopyTrading  │  │  ┌───────────────────────────────────────────────┐
+│  │   Vault     │  │  │              Database Layer                   │
+│  └─────────────┘  │  │              (Supabase/PostgreSQL)            │
+└───────────────────┘  │                                               │
+                       │  ┌─────────┐  ┌───────────┐  ┌─────────────┐  │
+                       │  │  users  │  │    bets   │  │   stats     │  │
+                       │  └─────────┘  └───────────┘  └─────────────┘  │
+                       └───────────────────────────────────────────────┘
+                                       ▲
+                                       │
+                       ┌───────────────┴───────────────┐
+                       │       Indexer Services        │
+                       │    (Blockchain Monitors)      │
+                       │                               │
+                       │  ┌─────────────────────────┐  │
+                       │  │  DreamDEX Indexer    │  │
+                       │  │  Polymarket Indexer     │  │
+                       │  │  Azuro Indexer          │  │
+                       │  │  ...                    │  │
+                       │  └─────────────────────────┘  │
+                       └───────────────────────────────┘
+```
+
+## Layer Descriptions
+
+<Cards>
+  <Card title="Frontend Layer" href="#frontend-layer">
+    Next.js 14 web application with wallet integration
+  </Card>
+  <Card title="Smart Contract Layer" href="#smart-contract-layer">
+    On-chain protocol on Somnia
+  </Card>
+  <Card title="API Layer" href="#api-layer">
+    Next.js API routes for data access
+  </Card>
+  <Card title="Database Layer" href="#database-layer">
+    Supabase PostgreSQL for off-chain data
+  </Card>
+  <Card title="Indexer Services" href="#indexer-services">
+    Blockchain event monitors
+  </Card>
+</Cards>
+
+## Frontend Layer
+
+**Technology:** Next.js 14 (App Router), TypeScript, Tailwind CSS
+
+The frontend provides the user interface for:
+- Connecting wallets and viewing dashboard
+- Browsing the global leaderboard
+- Viewing active prediction markets
+- Managing copy trading positions
+
+**Key Components:**
+- `app/` - Next.js App Router pages
+- `components/` - Reusable React components
+- `hooks/` - Custom React hooks (useVeritas)
+- `lib/` - Utility functions and contract config
+
+## Smart Contract Layer
+
+**Technology:** Solidity 0.8.28, Foundry, OpenZeppelin
+
+On-chain contracts handle:
+- User registration and NFT minting
+- Reputation score storage
+- Copy trading vault management
+- Platform registry
+
+<Callout>
+  See [Smart Contracts](/contracts) for detailed contract documentation.
+</Callout>
+
+**Core Contracts:**
+- `VeritasCore.sol` - Main protocol coordinator
+- `ReputationNFT.sol` - Soulbound identity tokens
+- `ScoreCalculator.sol` - VeritasScore algorithm
+- `CopyTradingVault.sol` - Copy trading infrastructure
+- `PlatformRegistry.sol` - Platform management
+
+## API Layer
+
+**Technology:** Next.js API Routes
+
+Backend APIs provide:
+- Leaderboard queries (cached)
+- Platform market data aggregation
+- Copy trading operations
+- Analytics endpoints
+
+**Key Endpoints:**
+- `/api/leaderboard` - Global rankings
+- `/api/markets` - Active markets
+- `/api/copy-trade/*` - Copy trading APIs
+- `/api/[platform]/*` - Platform-specific data
+
+## Database Layer
+
+**Technology:** Supabase (PostgreSQL)
+
+Stores off-chain data:
+- User profiles and metadata
+- Prediction history (indexed from chain)
+- Aggregated statistics
+- Copy trading simulation data
+
+<Callout>
+  See [Database Schema](/architecture/database-schema) for table definitions.
+</Callout>
+
+**Key Tables:**
+- `users` - Wallet addresses and profiles
+- `bets` - Individual predictions
+- `user_platform_stats` - Aggregated metrics
+- `simulated_trades` - Copy trading records
+
+## Indexer Services
+
+**Technology:** Node.js, viem, TypeScript
+
+Background services that:
+- Monitor blockchain for events
+- Process and store prediction data
+- Calculate aggregate statistics
+- Keep database in sync with chain
+
+<Callout>
+  See [Indexer Architecture](/architecture/indexer-architecture) for implementation details.
+</Callout>
+
+## Data Flow
+
+### User Registration Flow
+
+```
+User                    Frontend                Contracts              Database
+ │                         │                        │                      │
+ │─── Connect Wallet ─────>│                        │                      │
+ │                         │                        │                      │
+ │─── Click Register ─────>│                        │                      │
+ │                         │── registerUser() ─────>│                      │
+ │                         │                        │── Mint NFT           │
+ │                         │                        │── Create Profile     │
+ │                         │<── Transaction Hash ───│                      │
+ │                         │                        │                      │
+ │<── Show Success ────────│                        │                      │
+ │                         │                        │      Indexer         │
+ │                         │                        │         │            │
+ │                         │                        │── Event │───────────>│
+ │                         │                        │         │   Insert   │
+```
+
+### Copy Trading Flow
+
+```
+Leader                  Contracts                Executor              Follower
+   │                        │                        │                    │
+   │── Place Bet ──────────>│                        │                    │
+   │                        │── Emit BetEvent ──────>│                    │
+   │                        │                        │                    │
+   │                        │                        │── Check Followers  │
+   │                        │                        │── Calculate Size   │
+   │                        │<── executeCopyTrade() ─│                    │
+   │                        │                        │                    │
+   │                        │── Execute Copy Bet     │                    │
+   │                        │── Record in History    │                    │
+   │                        │                        │                    │
+   │                        │                   When Round Resolves:      │
+   │                        │                        │                    │
+   │                        │── Distribute Profits ──────────────────────>│
+   │                        │── Collect Fees (10% protocol, 10% leader)   │
+```
+
+## Security Architecture
+
+### Smart Contract Security
+
+1. **Access Control** - Owner-only administrative functions
+2. **Reentrancy Protection** - OpenZeppelin ReentrancyGuard
+3. **Input Validation** - All external inputs validated
+4. **Pausable** - Emergency stop mechanism
+
+### Database Security
+
+1. **Row Level Security (RLS)** - Restricted data access
+2. **API Security** - Rate limiting and input sanitization
+
+### Frontend Security
+
+1. **Wallet Signing** - All transactions require signature
+2. **Environment Variables** - Secrets in `.env.local`
+
+## Scalability
+
+<Tabs items={['Current', 'Future']}>
+  <Tabs.Tab>
+    - **Frontend:** Vercel serverless (auto-scaling)
+    - **Database:** Supabase with connection pooling
+    - **Indexer:** Single-instance services
+  </Tabs.Tab>
+  <Tabs.Tab>
+    - **Indexer Scaling:** Multiple instances, queue-based processing
+    - **Database Scaling:** Read replicas, materialized views
+    - **API Scaling:** Edge caching, CDN
+  </Tabs.Tab>
+</Tabs>
+
+## Related Documentation
+
+- [Database Schema](/architecture/database-schema)
+- [Indexer Architecture](/architecture/indexer-architecture)
+- [Smart Contracts](/contracts)
+- [API Reference](/api)
